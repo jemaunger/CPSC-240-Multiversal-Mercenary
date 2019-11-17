@@ -2,8 +2,7 @@ import java.util.Scanner;
 import java.util.Random;
 import java.util.PrintWriter;
 
-public class Board {
-
+public class Board  {
 	//Instance variables
 	private Scanner input = new Scanner(System.in);
 	private Random rng = new Random();
@@ -138,6 +137,12 @@ public class Board {
 					System.out.printf("Congrats! You defeated %s! %n", enemyName);
 					System.out.printf("Your health total is at %d %n", playerHealth);
 					badGuyIDCounter--;
+					try {
+
+					Thread.sleep(2000);
+					} catch (InterruptedException e) {
+						Thread.currentThread().interrupt();
+					}
 				} else {
 					playerHealth = playerHealth - enemyDamage;
 					player.setHealth(playerHealth);
@@ -145,6 +150,12 @@ public class Board {
 					System.out.printf("%s attacked you for %d damage. %n", enemyName, enemyDamage);
 					System.out.printf("Enemy health total is at %d. %n", enemyHealth);
 					System.out.printf("Your health total is at %d. %n", playerHealth);
+					try {
+
+                                        Thread.sleep(2000);
+                                        } catch (InterruptedException e) {
+                                                Thread.currentThread().interrupt();
+                                        }
 					System.out.println();
 				}
 				roundCounter++;

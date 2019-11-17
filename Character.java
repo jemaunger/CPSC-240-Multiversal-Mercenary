@@ -1,8 +1,8 @@
-import java.util.Scanner;
-import java.lang.NullPointerException;
 
-//This class createst the character that the player will be using. It is singleton as there will only ever be one character at a time.
-public class Character {
+import java.util.Scanner;
+
+//This class creates the character that the player will be using. It is singleton as there will only ever be one character at a time.
+public class Character extends Being {
 	static Scanner input = new Scanner(System.in);
 	private static String name;
 	private static CharacterRace charClass;
@@ -78,20 +78,24 @@ public class Character {
 	}
 
 	//This method decreases the character's health.
+	/* We never used this method, but didn't want to delete it just in case
 	public static void decreaseHealth(int currentHealth, int damageTaken) {
 		int newHealth = currentHealth - damageTaken;
 		if (newHealth < 0)
 			newHealth = 0;
 		health = newHealth;
 	}
+	*/
 
 	public String getName() {
 		return name;
 	}
-
+	
+	/* Same here
 	public CharacterRace getRace() {
 		return charClass;
 	}
+	*/
 
 	public int getHealth() {
 		return health;
@@ -109,3 +113,4 @@ public class Character {
 		this.health = health;
 	}
 }
+

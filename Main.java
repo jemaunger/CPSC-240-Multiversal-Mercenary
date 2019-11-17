@@ -5,7 +5,6 @@ public class Main {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
 
-        //Explain setting and plot here
         System.out.println("All events you see in this game are real. They simply take place a long time ago, in a " +
                 "galaxy far, far away...");
         System.out.println();
@@ -22,7 +21,6 @@ public class Main {
         System.out.println();
 
         //Generate a new board and print it to the screen
-
         System.out.printf("Welcome, %s! %n", Character.player().getName());
 
         System.out.println("Below is list of symbols and actions that you can make with your character.");

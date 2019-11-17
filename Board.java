@@ -1,5 +1,6 @@
 import java.util.Scanner;
 import java.util.Random;
+import java.util.PrintWriter;
 
 public class Board {
 
@@ -83,6 +84,8 @@ public class Board {
 		System.out.println("     H = Print current health status");
 		System.out.println("     M = Print menu");
 		System.out.println("     Q = Quit game");
+		System.out.println("	 S = Save game");
+		System.out.println("	 R = Restore saved game"); 
 		System.out.println();
 
 		System.out.println("     w = move character up");
@@ -588,5 +591,9 @@ public class Board {
 				}
 			}
 		}
+	public void saveGame(PrintWriter pw){
+		
+		}
 	}
+
 }

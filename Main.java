@@ -2,8 +2,12 @@ import java.util.Scanner;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         Scanner input = new Scanner(System.in);
+
+	//Made a test board in Board1.txt to read from a file, but it does not print yet
+        Board.instance.testBoard();
+
 
         System.out.println("All events you see in this game are real. They simply take place a long time ago, in a " +
                 "galaxy far, far away...");
@@ -26,7 +30,10 @@ public class Main {
         System.out.println("Below is list of symbols and actions that you can make with your character.");
         System.out.println("To begin, please choose an action from the menu: ");
         System.out.println("(You must press enter between every action)");
-        Board.instance.printMenu();
+
+
+
+	Board.instance.printMenu();
         Board.instance.printBoard();
         System.out.print(": ");
 

@@ -1,5 +1,10 @@
 import java.util.Scanner;
 import java.util.Random;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.util.Scanner;
 
 public class Board  {
 	//Instance variables
@@ -60,6 +65,24 @@ public class Board  {
 		}
 		return instance;
 	}
+
+	//Trying to read in from a file
+	public char[][] testBoard() throws FileNotFoundException {
+		Scanner scan = new Scanner(new File("Board1.txt"));
+		int height = scan.nextInt();
+		scan.nextLine();
+		int width = scan.nextInt();
+		scan.nextLine();
+		char[][] newBoard = new char[height][width];
+
+		for (int i = 0; i < width; i++) {
+			for (int j = 0; j < height; j++) {
+				scan.nextLine();
+			}
+		}
+		return newBoard;
+	}
+
 
 	//Display the game board to the screen 
 	public void printBoard() {
@@ -177,7 +200,6 @@ public class Board  {
 		return false;
 	}
 
-	//Started working on this but
 	//Eat food and boost health
 	public void eatFood(Food food) {
 		System.out.printf("You've found %s and it boosts your health by %d %n", food.getName(), food.getHealth());

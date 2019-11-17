@@ -1,8 +1,7 @@
 import java.util.Scanner;
 import java.util.Random;
 
-public class Board {
-
+public class Board  {
 	//Instance variables
 	private Scanner input = new Scanner(System.in);
 	private Random rng = new Random();

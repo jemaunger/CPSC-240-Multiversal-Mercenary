@@ -5,11 +5,7 @@ public class Main {
     public static void main(String[] args) throws Exception {
         Scanner input = new Scanner(System.in);
 
-	//Made a test board in Board1.txt to read from a file, but it does not print yet
-        Board.instance.testBoard();
-
-
-        System.out.println("All events you see in this game are real. They simply take place a long time ago, in a " +
+	System.out.println("All events you see in this game are real. They simply take place a long time ago, in a " +
                 "galaxy far, far away...");
         System.out.println();
         System.out.println("The multidimensional barrier has been torn open, throwing a multitude of beings and items into our world.");
@@ -30,10 +26,19 @@ public class Main {
         System.out.println("Below is list of symbols and actions that you can make with your character.");
         System.out.println("To begin, please choose an action from the menu: ");
         System.out.println("(You must press enter between every action)");
+<<<<<<< HEAD
 
 
 
 	Board.instance.printMenu();
+=======
+        Board.instance.printMenu();
+	try {
+		Thread.sleep(6000);
+	}catch (InterruptedException e) {
+		Thread.currentThread().interrupt();
+	}
+>>>>>>> f132aea608d6e648b19b1e6e42dc5c2b1baa9ae4
         Board.instance.printBoard();
         System.out.print(": ");
 

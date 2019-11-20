@@ -28,11 +28,14 @@ public class Main {
         System.out.println("(You must press enter between every action)");
 
         Board.instance.printMenu();
+	/*
 	try {
 		Thread.sleep(6000);
 	}catch (InterruptedException e) {
 		Thread.currentThread().interrupt();
 	}
+	*/
+
         Board.instance.printBoard();
         System.out.print(": ");
 

@@ -42,6 +42,7 @@ public class Character {
 				else
 					System.out.println("That's not a class! Please pick again.");
 			}
+			System.out.println();
 			character = new Character(tempName, tempClass);
 		}
 		return character;

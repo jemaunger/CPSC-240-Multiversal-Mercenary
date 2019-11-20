@@ -43,7 +43,7 @@ public class Enemy {
     }
 
     public String toString() {
-        return name + " " + " " + health + " " + damage;
+        return name + " " + health + " " + damage;
     }	
     //Check Item comment for randRange().
 	private static int randRange(int min, int max) {

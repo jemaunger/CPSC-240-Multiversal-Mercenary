@@ -2,7 +2,7 @@
 import java.util.Scanner;
 
 //This class creates the character that the player will be using. It is singleton as there will only ever be one character at a time.
-public class Character extends Being {
+public class Character {
 	static Scanner input = new Scanner(System.in);
 	private static String name;
 	private static CharacterRace charClass;
@@ -42,6 +42,7 @@ public class Character extends Being {
 				else
 					System.out.println("That's not a class! Please pick again.");
 			}
+			System.out.println();
 			character = new Character(tempName, tempClass);
 		}
 		return character;
@@ -111,6 +112,10 @@ public class Character extends Being {
 
 	public void setHealth(int health) {
 		this.health = health;
+	}
+
+	public String toString() {
+		return name + " " + charClass + " " + health + " " + armor + " " + damage;
 	}
 }
 

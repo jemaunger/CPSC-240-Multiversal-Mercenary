@@ -1,7 +1,15 @@
 import java.util.Scanner;
 import java.util.Random;
+
 import java.io.FileInputStream;
-import java.io.FileNotFoundExcaption;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.util.Scanner;
+>>>>>>> 0f130ba5a537f4e3cb423adea8fd43f2403a469b
 
 public class Board  {
 	//Instance variables
@@ -20,7 +28,13 @@ public class Board  {
 	private EnemyGenerator genEnemy = new EnemyGenerator();
 	private ItemGenerator genItem = new ItemGenerator();
 	private FoodGenerator genFood = new FoodGenerator();
-
+	
+	//Instance variables to be saved.
+	private char characterLocation;
+	private int characterHealth;
+	private Inventory characterItems;
+	private String TOP_DELIM = "|.";
+	private String BOT_DELIM = ".|";
 	private Inventory inventory = new Inventory(100); //max weight can be whatever
 	
 
@@ -51,6 +65,37 @@ public class Board  {
 		return instance;
 	}
 
+	//restores the state of the saved game, including the characters location health, items, also all of the placements of enemies and items across the board.
+	/*public Board(Scanner s){
+		String firstDelim = "";
+		String lastDelim = "";
+		if (choice.equals('R')){
+			TOP_DELIM = firstDelim;
+			s.nextLine();
+			BOT_DELIM = lastDelim;
+			s.nextLine();
+		}
+	}*/
+
+	/*
+	//Trying to read in from a file
+	public char[][] testBoard() throws FileNotFoundException {
+		Scanner scan = new Scanner(new File("Board1.txt"));
+		int height = scan.nextInt();
+		scan.nextLine();
+		int width = scan.nextInt();
+		scan.nextLine();
+		char[][] newBoard = new char[height][width];
+
+		for (int i = 0; i < width; i++) {
+			for (int j = 0; j < height; j++) {
+				scan.nextLine();
+			}
+		}
+		return newBoard;
+	}
+*/
+
 	//Display the game board to the screen 
 	public void printBoard() {
 		for (char[] space : grid) {
@@ -72,6 +117,8 @@ public class Board  {
 		System.out.println("     H = Print current health status");
 		System.out.println("     M = Print menu");
 		System.out.println("     Q = Quit game");
+		System.out.println("	 S = Save game");
+		System.out.println("	 R = Restore saved game"); 
 		System.out.println();
 
 		System.out.println("     w = move character up");
@@ -97,6 +144,7 @@ public class Board  {
 		System.out.printf("Your health is %d %n", Character.player().getHealth());
 		System.out.print("Would you like to battle (Y or N)? ");
 		this.choice = input.next().charAt(0);
+		
 
 		if ((this.choice == 'Y') | (this.choice == 'y')) {
 			inventory.equipWeapon();
@@ -124,6 +172,13 @@ public class Board  {
 					System.out.printf("Congrats! You defeated %s! %n", enemyName);
 					System.out.printf("Your health total is at %d %n", playerHealth);
 					badGuyIDCounter--;
+					try {
+
+					Thread.sleep(2000);
+					//input.nextLine();
+					} catch (InterruptedException e) {
+						Thread.currentThread().interrupt();
+					}
 				} else {
 					playerHealth = playerHealth - enemyDamage;
 					player.setHealth(playerHealth);
@@ -131,7 +186,20 @@ public class Board  {
 					System.out.printf("%s attacked you for %d damage. %n", enemyName, enemyDamage);
 					System.out.printf("Enemy health total is at %d. %n", enemyHealth);
 					System.out.printf("Your health total is at %d. %n", playerHealth);
+					try {
+
+                                        
+					Thread.sleep(2000);
+                                       // input.nextLine();
+					} catch (InterruptedException e) {
+                                               Thread.currentThread().interrupt();
+                                        }
 					System.out.println();
+				}
+				try {
+					Thread.sleep(2000);
+				} catch (InterruptedException e) {
+					Thread.currentThread().interrupt();
 				}
 				roundCounter++;
 
@@ -155,7 +223,6 @@ public class Board  {
 		return false;
 	}
 
-	//Started working on this but
 	//Eat food and boost health
 	public void eatFood(Food food) {
 		System.out.printf("You've found %s and it boosts your health by %d %n", food.getName(), food.getHealth());
@@ -578,4 +645,5 @@ public class Board  {
 			}
 		}
 	}
+
 }

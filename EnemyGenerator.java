@@ -4,7 +4,7 @@ import java.util.ArrayList;
 public class EnemyGenerator {
     private Random rng = new Random();
     ArrayList<Enemy> enemyList = new ArrayList<Enemy>();
-//Randomly generator 13 different enemies to be spread throughout the board.
+//Randomly generator 15 different enemies to be spread throughout the board.
     EnemyGenerator(){
         enemyList.add(new Enemy("Goblin",  10, 25));
         enemyList.add(new Enemy("Demon",10, 50));
@@ -19,9 +19,11 @@ public class EnemyGenerator {
         enemyList.add(new Enemy("Alaskan Bull Worm", 25,40));
         enemyList.add(new Enemy("Bob-omb",10,10));
         enemyList.add(new Enemy("Zombie",10,40));
+	enemyList.add(new Enemy("Stormtrooper", 25, 50));
+	enemyList.add(new Enemy("Joker", rng.nextInt(50), 100));
 
     }
     public Enemy generate(){
-        return enemyList.get(rng.nextInt(13));
+        return enemyList.get(rng.nextInt(15));
     }
 }

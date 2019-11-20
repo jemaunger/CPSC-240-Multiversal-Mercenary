@@ -1,6 +1,6 @@
 import java.util.Scanner;
 import java.util.Random;
-import java.util.PrintWriter;
+import java.io.PrintWriter;
 
 public class Board  {
 	//Instance variables
@@ -15,7 +15,13 @@ public class Board  {
 	private EnemyGenerator genEnemy = new EnemyGenerator();
 	private ItemGenerator genItem = new ItemGenerator();
 	private FoodGenerator genFood = new FoodGenerator();
-
+	
+	//Instance variables to be saved.
+	private char characterLocation;
+	private int characterHealth;
+	private Inventory characterItems;
+	private String TOP_DELIM = "|.";
+	private String BOT_DELIM = ".|";
 	private Inventory inventory = new Inventory(100); //max weight can be whatever
 	private char[][] grid = {{'_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_'},
 		{'|', '&', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '.', '|'},
@@ -61,7 +67,17 @@ public class Board  {
 		}
 		return instance;
 	}
-
+	//restores the state of the saved game, including the characters location health, items, also all of the placements of enemies and items across the board.
+	/*public Board(Scanner s){
+		String firstDelim = "";
+		String lastDelim = "";
+		if (choice.equals('R')){
+			TOP_DELIM = firstDelim;
+			s.nextLine();
+			BOT_DELIM = lastDelim;
+			s.nextLine();
+		}
+	}*/
 	//Display the game board to the screen 
 	public void printBoard() {
 		for (char[] space : grid) {
@@ -140,6 +156,7 @@ public class Board  {
 					try {
 
 					Thread.sleep(2000);
+					//input.nextLine();
 					} catch (InterruptedException e) {
 						Thread.currentThread().interrupt();
 					}
@@ -152,9 +169,11 @@ public class Board  {
 					System.out.printf("Your health total is at %d. %n", playerHealth);
 					try {
 
-                                        Thread.sleep(2000);
-                                        } catch (InterruptedException e) {
-                                                Thread.currentThread().interrupt();
+                                        
+					Thread.sleep(2000);
+                                        input.nextLine();
+					} catch (InterruptedException e) {
+                                               Thread.currentThread().interrupt();
                                         }
 					System.out.println();
 				}
@@ -601,9 +620,6 @@ public class Board  {
 					}
 				}
 			}
-		}
-	public void saveGame(PrintWriter pw){
-		
 		}
 	}
 

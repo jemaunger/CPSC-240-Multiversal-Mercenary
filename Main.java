@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         Scanner input = new Scanner(System.in);
 
 	System.out.println("All events you see in this game are real. They simply take place a long time ago, in a " +
@@ -26,12 +26,16 @@ public class Main {
         System.out.println("Below is list of symbols and actions that you can make with your character.");
         System.out.println("To begin, please choose an action from the menu: ");
         System.out.println("(You must press enter between every action)");
+
         Board.instance.printMenu();
+	/*
 	try {
 		Thread.sleep(6000);
 	}catch (InterruptedException e) {
 		Thread.currentThread().interrupt();
 	}
+	*/
+
         Board.instance.printBoard();
         System.out.print(": ");
 

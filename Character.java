@@ -112,5 +112,9 @@ public class Character {
 	public void setHealth(int health) {
 		this.health = health;
 	}
+
+	public String toString() {
+		return name + " " + charClass + " " + health + " " + armor + " " + damage;
+	}
 }
 

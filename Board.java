@@ -78,9 +78,9 @@ public class Board  {
 		String firstDelim = "";
 		String lastDelim = "";
 		if (choice.equals('R')){
-			TOP_DELIM = firstDelim;
+			newBoard[][] = s.nextChar();
 			s.nextLine();
-			BOT_DELIM = lastDelim;
+			newBoard[][] = s.nextChar();
 			s.nextLine();
 		}
 	}*/

@@ -85,6 +85,7 @@ public class Board  {
 		}
 	}*/
 
+	/*
 	//Trying to read in from a file
 	public char[][] testBoard() throws FileNotFoundException {
 		Scanner scan = new Scanner(new File("Board1.txt"));
@@ -101,7 +102,7 @@ public class Board  {
 		}
 		return newBoard;
 	}
-
+*/
 
 	//Display the game board to the screen 
 	public void printBoard() {

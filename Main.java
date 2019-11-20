@@ -26,19 +26,13 @@ public class Main {
         System.out.println("Below is list of symbols and actions that you can make with your character.");
         System.out.println("To begin, please choose an action from the menu: ");
         System.out.println("(You must press enter between every action)");
-<<<<<<< HEAD
 
-
-
-	Board.instance.printMenu();
-=======
         Board.instance.printMenu();
 	try {
 		Thread.sleep(6000);
 	}catch (InterruptedException e) {
 		Thread.currentThread().interrupt();
 	}
->>>>>>> f132aea608d6e648b19b1e6e42dc5c2b1baa9ae4
         Board.instance.printBoard();
         System.out.print(": ");
 

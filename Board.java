@@ -151,6 +151,7 @@ public class Board  {
 		System.out.printf("Your health is %d %n", Character.player().getHealth());
 		System.out.print("Would you like to battle (Y or N)? ");
 		this.choice = input.next().charAt(0);
+		
 
 		if ((this.choice == 'Y') | (this.choice == 'y')) {
 			inventory.equipWeapon();
@@ -196,7 +197,7 @@ public class Board  {
 
                                         
 					Thread.sleep(2000);
-                                        input.nextLine();
+                                       // input.nextLine();
 					} catch (InterruptedException e) {
                                                Thread.currentThread().interrupt();
                                         }

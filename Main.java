@@ -27,7 +27,7 @@ public class Main {
         System.out.println("To begin, please choose an action from the menu: ");
         System.out.println("(You must press enter between every action)");
 
-        Board.instance.printMenu();
+        Board.getInstance().printMenu();
 	/*
 	try {
 		Thread.sleep(6000);
@@ -36,14 +36,14 @@ public class Main {
 	}
 	*/
 
-        Board.instance.printBoard();
+        Board.getInstance().printBoard();
         System.out.print(": ");
 
         while (input.hasNext()) {
             char play;
             do {
                 play = input.next().charAt(0);
-                Board.instance.play(play);
+                Board.getInstance().play(play);
 
              } while (play != 'Q');
         }

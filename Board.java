@@ -1,25 +1,24 @@
 import java.util.Scanner;
 import java.util.Random;
-
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.Scanner;
->>>>>>> 0f130ba5a537f4e3cb423adea8fd43f2403a469b
 
 public class Board  {
 	//Instance variables
-	private FileInputStream fileIn = null;
+	
+	private FileInputStream fileIn;
 	private Scanner scnr = new Scanner(fileIn);
 	private Scanner input = new Scanner(System.in);
 	private Random rng = new Random();
-	private char choice;
+	private char choice; 
 
 	private static int badGuyIDCounter = 12;
+	private static String fileName = "room1.txt";
 	static Board instance = new Board();
 	private Character player;
 	private String[] lines = new String[32];
@@ -33,19 +32,19 @@ public class Board  {
 	private char characterLocation;
 	private int characterHealth;
 	private Inventory characterItems;
-	private String TOP_DELIM = "|.";
-	private String BOT_DELIM = ".|";
+//	private String TOP_DELIM = "|.";
+//	private String BOT_DELIM = ".|";
 	private Inventory inventory = new Inventory(100); //max weight can be whatever
 	
 
-	private Board() {
-		try{
-			fileIn = new FileInputStream("room1.txt");
-		}
-		catch(FileNotFounException e){
-			System.out.println("Room text file was not found");
-			System.exit(2);
-		}
+	Board(String fileName) {
+//		try{
+			this.fileName = fileName;
+//		}
+//		catch(FileNotFoundException e){
+//			System.out.println("Room text file was not found");
+//			System.exit(2);
+//		}
 		for (int i = 0; i < 32; i++){
 			lines[i] = scnr.nextLine();
 		}
@@ -60,7 +59,7 @@ public class Board  {
 	//Singleton
 	public static Board getInstance() {
 		if (instance == null) {
-			instance = new Board();
+			instance = new Board(fileName);
 		}
 		return instance;
 	}

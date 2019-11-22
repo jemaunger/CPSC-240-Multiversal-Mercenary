@@ -26,7 +26,7 @@ public class Main {
         System.out.println("Below is list of symbols and actions that you can make with your character.");
         System.out.println("To begin, please choose an action from the menu: ");
         System.out.println("(You must press enter between every action)");
-
+	
         Board.instance.printMenu();
 	/*
 	try {

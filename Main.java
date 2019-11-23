@@ -4,6 +4,7 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
         Scanner input = new Scanner(System.in);
+	Board board = Board.getInstance();
 
 	System.out.println("All events you see in this game are real. They simply take place a long time ago, in a " +
                 "galaxy far, far away...");
@@ -27,7 +28,7 @@ public class Main {
         System.out.println("To begin, please choose an action from the menu: ");
         System.out.println("(You must press enter between every action)");
 
-        Board.getInstance().printMenu();
+        Board.printMenu();
 	/*
 	try {
 		Thread.sleep(6000);
@@ -36,14 +37,14 @@ public class Main {
 	}
 	*/
 
-        Board.getInstance().printBoard();
+        board.printBoard();
         System.out.print(": ");
 
         while (input.hasNext()) {
             char play;
             do {
                 play = input.next().charAt(0);
-                Board.getInstance().play(play);
+                board.play(play);
 
              } while (play != 'Q');
         }

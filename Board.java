@@ -1,17 +1,12 @@
 import java.util.Scanner;
 import java.util.Random;
-
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.PrintWriter;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
 
 public class Board  {
 	//Instance variables
-	private FileInputStream fileIn = null;
-	private Scanner scnr = new Scanner(fileIn);
+	private FileInputStream fileIn;
+	private Scanner scnr;
 	private Scanner input = new Scanner(System.in);
 	private Random rng = new Random();
 	private char choice;
@@ -38,6 +33,7 @@ public class Board  {
 	private Board() {
 		try{
 			fileIn = new FileInputStream("room1.txt");
+			scnr = new Scanner(fileIn);
 		}
 		catch(FileNotFoundException e){
 			System.out.println("Room text file was not found");
@@ -55,7 +51,7 @@ public class Board  {
 	}
 
 	//Singleton
-	public static synchronized Board getInstance() {
+	public static Board getInstance() {
 		if (instance == null) {
 			instance = new Board();
 		}
@@ -105,8 +101,8 @@ public class Board  {
 	}
 
 	//Print menu of options
-	public void printMenu() {
-		this.player = Character.player();
+	public static void printMenu() {
+		//this.player = Character.player();
 
 		System.out.println("Actions: ");
 		System.out.println("     D = Drop an item in inventory");

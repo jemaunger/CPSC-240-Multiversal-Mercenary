@@ -4,9 +4,8 @@ import java.io.FileInputStream;
 import java.io.PrintWriter;
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.util.Scanner;
+import java.io.FileNotFoundException;
 
 public class Board  {
 	//Instance variables
@@ -19,7 +18,8 @@ public class Board  {
 
 	private static int badGuyIDCounter = 12;
 	private static String fileName = "room1.txt";
-	static Board instance = new Board();
+	private static Board instance = new Board();
+	//private static Board instance;
 	private Character player;
 	private String[] lines = new String[32];
 	private char[][] grid = new char[32][32];
@@ -27,7 +27,7 @@ public class Board  {
 	private EnemyGenerator genEnemy = new EnemyGenerator();
 	private ItemGenerator genItem = new ItemGenerator();
 	private FoodGenerator genFood = new FoodGenerator();
-	
+
 	//Instance variables to be saved.
 	private char characterLocation;
 	private int characterHealth;
@@ -35,29 +35,28 @@ public class Board  {
 //	private String TOP_DELIM = "|.";
 //	private String BOT_DELIM = ".|";
 	private Inventory inventory = new Inventory(100); //max weight can be whatever
-	
 
-	Board(String fileName) {
-//		try{
-			this.fileName = fileName;
-//		}
-//		catch(FileNotFoundException e){
-//			System.out.println("Room text file was not found");
-//			System.exit(2);
-//		}
+	Board() {
+		try{
+			fileIn = new FileInputStream("room1.txt");
+		}
+		catch(FileNotFoundException e){
+			System.out.println("Room text file was not found");
+			System.exit(2);
+		}
 		for (int i = 0; i < 32; i++){
 			lines[i] = scnr.nextLine();
 		}
 		for (int x = 0; x < 32; x++){
-		       char[] holdLine = lines[x].toCharArray();
-		       for ( int y = 0; y < 32; y++){
-			       grid[x][y] = holdLine[y];
-		       }
-		}		       
+			char[] holdLine = lines[x].toCharArray();
+			for ( int y = 0; y < 32; y++){
+				grid[x][y] = holdLine[y];
+			}
+		}			
 	}
 
 	//Singleton
-	public static Board getInstance() {
+	public static synchronized Board getInstance() {
 		if (instance == null) {
 			instance = new Board(fileName);
 		}
@@ -79,21 +78,21 @@ public class Board  {
 	/*
 	//Trying to read in from a file
 	public char[][] testBoard() throws FileNotFoundException {
-		Scanner scan = new Scanner(new File("Board1.txt"));
-		int height = scan.nextInt();
-		scan.nextLine();
-		int width = scan.nextInt();
-		scan.nextLine();
-		char[][] newBoard = new char[height][width];
+	Scanner scan = new Scanner(new File("Board1.txt"));
+	int height = scan.nextInt();
+	scan.nextLine();
+	int width = scan.nextInt();
+	scan.nextLine();
+	char[][] newBoard = new char[height][width];
 
-		for (int i = 0; i < width; i++) {
-			for (int j = 0; j < height; j++) {
-				scan.nextLine();
-			}
-		}
-		return newBoard;
+	for (int i = 0; i < width; i++) {
+	for (int j = 0; j < height; j++) {
+	scan.nextLine();
 	}
-*/
+	}
+	return newBoard;
+	}
+	 */
 
 	//Display the game board to the screen 
 	public void printBoard() {
@@ -143,7 +142,7 @@ public class Board  {
 		System.out.printf("Your health is %d %n", Character.player().getHealth());
 		System.out.print("Would you like to battle (Y or N)? ");
 		this.choice = input.next().charAt(0);
-		
+
 
 		if ((this.choice == 'Y') | (this.choice == 'y')) {
 			inventory.equipWeapon();
@@ -173,8 +172,8 @@ public class Board  {
 					badGuyIDCounter--;
 					try {
 
-					Thread.sleep(2000);
-					//input.nextLine();
+						Thread.sleep(2000);
+						//input.nextLine();
 					} catch (InterruptedException e) {
 						Thread.currentThread().interrupt();
 					}
@@ -187,12 +186,12 @@ public class Board  {
 					System.out.printf("Your health total is at %d. %n", playerHealth);
 					try {
 
-                                        
-					Thread.sleep(2000);
-                                       // input.nextLine();
+
+						Thread.sleep(2000);
+						// input.nextLine();
 					} catch (InterruptedException e) {
-                                               Thread.currentThread().interrupt();
-                                        }
+						Thread.currentThread().interrupt();
+					}
 					System.out.println();
 				}
 				try {

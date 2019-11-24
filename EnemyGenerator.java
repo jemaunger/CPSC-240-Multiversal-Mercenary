@@ -20,7 +20,7 @@ public class EnemyGenerator {
         enemyList.add(new Enemy("Bob-omb",10,10));
         enemyList.add(new Enemy("Zombie",10,40));
 	enemyList.add(new Enemy("Stormtrooper", 25, 50));
-	enemyList.add(new Enemy("Joker", rng.nextInt(50), 100));
+	enemyList.add(new Enemy("Joker", rng.nextInt(75), 100));
 
     }
     public Enemy generate(){

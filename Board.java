@@ -157,10 +157,11 @@ public class Board  {
 				System.exit(0);
 				return false;
 			} else if (badGuyIDCounter == 0) {
-				System.out.println("You defeated all of the enemies! You win");
-				System.exit(0);
+				System.out.println("You defeated all of the enemies! But there are still more rooms...");
+				grid[12][31] = 'D';
 				return false;
-			} else {
+			}
+			else {
 				System.out.printf("%d more enemies remain... %n", badGuyIDCounter);
 				System.out.println();
 				return true;

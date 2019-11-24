@@ -12,17 +12,16 @@ public class Board  {
 	private Scanner input = new Scanner(System.in);
 	private Random rng = new Random();
 	private char choice; 
-
-	private static int badGuyIDCounter = 12;
 	private static String fileName = "room1.txt";
 	private static Board instance = new Board();
 	private	Character player;
 	private String[] lines = new String[32];
 	private char[][] grid = new char[32][32];
-
+	Inventory inventory;
 	private EnemyGenerator genEnemy;
 	private ItemGenerator genItem;
 	private FoodGenerator genFood;
+	private static int badGuyIDCounter = 12;
 
 	//Instance variables to be saved.
 //	private char characterLocation;
@@ -30,7 +29,6 @@ public class Board  {
 //	private Inventory characterItems;
 //	private String TOP_DELIM = "|.";
 //	private String BOT_DELIM = ".|";
-	private Inventory inventory = new Inventory(100); //max weight can be whatever
 
 	Board() {
 		try{
@@ -48,6 +46,7 @@ public class Board  {
 			genEnemy = new EnemyGenerator();
 			genItem = new ItemGenerator();
 			genFood = new FoodGenerator();
+			inventory = new Inventory(100);
 		}
 		for (int x = 0; x < 32; x++){
 			char[] holdLine = lines[x].toCharArray();

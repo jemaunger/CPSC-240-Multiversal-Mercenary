@@ -1,4 +1,5 @@
 //This class is the superclass for Character and Enemy. It stores a being's name, health, and damage
+import java.util.Scanner;
 
 public class Being {
 	private String name;
@@ -20,4 +21,5 @@ public class Being {
 	public int getDamage() {
 		return this.damage;
 	}
+
 }

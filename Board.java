@@ -2,9 +2,6 @@ import java.util.Scanner;
 import java.util.Random;
 import java.io.FileInputStream;
 import java.io.PrintWriter;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
 import java.io.FileNotFoundException;
 
 public class Board  {
@@ -28,16 +25,16 @@ public class Board  {
 	private FoodGenerator genFood;
 
 	//Instance variables to be saved.
-	private char characterLocation;
-	private int characterHealth;
-	private Inventory characterItems;
+//	private char characterLocation;
+//	private int characterHealth;
+//	private Inventory characterItems;
 //	private String TOP_DELIM = "|.";
 //	private String BOT_DELIM = ".|";
 	private Inventory inventory = new Inventory(100); //max weight can be whatever
 
 	Board() {
 		try{
-			fileIn = new FileInputStream("room1.txt");
+			fileIn = new FileInputStream(fileName);
 			scnr = new Scanner(fileIn);
 
 		}
@@ -545,9 +542,9 @@ public class Board  {
 						printBoard();
 					}
 
-				} else if (grid[row][column + 1] == 'D') {
+				}/* else if (grid[row][column + 1] == 'D') {
 
-				}
+				}*/
 				else {
 					grid[row][column + 1] = '@';
 					grid[row][column] = '.';

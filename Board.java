@@ -543,7 +543,7 @@ public class Board  {
 					}
 
 				}/* else if (grid[row][column + 1] == 'D') {
-
+					//Do stuff here to load room2
 				}*/
 				else {
 					grid[row][column + 1] = '@';

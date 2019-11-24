@@ -2,51 +2,80 @@ import java.util.Scanner;
 
 public class Main {
 
-    public static void main(String[] args) throws Exception {
-        Scanner input = new Scanner(System.in);
-	Board board = Board.getInstance();
+	public static void main(String[] args) throws Exception {
+		Scanner input = new Scanner(System.in);
+		Board board = Board.getInstance();
 
-	System.out.println("All events you see in this game are real. They simply take place a long time ago, in a " +
-                "galaxy far, far away...");
-        System.out.println();
-        System.out.println("The multidimensional barrier has been torn open, throwing a multitude of beings and items into our world.");
-        System.out.println("Unfortunately, through a sheer statistical anomaly, all but one of these beings are evil!");
-        System.out.println("Our hero, torn from their own world and/or time, now fights to rid our world of evil before ");
-        System.out.println("returning to their own world (which will happen offscreen).");
-        System.out.println("Can you help guide them toward where they need to be?");
+		System.out.println("All events you see in this game are real. They simply take place a long time ago, in a " +
+				"galaxy far, far away...");
+		System.out.println();
+		System.out.println("The multidimensional barrier has been torn open, throwing a multitude of beings and items into our world.");
+		System.out.println("Unfortunately, through a sheer statistical anomaly, all but one of these beings are evil!");
+		System.out.println("Our hero, torn from their own world and/or time, now fights to rid our world of evil before ");
+		System.out.println("returning to their own world (which will happen offscreen).");
+		System.out.println("Can you help guide them toward where they need to be?");
 
-        System.out.println();
+		System.out.println();
 
-        System.out.println("Your goal: Defeat all of the enemies on the board (denoted by &).");
-        System.out.println("At the beginning of each battle, you may choose which armor and weapon to use during the fight.");
-        System.out.println();
+		System.out.println("Your goal: Defeat all of the enemies on the board (denoted by &).");
+		System.out.println("At the beginning of each battle, you may choose which armor and weapon to use during the fight.");
+		System.out.println();
 
-        //Generate a new board and print it to the screen
-        System.out.printf("Welcome, %s! %n", Character.player().getName());
+		//Generate a new board and print it to the screen
+		System.out.printf("Welcome, %s! %n", Character.player().getName());
 
-        System.out.println("Below is list of symbols and actions that you can make with your character.");
-        System.out.println("To begin, please choose an action from the menu: ");
-        System.out.println("(You must press enter between every action)");
+		System.out.println("Below is list of symbols and actions that you can make with your character.");
+		System.out.println("To begin, please choose an action from the menu: ");
+		System.out.println("(You must press enter between every action)");
 
-        Board.printMenu();
-	/*
-	try {
-		Thread.sleep(6000);
-	}catch (InterruptedException e) {
-		Thread.currentThread().interrupt();
+		printMenu();
+		/*
+		   try {
+		   Thread.sleep(6000);
+		   }catch (InterruptedException e) {
+		   Thread.currentThread().interrupt();
+		   }
+		 */
+
+		board.printBoard();
+		System.out.print(": ");
+
+		while (input.hasNext()) {
+			char play;
+			do {
+				play = input.next().charAt(0);
+				board.play(play);
+
+			} while (play != 'Q');
+		}
 	}
-	*/
 
-        board.printBoard();
-        System.out.print(": ");
+	public static void printMenu() {
+		//this.player = Character.player();
 
-        while (input.hasNext()) {
-            char play;
-            do {
-                play = input.next().charAt(0);
-                board.play(play);
+		System.out.println("Actions: ");
+		System.out.println("     D = Drop an item in inventory");
+		System.out.println("     I = Print item inventory");
+		System.out.println("     H = Print current health status");
+		System.out.println("     M = Print menu");
+		System.out.println("     Q = Quit game");
+		System.out.println("     S = Save game");
+		System.out.println("     R = Restore saved game");
+		System.out.println();
 
-             } while (play != 'Q');
-        }
-    }
+		System.out.println("     w = move character up");
+		System.out.println("     s = move character down");
+		System.out.println("     a = move character left");
+		System.out.println("     d = move character right");
+		System.out.println();
+
+		System.out.println("Symbols:");
+		System.out.println("     @ = Your character");
+		System.out.println("     O = Item that can be picked up");
+		System.out.println("     & = Enemy");
+		System.out.println("     * = Food");
+		System.out.println();
+		System.out.println("----------------------------------------------------------------------------");
+	}
+
 }

@@ -19,7 +19,6 @@ public class Board  {
 	private static int badGuyIDCounter = 12;
 	private static String fileName = "room1.txt";
 	private static Board instance = new Board();
-	//private static Board instance;
 	private Character player;
 	private String[] lines = new String[32];
 	private char[][] grid = new char[32][32];
@@ -77,25 +76,6 @@ public class Board  {
 		}
 	}*/
 
-	/*
-	//Trying to read in from a file
-	public char[][] testBoard() throws FileNotFoundException {
-	Scanner scan = new Scanner(new File("Board1.txt"));
-	int height = scan.nextInt();
-	scan.nextLine();
-	int width = scan.nextInt();
-	scan.nextLine();
-	char[][] newBoard = new char[height][width];
-
-	for (int i = 0; i < width; i++) {
-	for (int j = 0; j < height; j++) {
-	scan.nextLine();
-	}
-	}
-	return newBoard;
-	}
-	 */
-
 	//Display the game board to the screen 
 	public void printBoard() {
 		for (char[] space : grid) {
@@ -105,35 +85,6 @@ public class Board  {
 			System.out.println();
 		}
 
-	}
-
-	//Print menu of options
-	public static void printMenu() {
-		//this.player = Character.player();
-
-		System.out.println("Actions: ");
-		System.out.println("     D = Drop an item in inventory");
-		System.out.println("     I = Print item inventory");
-		System.out.println("     H = Print current health status");
-		System.out.println("     M = Print menu");
-		System.out.println("     Q = Quit game");
-		System.out.println("	 S = Save game");
-		System.out.println("	 R = Restore saved game"); 
-		System.out.println();
-
-		System.out.println("     w = move character up");
-		System.out.println("     s = move character down");
-		System.out.println("     a = move character left");
-		System.out.println("     d = move character right");
-		System.out.println();
-
-		System.out.println("Symbols:");
-		System.out.println("     @ = Your character");
-		System.out.println("     O = Item that can be picked up");
-		System.out.println("     & = Enemy");
-		System.out.println("     * = Food");
-		System.out.println();
-		System.out.println("----------------------------------------------------------------------------");
 	}
 
 	//Battle
@@ -266,7 +217,7 @@ public class Board  {
 
 		//Print menu again
 		if (play == 'M') {
-			printMenu();
+			Main.printMenu();
 		}
 
 		//Exit game

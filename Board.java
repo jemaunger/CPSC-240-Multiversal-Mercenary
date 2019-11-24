@@ -19,13 +19,13 @@ public class Board  {
 	private static int badGuyIDCounter = 12;
 	private static String fileName = "room1.txt";
 	private static Board instance = new Board();
-	private Character player;
+	private	Character player;
 	private String[] lines = new String[32];
 	private char[][] grid = new char[32][32];
 
-	private EnemyGenerator genEnemy = new EnemyGenerator();
-	private ItemGenerator genItem = new ItemGenerator();
-	private FoodGenerator genFood = new FoodGenerator();
+	private EnemyGenerator genEnemy;
+	private ItemGenerator genItem;
+	private FoodGenerator genFood;
 
 	//Instance variables to be saved.
 	private char characterLocation;
@@ -47,6 +47,10 @@ public class Board  {
 		}
 		for (int i = 0; i < 32; i++){
 			lines[i] = scnr.nextLine();
+			player = new Character("@");
+			genEnemy = new EnemyGenerator();
+			genItem = new ItemGenerator();
+			genFood = new FoodGenerator();
 		}
 		for (int x = 0; x < 32; x++){
 			char[] holdLine = lines[x].toCharArray();
@@ -137,14 +141,6 @@ public class Board  {
 					System.out.printf("%s attacked you for %d damage. %n", enemyName, enemyDamage);
 					System.out.printf("Enemy health total is at %d. %n", enemyHealth);
 					System.out.printf("Your health total is at %d. %n", playerHealth);
-					try {
-
-
-						Thread.sleep(2000);
-						// input.nextLine();
-					} catch (InterruptedException e) {
-						Thread.currentThread().interrupt();
-					}
 					System.out.println();
 				}
 				try {

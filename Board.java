@@ -541,9 +541,9 @@ public class Board  {
 						printBoard();
 					}
 
-				} else if (grid[row][column + 1] == 'D') {
-
-				}
+				}/* else if (grid[row][column + 1] == 'D') {
+					//Do stuff here to load room2
+				}*/
 				else {
 					grid[row][column + 1] = '@';
 					grid[row][column] = '.';

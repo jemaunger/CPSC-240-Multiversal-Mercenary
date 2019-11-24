@@ -545,7 +545,10 @@ public class Board  {
 						printBoard();
 					}
 
-				} else {
+				} else if (grid[row][column + 1] == 'D') {
+
+				}
+				else {
 					grid[row][column + 1] = '@';
 					grid[row][column] = '.';
 					printBoard();

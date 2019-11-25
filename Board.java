@@ -6,7 +6,6 @@ import java.io.FileNotFoundException;
 
 public class Board  {
 	//Instance variables
-
 	private FileInputStream fileIn;
 	private Scanner scnr;
 	private Scanner input = new Scanner(System.in);

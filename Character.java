@@ -1,4 +1,3 @@
-
 import java.util.Scanner;
 
 //This class creates the character that the player will be using. It is singleton as there will only ever be one character at a time.

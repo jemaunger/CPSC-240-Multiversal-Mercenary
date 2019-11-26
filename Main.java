@@ -1,5 +1,6 @@
 import java.util.Scanner;
 import java.io.FileInputStream;
+import java.io.File;
 
 public class Main {
 
@@ -13,9 +14,10 @@ public class Main {
 		System.out.println("Would you like to start from a previous save (Y or N)? ");
 		choice = input.next().charAt(0);
 		if((choice == 'N') | (choice == 'n')){
-			System.out.println("All events you see in this game are real. They simply take place a long time ago, in a " +
-					"galaxy far, far away...");
+			System.out.println("All events you see in this game are real. They simply take place a long time ago, in a " + "galaxy far, far away...");
+			
 			System.out.println();
+			
 			System.out.println("The multidimensional barrier has been torn open, throwing a multitude of beings and items into our world.");
 			System.out.println("Unfortunately, through a sheer statistical anomaly, all but one of these beings are evil!");
 			System.out.println("Our hero, torn from their own world and/or time, now fights to rid our world of evil before ");
@@ -36,8 +38,8 @@ public class Main {
 			System.out.println("Below is list of symbols and actions that you can make with your character.");
 			System.out.println("To begin, please choose an action from the menu: ");
 			System.out.println("(You must press enter between every action)");
-		}if((choice == 'Y') | (choice == 'y')){
-			FileInputStream  fileStream = new FileInputStream("Game1.sav");
+		} if((choice == 'Y') | (choice == 'y')){
+			FileInputStream  fileStream = new FileInputStream("Game.sav");
      			Scanner in = new Scanner(fileStream);
 			Board loadBoard = new Board(in);
 			Character player = new Character(in);
@@ -66,7 +68,7 @@ public class Main {
 			
 		}
 	}
-
+	
 	public static void printMenu() {
 		System.out.println("Actions: ");
 		System.out.println("     D = Drop an item in inventory");

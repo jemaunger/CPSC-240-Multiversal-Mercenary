@@ -26,7 +26,6 @@ public class Board  {
 	private Room room2;
 
 	//Instance variables to be saved.
-	private String SAVEFILE_EXTENSION = ".sav";
 	private char characterLocation;
 	private int characterHealth;
 	private Item characterItems;
@@ -42,8 +41,16 @@ public class Board  {
 
 	//restores the state of the saved game, including the characters location health, items, also all of the placements of enemies and items across the board.
 	public Board(Scanner s){
-		instance = new Board(input);
-		player = new Character(input);
+		s = new Scanner(System.in);
+		player = new Character(s);
+
+		for(int i = 0; i < 32; i++){
+			char[] holdLine = lines[i].toCharArray();
+			for(int j = 0; j < 32; j++){
+				grid[i][j] = holdLine[j];
+				System.out.println(grid[i][j]);
+			}
+		}
 
 	}
 
@@ -139,8 +146,6 @@ public class Board  {
 
 				if (badGuyIDCounter == 11) {
 						Room room2 = new Room("room2.txt");
-						room2.printBoard();
-
 					
 					}
 					try {
@@ -167,7 +172,7 @@ public class Board  {
 				}
 				roundCounter++;
 
-			} while ((playerHealth > 0) && (enemyHealth > 0)){
+			} while ((playerHealth > 0) && (enemyHealth > 0));
 
 			if (playerHealth <= 0) {
 				System.out.println("Though you fought bravely, you were no match for " + enemyName);
@@ -202,8 +207,9 @@ public class Board  {
 
 			return false;
 		}
-		return false;
 	}
+
+		return false;
 }
 	//Game actions (move, equip, drop, etc)
 	public void play(char play) {
@@ -248,7 +254,7 @@ public class Board  {
 
 		if(play == 'S') {
 			try{
-				File file = new File("Game1.sav");
+				File file = new File("Game.sav");
 				PrintWriter pw = new PrintWriter(file);
 				saveGame(pw);
 			}catch(FileNotFoundException e){

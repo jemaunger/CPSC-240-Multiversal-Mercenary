@@ -50,6 +50,7 @@ public class Character {
 	//Character initialization only requires a name and class.
 	public Character(String name) {
 		this.name = name;
+		this.charClass = charClass;
 	}
 
 	//This sets the players armor based on their equipped armor within their inventory. Armor acts as a barrier before the players health. During battle, the enemy must reduce this armor stat to 0 before they can decrease the player's health.

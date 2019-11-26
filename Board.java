@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.File;
+import java.util.Arrays;
 
 
 public class Board {
@@ -35,9 +36,9 @@ public class Board {
 
 	public void saveGame(PrintWriter pw){
 		pw.println(player);
-		pw.println(grid);
+		pw.println(Arrays.deepToString(grid));
 		pw.println(inventory);
-		
+
 		pw.close();
 		System.out.println("File saved successfully!");
 	}
@@ -228,14 +229,14 @@ public class Board {
 			System.exit(0);
 		}
 		if (play == 'S'){
-		    try{
-			File file = new File("Game1.sav");
-			PrintWriter pw = new PrintWriter(file);
-			saveGame(pw);
-		    }catch(FileNotFoundException e){
-		    	System.out.println("Failed to save!");
-			e.printStackTrace();
-		    }
+			try{
+				File file = new File("Game1.sav");
+				PrintWriter pw = new PrintWriter(file);
+				saveGame(pw);
+			}catch(FileNotFoundException e){
+				System.out.println("Failed to save!");
+				e.printStackTrace();
+			}
 		}
 		//Movements
 		//Move up
@@ -618,5 +619,4 @@ public class Board {
 			}
 		}
 	}
-
 }

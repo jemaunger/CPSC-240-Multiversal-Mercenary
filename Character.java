@@ -1,4 +1,3 @@
-
 import java.util.Scanner;
 
 //This class creates the character that the player will be using. It is singleton as there will only ever be one character at a time.
@@ -77,26 +76,10 @@ public class Character {
 		health = newHealth;
 	}
 
-	//This method decreases the character's health.
-	/* We never used this method, but didn't want to delete it just in case
-	public static void decreaseHealth(int currentHealth, int damageTaken) {
-		int newHealth = currentHealth - damageTaken;
-		if (newHealth < 0)
-			newHealth = 0;
-		health = newHealth;
-	}
-	*/
-
 	public String getName() {
 		return name;
 	}
 	
-	/* Same here
-	public CharacterRace getRace() {
-		return charClass;
-	}
-	*/
-
 	public int getHealth() {
 		return health;
 	}

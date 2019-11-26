@@ -9,7 +9,6 @@ import java.io.File;
 
 public class Board {
 	//Instance variables
-
 	private FileInputStream fileIn;
 	private Scanner scnr;
 	private Scanner input = new Scanner(System.in);
@@ -55,8 +54,6 @@ public class Board {
 		for (int i = 0; i < 32; i++){
 			lines[i] = scnr.nextLine();
 			player = new Character("@");
-			genEnemy = new EnemyGenerator();
-			genItem = new ItemGenerator();
 			genFood = new FoodGenerator();
 			inventory = new Inventory(100);
 		}
@@ -245,6 +242,7 @@ public class Board {
 		if (play == 'w') {
 			//If character runs into an item (O), choose to pick it up or not
 			if (grid[row - 1][column] == 'O') {
+				genItem = new ItemGenerator();
 				Item item = genItem.generate();
 
 				System.out.printf("You've found %s (Weight: %d, Value: %d Strength: %d)! %n", item.getName(), item.getWeight(), item.getValue(), item.getStrength());
@@ -275,6 +273,7 @@ public class Board {
 
 				//If character runs into enemy (&), choose to battle or not
 				else if ((grid[row - 1][column] == '&')) {
+					genEnemy = new EnemyGenerator();
 					Enemy enemy = genEnemy.generate();
 					boolean battleResult = battle(enemy, player);
 					if (battleResult) {
@@ -340,6 +339,7 @@ public class Board {
 		if (play == 'a') {
 			//If character runs into item, choose to pick it up or not
 			if (grid[row][column - 1] == 'O') {
+				genItem = new ItemGenerator();
 				Item item = genItem.generate();
 
 				System.out.printf("You've found %s (Weight: %d, Value: %d Strength: %d)! %n", item.getName(), item.getWeight(), item.getValue(), item.getStrength());
@@ -369,6 +369,7 @@ public class Board {
 
 				//If character runs into enemy, choose to battle or not
 				else if ((grid[row][column - 1] == '&')) {
+					genEnemy = new EnemyGenerator();
 					Enemy enemy = genEnemy.generate();
 					boolean battleResult = battle(enemy, player);
 					if (battleResult) {
@@ -432,6 +433,7 @@ public class Board {
 		if (play == 's') {
 			//If character runs into item, choose to pick it up or not
 			if (grid[row + 1][column] == 'O') {
+				genItem = new ItemGenerator();
 				Item item = genItem.generate();
 
 				System.out.printf("You've found %s (Weight: %d, Value: %d Strength: %d)! %n", item.getName(), item.getWeight(), item.getValue(), item.getStrength());
@@ -460,6 +462,7 @@ public class Board {
 
 				//If character runs into enemy, choose to battle
 				else if ((grid[row + 1][column] == '&')) {
+					genEnemy = new EnemyGenerator();
 					Enemy enemy = genEnemy.generate();
 					boolean battleResult = battle(enemy, player);
 					if (battleResult) {
@@ -523,6 +526,7 @@ public class Board {
 		if (play == 'd') {
 			//If character runs into item, choose to pick it up
 			if (grid[row][column + 1] == 'O') {
+				genItem = new ItemGenerator();
 				Item item = genItem.generate(); //Generate a new random item
 
 				System.out.printf("You've found %s (Weight: %d, Value: %d Strength: %d)! %n", item.getName(), item.getWeight(), item.getValue(), item.getStrength());
@@ -550,6 +554,7 @@ public class Board {
 				}
 				//If character runs into enemy, call Battle method
 				else if ((grid[row][column + 1] == '&')) {
+					genEnemy = new EnemyGenerator();
 					Enemy enemy = genEnemy.generate();
 					boolean battleResult = battle(enemy, player);
 					if (battleResult) {

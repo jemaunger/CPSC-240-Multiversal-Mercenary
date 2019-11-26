@@ -137,10 +137,11 @@ public class Board  {
 					badGuyIDCounter--;
 					System.out.println("You still have to defeat " + badGuyIDCounter + " more enemies.");
 
-					if (badGuyIDCounter == 11) {
+				if (badGuyIDCounter == 11) {
 						Room room2 = new Room("room2.txt");
 						room2.printBoard();
 
+					}
 					}
 					try {
 
@@ -165,7 +166,7 @@ public class Board  {
 				}
 				roundCounter++;
 
-			} while ((playerHealth > 0) && (enemyHealth > 0));
+			} while ((playerHealth > 0) && (enemyHealth > 0)){
 
 			if (playerHealth <= 0) {
 				System.out.println("Though you fought bravely, you were no match for " + enemyName);
@@ -198,17 +199,10 @@ public class Board  {
 			System.out.printf("%d more enemies remain... %n", badGuyIDCounter);
 			System.out.println();
 			return true;
-
-		else {
-			System.out.printf("%d more enemies remain... %n", badGuyIDCounter);
-			System.out.println();
-			return true;
-
 		}
 		return false;
 	}
 }
-
 	//Game actions (move, equip, drop, etc)
 	public void play(char play) {
 		System.out.println();

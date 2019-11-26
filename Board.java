@@ -16,7 +16,7 @@ public class Board  {
 	private	Character player;
 	private String[] lines = new String[32];
 	private char[][] grid = new char[32][32];
-	private Inventory inventory;
+	Inventory inventory;
 	private EnemyGenerator genEnemy;
 	private ItemGenerator genItem;
 	private FoodGenerator genFood;
@@ -24,11 +24,20 @@ public class Board  {
 	private Room room2;
 
 	//Instance variables to be saved.
-//	private char characterLocation;
-//	private int characterHealth;
-//	private Inventory characterItems;
-//	private String TOP_DELIM = "|.";
-//	private String BOT_DELIM = ".|";
+	//	private char characterLocation;
+	//	private int characterHealth;
+	//	private Inventory characterItems;
+	//	private String TOP_DELIM = "|.";
+	//	private String BOT_DELIM = ".|";
+
+	public void saveGame(PrintWriter pw){	
+		pw.println(player);	
+		pw.println(Arrays.deepToString(grid));	
+		pw.println(inventory);	
+
+		pw.close();	
+		System.out.println("File saved successfully!");	
+	}
 
 	Board() {
 		try{
@@ -66,15 +75,15 @@ public class Board  {
 
 	//restores the state of the saved game, including the characters location health, items, also all of the placements of enemies and items across the board.
 	/*public Board(Scanner s){
-		String firstDelim = "";
-		String lastDelim = "";
-		if (choice.equals('R')){
-			newBoard[][] = s.nextChar();
-			s.nextLine();
-			newBoard[][] = s.nextChar();
-			s.nextLine();
-		}
-	}*/
+	  String firstDelim = "";
+	  String lastDelim = "";
+	  if (choice.equals('R')){
+	  newBoard[][] = s.nextChar();
+	  s.nextLine();
+	  newBoard[][] = s.nextChar();
+	  s.nextLine();
+	  }
+	  }*/
 
 	//Display the game board to the screen 
 	public void printBoard() {
@@ -123,6 +132,15 @@ public class Board  {
 					System.out.printf("Congrats! You defeated %s! %n", enemyName);
 					System.out.printf("Your health total is at %d %n", playerHealth);
 					badGuyIDCounter--;
+					System.out.println("You still have to defeat " + badGuyIDCounter + " more enemies.");
+
+					if (badGuyIDCounter == 11) {
+						Room room2 = new Room();
+						room2.printBoard();
+
+					}
+
+
 					try {
 
 						Thread.sleep(2000);
@@ -153,25 +171,20 @@ public class Board  {
 				System.out.println("Game over!");
 				System.exit(0);
 				return false;
-			//If player has defeated all of the enemies and are in Room 1, create a new room 	
+				//If player has defeated all of the enemies and are in Room 1, create a new room 	
 			} else if ((badGuyIDCounter == 0) & (fileIn.equals("room1.txt"))) {
 				System.out.println("You defeated all of the enemies! But there are still more rooms...");
 				//Create a new room
 				return false;
 			}
-		/*	else if (badGuyIDCounter == 11) {
+			else if (badGuyIDCounter == 11) {
 				Room room2 = new Room();
 
 
-			}*/
-			
-			//Using this to test generating a new room, will delete later	
-			} else if (badGuyIDCounter == 11) {
-				room2 = new Room("room2.txt");
-				grid[12][31] = 'D';
+
 			}
 
-		
+
 			else {
 				System.out.printf("%d more enemies remain... %n", badGuyIDCounter);
 				System.out.println();
@@ -181,7 +194,7 @@ public class Board  {
 		}
 		return false;
 	}
-	
+
 	//Game actions (move, equip, drop, etc)
 	public void play(char play) {
 		System.out.println();
@@ -270,7 +283,7 @@ public class Board  {
 						printBoard();
 					}
 				}
-				
+
 				else {
 					grid[row - 1][column] = '@';
 					grid[row][column] = '.';

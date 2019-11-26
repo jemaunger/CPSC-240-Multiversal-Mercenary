@@ -137,11 +137,10 @@ public class Board  {
 					badGuyIDCounter--;
 					System.out.println("You still have to defeat " + badGuyIDCounter + " more enemies.");
 
-				if (badGuyIDCounter == 11) {
+					if (badGuyIDCounter == 11) {
 						Room room2 = new Room("room2.txt");
-						room2.printBoard();
 
-					
+
 					}
 					try {
 
@@ -167,7 +166,7 @@ public class Board  {
 				}
 				roundCounter++;
 
-			} while ((playerHealth > 0) && (enemyHealth > 0)){
+			} while ((playerHealth > 0) && (enemyHealth > 0));
 
 			if (playerHealth <= 0) {
 				System.out.println("Though you fought bravely, you were no match for " + enemyName);
@@ -180,7 +179,7 @@ public class Board  {
 				//Create a new room
 				return false;
 
-					//Using this to test generating a new room, will delete later
+				//Using this to test generating a new room, will delete later
 			}
 			//	else if (badGuyIDCounter == 11) {
 			//	Room room2 = new Room();
@@ -191,20 +190,20 @@ public class Board  {
 
 			//Using this to test generating a new room, will delete later	
 
-		 else if (badGuyIDCounter == 11) {
-			room2 = new Room("room2.txt");
-			grid[12][31] = 'D';
-		}
+			else if (badGuyIDCounter == 11) {
+				room2 = new Room("room2.txt");
+				grid[12][31] = 'D';
+			}
 
-		else {
-			System.out.printf("%d more enemies remain... %n", badGuyIDCounter);
-			System.out.println();
+			else {
+				System.out.printf("%d more enemies remain... %n", badGuyIDCounter);
+				System.out.println();
 
-			return false;
+				return false;
+			}
 		}
 		return false;
-	}
-}
+		}
 	//Game actions (move, equip, drop, etc)
 	public void play(char play) {
 		System.out.println();

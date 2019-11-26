@@ -74,8 +74,6 @@ public class Board  {
 		for (int i = 0; i < 32; i++){
 			lines[i] = scnr.nextLine();
 			player = new Character("@");
-			genEnemy = new EnemyGenerator();
-			genItem = new ItemGenerator();
 			genFood = new FoodGenerator();
 			inventory = new Inventory(100);
 		}
@@ -144,9 +142,8 @@ public class Board  {
 					badGuyIDCounter--;
 					System.out.println("You still have to defeat " + badGuyIDCounter + " more enemies.");
 
-				if (badGuyIDCounter == 11) {
+					if (badGuyIDCounter == 11) {
 						Room room2 = new Room("room2.txt");
-					
 					}
 					try {
 
@@ -185,7 +182,7 @@ public class Board  {
 				//Create a new room
 				return false;
 
-					//Using this to test generating a new room, will delete later
+				//Using this to test generating a new room, will delete later
 			}
 			//	else if (badGuyIDCounter == 11) {
 			//	Room room2 = new Room();
@@ -196,18 +193,18 @@ public class Board  {
 
 			//Using this to test generating a new room, will delete later	
 
-		 else if (badGuyIDCounter == 11) {
-			room2 = new Room("room2.txt");
-			grid[12][31] = 'D';
-		}
+			else if (badGuyIDCounter == 11) {
+				room2 = new Room("room2.txt");
+				grid[12][31] = 'D';
+			}
 
-		else {
-			System.out.printf("%d more enemies remain... %n", badGuyIDCounter);
-			System.out.println();
+			else {
+				System.out.printf("%d more enemies remain... %n", badGuyIDCounter);
+				System.out.println();
 
-			return false;
+				return false;
+			}
 		}
-	}
 
 		return false;
 }
@@ -268,6 +265,7 @@ public class Board  {
 		if (play == 'w') {
 			//If character runs into an item (O), choose to pick it up or not
 			if (grid[row - 1][column] == 'O') {
+				genItem = new ItemGenerator();
 				Item item = genItem.generate();
 
 				System.out.printf("You've found %s (Weight: %d, Value: %d Strength: %d)! %n", item.getName(), item.getWeight(), item.getValue(), item.getStrength());
@@ -298,6 +296,7 @@ public class Board  {
 
 				//If character runs into enemy (&), choose to battle or not
 				else if ((grid[row - 1][column] == '&')) {
+					genEnemy = new EnemyGenerator();
 					Enemy enemy = genEnemy.generate();
 					boolean battleResult = battle(enemy, player);
 					if (battleResult) {
@@ -362,6 +361,7 @@ public class Board  {
 		if (play == 'a') {
 			//If character runs into item, choose to pick it up or not
 			if (grid[row][column - 1] == 'O') {
+				genItem = new ItemGenerator();
 				Item item = genItem.generate();
 
 				System.out.printf("You've found %s (Weight: %d, Value: %d Strength: %d)! %n", item.getName(), item.getWeight(), item.getValue(), item.getStrength());
@@ -391,6 +391,7 @@ public class Board  {
 
 				//If character runs into enemy, choose to battle or not
 				else if ((grid[row][column - 1] == '&')) {
+					genEnemy = new EnemyGenerator();
 					Enemy enemy = genEnemy.generate();
 					boolean battleResult = battle(enemy, player);
 					if (battleResult) {
@@ -454,6 +455,7 @@ public class Board  {
 		if (play == 's') {
 			//If character runs into item, choose to pick it up or not
 			if (grid[row + 1][column] == 'O') {
+				genItem = new ItemGenerator();
 				Item item = genItem.generate();
 
 				System.out.printf("You've found %s (Weight: %d, Value: %d Strength: %d)! %n", item.getName(), item.getWeight(), item.getValue(), item.getStrength());
@@ -482,6 +484,7 @@ public class Board  {
 
 				//If character runs into enemy, choose to battle
 				else if ((grid[row + 1][column] == '&')) {
+					genEnemy = new EnemyGenerator();
 					Enemy enemy = genEnemy.generate();
 					boolean battleResult = battle(enemy, player);
 					if (battleResult) {
@@ -545,6 +548,7 @@ public class Board  {
 		if (play == 'd') {
 			//If character runs into item, choose to pick it up
 			if (grid[row][column + 1] == 'O') {
+				genItem = new ItemGenerator();
 				Item item = genItem.generate(); //Generate a new random item
 
 				System.out.printf("You've found %s (Weight: %d, Value: %d Strength: %d)! %n", item.getName(), item.getWeight(), item.getValue(), item.getStrength());
@@ -572,6 +576,7 @@ public class Board  {
 				}
 				//If character runs into enemy, call Battle method
 				else if ((grid[row][column + 1] == '&')) {
+					genEnemy = new EnemyGenerator();
 					Enemy enemy = genEnemy.generate();
 					boolean battleResult = battle(enemy, player);
 					if (battleResult) {

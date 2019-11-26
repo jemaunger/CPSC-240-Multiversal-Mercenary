@@ -158,7 +158,7 @@ public class Board  {
 				System.out.println("You defeated all of the enemies! But there are still more rooms...");
 				//Create a new room
 				return false;
-
+			
 			//Using this to test generating a new room, will delete later	
 			} else if (badGuyIDCounter == 11) {
 				room2 = new Room("room2.txt");

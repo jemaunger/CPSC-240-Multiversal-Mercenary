@@ -176,12 +176,17 @@ public class Board  {
 				System.out.println("You defeated all of the enemies! But there are still more rooms...");
 				//Create a new room
 				return false;
+
+				//Using this to test generating a new room, will delete later
 			}
-			else if (badGuyIDCounter == 11) {
+		/*	else if (badGuyIDCounter == 11) {
 				Room room2 = new Room();
 
+			}*/
 
-
+			} else if (badGuyIDCounter == 11) {
+				room2 = new Room("room2.txt");
+				grid[12][31] = 'D';
 			}
 
 
@@ -559,6 +564,15 @@ public class Board  {
 
 				} else if (grid[row][column + 1] == 'D') {
 					room2.printBoard();
+					//while (input.hasNext()) {
+					//	do {
+					//		choice = input.next().charAt(0);
+							room2.play(choice);
+
+					//	} while ((choice != 'Q') | (choice != 'q'));
+
+//					}
+
 				}
 				else {
 					grid[row][column + 1] = '@';

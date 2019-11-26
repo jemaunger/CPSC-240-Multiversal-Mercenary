@@ -17,7 +17,7 @@ public class Board  {
 	private	Character player;
 	private String[] lines = new String[32];
 	private char[][] grid = new char[32][32];
-	private Inventory inventory;
+	Inventory inventory;
 	private EnemyGenerator genEnemy;
 	private ItemGenerator genItem;
 	private FoodGenerator genFood;
@@ -44,13 +44,14 @@ public class Board  {
 		instance = new Board(input);
 		player = new Character(input);
 
-	  }
+	}
 
 	//	private char characterLocation;
 	//	private int characterHealth;
 	//	private Inventory characterItems;
 	//	private String TOP_DELIM = "|.";
 	//	private String BOT_DELIM = ".|";
+
 
 	Board() {
 		try{
@@ -135,11 +136,11 @@ public class Board  {
 					badGuyIDCounter--;
 					System.out.println("You still have to defeat " + badGuyIDCounter + " more enemies.");
 
-							if (badGuyIDCounter == 11) {
-							Room room2 = new Room("room2.txt");
-							room2.printBoard();
+					if (badGuyIDCounter == 11) {
+						Room room2 = new Room("room2.txt");
+						room2.printBoard();
 
-							}
+					}
 					try {
 
 						Thread.sleep(2000);
@@ -176,29 +177,33 @@ public class Board  {
 				//Create a new room
 				return false;
 
-				//Using this to test generating a new room, will delete later	
+					//Using this to test generating a new room, will delete later
 			}
-		//	else if (badGuyIDCounter == 11) {
-				//	Room room2 = new Room();
-		/*	else if (badGuyIDCounter == 11) {
+			//	else if (badGuyIDCounter == 11) {
+			//	Room room2 = new Room();
+			/*	else if (badGuyIDCounter == 11) {
 				Room room2 = new Room()
 
-			}*/
-			
+				}*/
+
 			//Using this to test generating a new room, will delete later	
 
-			 else if (badGuyIDCounter == 11) {
+			else if (badGuyIDCounter == 11) {
+					Room room2 = new Room("room2.txt");
+
+			}
+
+		} else if (badGuyIDCounter == 11) {
 				room2 = new Room("room2.txt");
-				grid[12][31] = 'D';
-			}
+			grid[12][31] = 'D';
+		}
 
 
-			else {
-				System.out.printf("%d more enemies remain... %n", badGuyIDCounter);
-				System.out.println();
-				return true;
+		else {
+			System.out.printf("%d more enemies remain... %n", badGuyIDCounter);
+			System.out.println();
+			return true;
 
-			}
 		}
 		return false;
 	}
@@ -570,11 +575,11 @@ public class Board  {
 					//while (input.hasNext()) {
 					//	do {
 					//		choice = input.next().charAt(0);
-							room2.play(choice);
+					room2.play(choice);
 
 					//	} while ((choice != 'Q') | (choice != 'q'));
 
-//					}
+					//					}
 
 				}
 				else {

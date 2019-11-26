@@ -1,7 +1,9 @@
+import java.util.Scanner;
+
 public class Main {
 
 	public static void main(String[] args) throws Exception {
-		Scanner stdin = new Scanner(System.in);
+		Scanner input = new Scanner(System.in);
 		Board board = Board.getInstance();
 
 		String fileName = "";
@@ -48,19 +50,17 @@ public class Main {
 		board.printBoard();
 		System.out.print(": ");
 
-		while (stdin.hasNext()) {
-			char in;
+		while (input.hasNext()) {
 			do {
-				in = stdin.next().charAt(0);
-				super.play(play);
+				choice = input.next().charAt(0);
+				board.play(choice);
 
-			} while ((play != 'Q') | (play != 'q'));
+			} while ((choice != 'Q') | (choice != 'q'));
+			
 		}
 	}
 
 	public static void printMenu() {
-		//this.player = Character.player();
-
 		System.out.println("Actions: ");
 		System.out.println("     D = Drop an item in inventory");
 		System.out.println("     I = Print item inventory");
@@ -82,6 +82,7 @@ public class Main {
 		System.out.println("     O = Item that can be picked up");
 		System.out.println("     & = Enemy");
 		System.out.println("     * = Food");
+		System.out.println("     D = Door");
 		System.out.println();
 		System.out.println("----------------------------------------------------------------------------");
 	}

@@ -136,11 +136,11 @@ public class Board  {
 					badGuyIDCounter--;
 					System.out.println("You still have to defeat " + badGuyIDCounter + " more enemies.");
 
-					if (badGuyIDCounter == 11) {
+				/*	if (badGuyIDCounter == 11) {
 						Room room2 = new Room("room2.txt");
 						room2.printBoard();
 
-					}
+					}*/
 
 
 					try {

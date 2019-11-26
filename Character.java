@@ -66,9 +66,6 @@ public class Character {
                 System.out.printf("Your new health is %s. %n", Character.player().getHealth());
         }
 
-
-
-
 	//This method increases the character's health, but not above maximum.
         public static void increaseHealth(int currentHealth, int restored) {
                 int newHealth = currentHealth + restored;

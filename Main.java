@@ -84,6 +84,7 @@ public class Main {
 		System.out.println("     O = Item that can be picked up");
 		System.out.println("     & = Enemy");
 		System.out.println("     * = Food");
+		System.out.println("     D = Door to new room");
 		System.out.println();
 		System.out.println("----------------------------------------------------------------------------");
 	}

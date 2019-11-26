@@ -148,7 +148,8 @@ public class Board  {
 			} while ((playerHealth > 0) && (enemyHealth > 0));
 
 			if (playerHealth <= 0) {
-				System.out.println("Game Over");
+				System.out.println("Though you fought bravely, you were no match for " + enemyName);
+				System.out.println("Game over!");
 				System.exit(0);
 				return false;
 			} else if ((badGuyIDCounter == 0) & (fileIn.equals("room1.txt"))) {

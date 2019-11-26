@@ -1,10 +1,13 @@
 import java.util.Scanner;
 import java.util.Random;
-import java.io.FileInputStream;
-import java.io.PrintWriter;
 import java.io.FileNotFoundException;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.File;
 
-public class Board  {
+
+public class Board {
 	//Instance variables
 
 	private FileInputStream fileIn;
@@ -24,12 +27,21 @@ public class Board  {
 	private static int badGuyIDCounter = 12;
 
 	//Instance variables to be saved.
-//	private char characterLocation;
-//	private int characterHealth;
-//	private Inventory characterItems;
-//	private String TOP_DELIM = "|.";
-//	private String BOT_DELIM = ".|";
+	private String SAVEFILE_EXTENSION = ".sav";
+	//	private char characterLocation;
+	//	private int characterHealth;
+	//	private Inventory characterItems;
+	//	private String TOP_DELIM = "|.";
+	//	private String BOT_DELIM = ".|";
 
+	public void saveGame(PrintWriter pw){
+		pw.println(player);
+		pw.println(grid);
+		pw.println(inventory);
+		
+		pw.close();
+		System.out.println("File saved successfully!");
+	}
 	Board() {
 		try{
 			fileIn = new FileInputStream(fileName);
@@ -66,15 +78,15 @@ public class Board  {
 
 	//restores the state of the saved game, including the characters location health, items, also all of the placements of enemies and items across the board.
 	/*public Board(Scanner s){
-		String firstDelim = "";
-		String lastDelim = "";
-		if (choice.equals('R')){
-			newBoard[][] = s.nextChar();
-			s.nextLine();
-			newBoard[][] = s.nextChar();
-			s.nextLine();
-		}
-	}*/
+	  String firstDelim = "";
+	  String lastDelim = "";
+	  if (choice.equals('R')){
+	  newBoard[][] = s.nextChar();
+	  s.nextLine();
+	  newBoard[][] = s.nextChar();
+	  s.nextLine();
+	  }
+	  }*/
 
 	//Display the game board to the screen 
 	public void printBoard() {
@@ -179,7 +191,7 @@ public class Board  {
 	}
 
 	//Game actions (move, equip, drop, etc)
-	public void play(char play) {
+	public void play(char play)throws FileNotFoundException{
 		System.out.println();
 
 		//Keep track of character's current position
@@ -218,7 +230,16 @@ public class Board  {
 			System.out.println("Thank you for playing!");
 			System.exit(0);
 		}
-
+		if (play == 'S'){
+		    try{
+			File file = new File("Game1.sav");
+			PrintWriter pw = new PrintWriter(file);
+			saveGame(pw);
+		    }catch(FileNotFoundException e){
+		    	System.out.println("Failed to save!");
+			e.printStackTrace();
+		    }
+		}
 		//Movements
 		//Move up
 		if (play == 'w') {
@@ -542,7 +563,7 @@ public class Board  {
 					}
 
 				}/* else if (grid[row][column + 1] == 'D') {
-					//Do stuff here to load room2
+				//Do stuff here to load room2
 				}*/
 				else {
 					grid[row][column + 1] = '@';

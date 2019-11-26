@@ -20,7 +20,7 @@ public class Board {
 	private	Character player;
 	private String[] lines = new String[32];
 	private char[][] grid = new char[32][32];
-	Inventory inventory;
+	private Inventory inventory;
 	private EnemyGenerator genEnemy;
 	private ItemGenerator genItem;
 	private FoodGenerator genFood;
@@ -135,11 +135,11 @@ public class Board {
 					badGuyIDCounter--;
 					System.out.println("You still have to defeat " + badGuyIDCounter + " more enemies.");
 
-					if (badGuyIDCounter == 11) {
+				/*	if (badGuyIDCounter == 11) {
 						Room room2 = new Room();
 						room2.printBoard();
 
-					}
+					}*/
 
 
 					try {
@@ -176,11 +176,11 @@ public class Board {
 				grid[12][31] = 'D';
 				return false;
 			}
-			else if (badGuyIDCounter == 11) {
+		/*	else if (badGuyIDCounter == 11) {
 				Room room2 = new Room();
 
 
-			}
+			}*/
 
 			else {
 				System.out.printf("%d more enemies remain... %n", badGuyIDCounter);

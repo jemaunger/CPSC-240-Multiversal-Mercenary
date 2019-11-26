@@ -24,6 +24,7 @@ public class Inventory {
 	Inventory(Scanner s){
 		this.maxWeight = s.nextInt();
 	}
+
 	//This method keeps track of the current weight of the inventory.
 	//It does this by going through the items currently in the inventory and adding the weight.
 	public int totalWeight() {
@@ -151,6 +152,14 @@ public class Inventory {
 
 	public Item getEquippedArmor() {
 		return equippedArmor;
+	}
+
+	public String toString() {
+		String results = "";
+		for(Item i : items) {
+			results += i.toString() + " ";
+		}
+		return results;
 	}
 
 }

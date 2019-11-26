@@ -2,6 +2,8 @@ import java.util.Scanner;
 
 //This class creates the character that the player will be using. It is singleton as there will only ever be one character at a time.
 public class Character {
+	
+	//Instance variables
 	static Scanner input = new Scanner(System.in);
 	private static String name;
 	private static CharacterRace charClass;
@@ -58,7 +60,25 @@ public class Character {
 		this.charClass = charClass;
 	}
 
-	//This sets the players armor based on their equipped armor within their inventory. Armor acts as a barrier before the players health. During battle, the enemy must reduce this armor stat to 0 before they can decrease the player's health.
+	//This method increases player's health when they eat food and returns their new health stat.
+        public void eatFood(Food food) {
+                System.out.printf("You've found %s and it boosts your health by %d %n", food.getName(), food.getHealth());
+                //Increase health
+                Character.player().increaseHealth(Character.player().getHealth(), food.getHealth());
+                //Set player health to new health
+                setHealth(Character.player().getHealth()+food.getHealth());
+
+                System.out.printf("Your new health is %s. %n", Character.player().getHealth());
+        }
+
+	//This method increases the character's health, but not above maximum.
+        public static void increaseHealth(int currentHealth, int restored) {
+                int newHealth = currentHealth + restored;
+                health = newHealth;
+        }
+
+	//This sets the players armor based on their equipped armor within their inventory. Armor acts as a barrier before the players health. 
+	//During battle, the enemy must reduce this armor stat to 0 before they can decrease the player's health.
 	public static void setFullArmor(Item item) {
 		if(item == null) {
 			armor = 0;
@@ -67,19 +87,14 @@ public class Character {
 		armor = item.getStrength();
 	}
 
-	//This sets the player's damage based upon their equipped weapon. During battle, the strength of the player's attack is determined by this stat. If the player has no weapon equipped, the default damage is 1.
+	//This sets the player's damage based upon their equipped weapon. During battle, the strength of the player's attack is determined by this stat.
+	//If the player has no weapon equipped, the default damage is 1.
 	public static void setDamage(Item item) {
 		if(item == null) {
 			damage = 1;
 			return;
 		}
 		damage = item.getStrength();
-	}
-
-	//This method increases the character's health, but not above maximum.
-	public static void increaseHealth(int currentHealth, int restored) {
-		int newHealth = currentHealth + restored;
-		health = newHealth;
 	}
 
 	public String getName() {

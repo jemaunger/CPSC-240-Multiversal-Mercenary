@@ -1,14 +1,11 @@
 import java.util.Scanner;
 import java.util.Random;
-import java.io.FileNotFoundException;
 import java.io.FileInputStream;
-import java.io.IOException;
 import java.io.PrintWriter;
-import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Arrays;
 
-
-public class Board {
+public class Board  {
 	//Instance variables
 	private FileInputStream fileIn;
 	private Scanner scnr;
@@ -20,11 +17,12 @@ public class Board {
 	private	Character player;
 	private String[] lines = new String[32];
 	private char[][] grid = new char[32][32];
-	Inventory inventory;
+	private Inventory inventory;
 	private EnemyGenerator genEnemy;
 	private ItemGenerator genItem;
 	private FoodGenerator genFood;
 	private static int badGuyIDCounter = 12;
+	private Room room2;
 
 	//Instance variables to be saved.
 	private String SAVEFILE_EXTENSION = ".sav";
@@ -48,6 +46,12 @@ public class Board {
 
 	  }
 
+	//	private char characterLocation;
+	//	private int characterHealth;
+	//	private Inventory characterItems;
+	//	private String TOP_DELIM = "|.";
+	//	private String BOT_DELIM = ".|";
+
 	Board() {
 		try{
 			fileIn = new FileInputStream(fileName);
@@ -61,6 +65,8 @@ public class Board {
 		for (int i = 0; i < 32; i++){
 			lines[i] = scnr.nextLine();
 			player = new Character("@");
+			genEnemy = new EnemyGenerator();
+			genItem = new ItemGenerator();
 			genFood = new FoodGenerator();
 			inventory = new Inventory(100);
 		}
@@ -129,16 +135,14 @@ public class Board {
 					badGuyIDCounter--;
 					System.out.println("You still have to defeat " + badGuyIDCounter + " more enemies.");
 
-					/*		if (badGuyIDCounter == 11) {
-							Room room2 = new Room();
+							if (badGuyIDCounter == 11) {
+							Room room2 = new Room("room2.txt");
 							room2.printBoard();
 
-							}*/
-
-
+							}
 					try {
 
-						Thread.sleep(1500);
+						Thread.sleep(2000);
 						//input.nextLine();
 					} catch (InterruptedException e) {
 						Thread.currentThread().interrupt();
@@ -153,7 +157,7 @@ public class Board {
 					System.out.println();
 				}
 				try {
-					Thread.sleep(1500);
+					Thread.sleep(2000);
 				} catch (InterruptedException e) {
 					Thread.currentThread().interrupt();
 				}
@@ -162,19 +166,32 @@ public class Board {
 			} while ((playerHealth > 0) && (enemyHealth > 0));
 
 			if (playerHealth <= 0) {
-				System.out.println("Game Over");
+				System.out.println("Though you fought bravely, you were no match for " + enemyName);
+				System.out.println("Game over!");
 				System.exit(0);
 				return false;
-			} else if (badGuyIDCounter == 0) {
+				//If player has defeated all of the enemies and are in Room 1, create a new room 	
+			} else if ((badGuyIDCounter == 0) & (fileIn.equals("room1.txt"))) {
 				System.out.println("You defeated all of the enemies! But there are still more rooms...");
-				grid[12][31] = 'D';
+				//Create a new room
 				return false;
+
+				//Using this to test generating a new room, will delete later	
 			}
-			else if (badGuyIDCounter == 11) {
+		//	else if (badGuyIDCounter == 11) {
 				//	Room room2 = new Room();
+		/*	else if (badGuyIDCounter == 11) {
+				Room room2 = new Room()
 
+			}*/
+			
+			//Using this to test generating a new room, will delete later	
 
+			 else if (badGuyIDCounter == 11) {
+				room2 = new Room("room2.txt");
+				grid[12][31] = 'D';
 			}
+
 
 			else {
 				System.out.printf("%d more enemies remain... %n", badGuyIDCounter);
@@ -186,19 +203,8 @@ public class Board {
 		return false;
 	}
 
-	//Eat food and boost health
-	public void eatFood(Food food) {
-		System.out.printf("You've found %s and it boosts your health by %d %n", food.getName(), food.getHealth());
-		//Increase health
-		Character.player().increaseHealth(Character.player().getHealth(), food.getHealth());
-		//Set player health to new health
-		player.setHealth(Character.player().getHealth()+food.getHealth());
-
-		System.out.printf("Your new health is %s. %n", Character.player().getHealth());
-	}
-
 	//Game actions (move, equip, drop, etc)
-	public void play(char play)throws FileNotFoundException{
+	public void play(char play) {
 		System.out.println();
 
 		//Keep track of character's current position
@@ -237,22 +243,12 @@ public class Board {
 			System.out.println("Thank you for playing!");
 			System.exit(0);
 		}
-		if (play == 'S'){
-			try{
-				File file = new File("Game1.sav");
-				PrintWriter pw = new PrintWriter(file);
-				saveGame(pw);
-			}catch(FileNotFoundException e){
-				System.out.println("Failed to save!");
-				e.printStackTrace();
-			}
-		}
+
 		//Movements
 		//Move up
 		if (play == 'w') {
 			//If character runs into an item (O), choose to pick it up or not
 			if (grid[row - 1][column] == 'O') {
-				genItem = new ItemGenerator();
 				Item item = genItem.generate();
 
 				System.out.printf("You've found %s (Weight: %d, Value: %d Strength: %d)! %n", item.getName(), item.getWeight(), item.getValue(), item.getStrength());
@@ -276,14 +272,13 @@ public class Board {
 					Food food = genFood.generate();
 					grid[row - 1][column] = '@';
 					grid[row][column] = '.';
-					eatFood(food);
+					Character.player().eatFood(food);
 					printBoard();
 				}
 
 
 				//If character runs into enemy (&), choose to battle or not
 				else if ((grid[row - 1][column] == '&')) {
-					genEnemy = new EnemyGenerator();
 					Enemy enemy = genEnemy.generate();
 					boolean battleResult = battle(enemy, player);
 					if (battleResult) {
@@ -295,9 +290,8 @@ public class Board {
 						grid[row][column] = '@';
 						printBoard();
 					}
-
 				}
-				//
+
 				else {
 					grid[row - 1][column] = '@';
 					grid[row][column] = '.';
@@ -349,7 +343,6 @@ public class Board {
 		if (play == 'a') {
 			//If character runs into item, choose to pick it up or not
 			if (grid[row][column - 1] == 'O') {
-				genItem = new ItemGenerator();
 				Item item = genItem.generate();
 
 				System.out.printf("You've found %s (Weight: %d, Value: %d Strength: %d)! %n", item.getName(), item.getWeight(), item.getValue(), item.getStrength());
@@ -373,13 +366,12 @@ public class Board {
 					Food food = genFood.generate();
 					grid[row][column - 1] = '@';
 					grid [row][column] = '.';
-					eatFood(food);
+					Character.player().eatFood(food);
 					printBoard();
 				}
 
 				//If character runs into enemy, choose to battle or not
 				else if ((grid[row][column - 1] == '&')) {
-					genEnemy = new EnemyGenerator();
 					Enemy enemy = genEnemy.generate();
 					boolean battleResult = battle(enemy, player);
 					if (battleResult) {
@@ -443,7 +435,6 @@ public class Board {
 		if (play == 's') {
 			//If character runs into item, choose to pick it up or not
 			if (grid[row + 1][column] == 'O') {
-				genItem = new ItemGenerator();
 				Item item = genItem.generate();
 
 				System.out.printf("You've found %s (Weight: %d, Value: %d Strength: %d)! %n", item.getName(), item.getWeight(), item.getValue(), item.getStrength());
@@ -466,13 +457,12 @@ public class Board {
 					Food food = genFood.generate();
 					grid[row + 1][column] = '@';
 					grid[row][column] = '.';
-					eatFood(food);
+					Character.player().eatFood(food);
 					printBoard();
 				}
 
 				//If character runs into enemy, choose to battle
 				else if ((grid[row + 1][column] == '&')) {
-					genEnemy = new EnemyGenerator();
 					Enemy enemy = genEnemy.generate();
 					boolean battleResult = battle(enemy, player);
 					if (battleResult) {
@@ -536,7 +526,6 @@ public class Board {
 		if (play == 'd') {
 			//If character runs into item, choose to pick it up
 			if (grid[row][column + 1] == 'O') {
-				genItem = new ItemGenerator();
 				Item item = genItem.generate(); //Generate a new random item
 
 				System.out.printf("You've found %s (Weight: %d, Value: %d Strength: %d)! %n", item.getName(), item.getWeight(), item.getValue(), item.getStrength());
@@ -559,12 +548,11 @@ public class Board {
 					Food food = genFood.generate();
 					grid[row][column + 1] = '@';
 					grid[row][column] = '.';
-					eatFood(food);
+					Character.player().eatFood(food);
 					printBoard();
 				}
 				//If character runs into enemy, call Battle method
 				else if ((grid[row][column + 1] == '&')) {
-					genEnemy = new EnemyGenerator();
 					Enemy enemy = genEnemy.generate();
 					boolean battleResult = battle(enemy, player);
 					if (battleResult) {
@@ -577,9 +565,18 @@ public class Board {
 						printBoard();
 					}
 
-				}/* else if (grid[row][column + 1] == 'D') {
-				//Do stuff here to load room2
-				}*/
+				} else if (grid[row][column + 1] == 'D') {
+					room2.printBoard();
+					//while (input.hasNext()) {
+					//	do {
+					//		choice = input.next().charAt(0);
+							room2.play(choice);
+
+					//	} while ((choice != 'Q') | (choice != 'q'));
+
+//					}
+
+				}
 				else {
 					grid[row][column + 1] = '@';
 					grid[row][column] = '.';
@@ -628,4 +625,5 @@ public class Board {
 			}
 		}
 	}
+
 }

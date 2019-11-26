@@ -58,18 +58,16 @@ public class Main {
 		System.out.print(": ");
 
 		while (input.hasNext()) {
-			char play;
 			do {
-				play = input.next().charAt(0);
-				board.play(play);
+				choice = input.next().charAt(0);
+				board.play(choice);
 
-			} while ((play != 'Q') | (play != 'q'));
+			} while ((choice != 'Q') | (choice != 'q'));
+			
 		}
 	}
 
 	public static void printMenu() {
-		//this.player = Character.player();
-
 		System.out.println("Actions: ");
 		System.out.println("     D = Drop an item in inventory");
 		System.out.println("     I = Print item inventory");
@@ -90,6 +88,7 @@ public class Main {
 		System.out.println("     O = Item that can be picked up");
 		System.out.println("     & = Enemy");
 		System.out.println("     * = Food");
+		System.out.println("     D = Door");
 		System.out.println();
 		System.out.println("----------------------------------------------------------------------------");
 	}

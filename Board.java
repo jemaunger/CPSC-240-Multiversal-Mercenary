@@ -1,5 +1,6 @@
 import java.util.Scanner;
 import java.util.Random;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.PrintWriter;
 import java.io.FileNotFoundException;
@@ -188,16 +189,15 @@ public class Board  {
 
 			//Using this to test generating a new room, will delete later	
 
-			else if (badGuyIDCounter == 11) {
-					Room room2 = new Room("room2.txt");
-
-			}
-
-		} else if (badGuyIDCounter == 11) {
-				room2 = new Room("room2.txt");
+		 else if (badGuyIDCounter == 11) {
+			room2 = new Room("room2.txt");
 			grid[12][31] = 'D';
 		}
 
+		else {
+			System.out.printf("%d more enemies remain... %n", badGuyIDCounter);
+			System.out.println();
+			return true;
 
 		else {
 			System.out.printf("%d more enemies remain... %n", badGuyIDCounter);
@@ -207,6 +207,7 @@ public class Board  {
 		}
 		return false;
 	}
+}
 
 	//Game actions (move, equip, drop, etc)
 	public void play(char play) {
@@ -247,6 +248,17 @@ public class Board  {
 		if (play == 'Q') {
 			System.out.println("Thank you for playing!");
 			System.exit(0);
+		}
+
+		if(play == 'S') {
+			try{
+				File file = new File("Game1.sav");
+				PrintWriter pw = new PrintWriter(file);
+				saveGame(pw);
+			}catch(FileNotFoundException e){
+				System.out.println("Failed to save!");
+				e.printStackTrace();
+			}
 		}
 
 		//Movements

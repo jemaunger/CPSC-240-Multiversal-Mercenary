@@ -1,8 +1,10 @@
 import java.util.Scanner;
 import java.util.Random;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.PrintWriter;
 import java.io.FileNotFoundException;
+import java.util.Arrays;
 
 public class Board  {
 	//Instance variables
@@ -135,7 +137,7 @@ public class Board  {
 					System.out.println("You still have to defeat " + badGuyIDCounter + " more enemies.");
 
 					if (badGuyIDCounter == 11) {
-						Room room2 = new Room();
+						Room room2 = new Room("room2.txt");
 						room2.printBoard();
 
 					}
@@ -179,23 +181,22 @@ public class Board  {
 
 				//Using this to test generating a new room, will delete later
 			}
-		/*	else if (badGuyIDCounter == 11) {
+			/*	else if (badGuyIDCounter == 11) {
 				Room room2 = new Room();
 
-			}*/
+				}*/
 
-			} else if (badGuyIDCounter == 11) {
-				room2 = new Room("room2.txt");
-				grid[12][31] = 'D';
-			}
+		} else if (badGuyIDCounter == 11) {
+			room2 = new Room("room2.txt");
+			grid[12][31] = 'D';
+		}
 
 
-			else {
-				System.out.printf("%d more enemies remain... %n", badGuyIDCounter);
-				System.out.println();
-				return true;
+		else {
+			System.out.printf("%d more enemies remain... %n", badGuyIDCounter);
+			System.out.println();
+			return true;
 
-			}
 		}
 		return false;
 	}
@@ -239,6 +240,17 @@ public class Board  {
 		if (play == 'Q') {
 			System.out.println("Thank you for playing!");
 			System.exit(0);
+		}
+
+		if(play == 'S') {
+			try{
+				File file = new File("Game1.sav");
+				PrintWriter pw = new PrintWriter(file);
+				saveGame(pw);
+			}catch(FileNotFoundException e){
+				System.out.println("Failed to save!");
+				e.printStackTrace();
+			}
 		}
 
 		//Movements
@@ -567,11 +579,11 @@ public class Board  {
 					//while (input.hasNext()) {
 					//	do {
 					//		choice = input.next().charAt(0);
-							room2.play(choice);
+					room2.play(choice);
 
 					//	} while ((choice != 'Q') | (choice != 'q'));
 
-//					}
+					//					}
 
 				}
 				else {

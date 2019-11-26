@@ -41,6 +41,19 @@ public class Board {
 		pw.close();
 		System.out.println("File saved successfully!");
 	}
+
+	//restores the state of the saved game, including the characters location health, items, also all of the placements of enemies and items across the board.
+	/*public Board(Scanner s){
+	  String firstDelim = "";
+	  String lastDelim = "";
+	  if (choice.equals('R')){
+	  newBoard[][] = s.nextChar();
+	  s.nextLine();
+	  newBoard[][] = s.nextChar();
+	  s.nextLine();
+	  }
+	  }*/
+
 	Board() {
 		try{
 			fileIn = new FileInputStream(fileName);
@@ -72,18 +85,6 @@ public class Board {
 		}
 		return instance;
 	}
-
-	//restores the state of the saved game, including the characters location health, items, also all of the placements of enemies and items across the board.
-	/*public Board(Scanner s){
-	  String firstDelim = "";
-	  String lastDelim = "";
-	  if (choice.equals('R')){
-	  newBoard[][] = s.nextChar();
-	  s.nextLine();
-	  newBoard[][] = s.nextChar();
-	  s.nextLine();
-	  }
-	  }*/
 
 	//Display the game board to the screen 
 	public void printBoard() {

@@ -150,4 +150,11 @@ public class Inventory {
         return equippedArmor;
     }
 
+    public String toString() {
+	    String results = "";
+	    for(Item i : items) {
+		    results += i.toString() + " ";
+	    }
+	    return results;
+    }
 }

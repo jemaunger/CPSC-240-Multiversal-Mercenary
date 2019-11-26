@@ -1,4 +1,5 @@
-import java.util.*;
+import java.util.Scanner;
+import java.util.Random;
 
 //This class creates the Item object.
 //This object stores every item that can be stored in the inventory.
@@ -12,7 +13,7 @@ public class Item {
 	private int strength;
 
 	//This constructor creates a new Item object.
-	//The name and type are taken straight from the constructor, while the weight, value, and strength are all randomized.
+	//The name and type arg taken straight from the constructor, while the weight, value, and strength are all randomized.
 	//To make this work, I created what I call light, medium, and heavy classes for each value, as indiated by the base values entered into the constructors.
 	//This is not separated by type, because I thought it would be funny if a sword weighed more than a horse, or a feather was more valuable than a lightsaber.
 	public Item (String name, ItemType type, int weight, int value, int strength) {
@@ -43,7 +44,12 @@ public class Item {
 		else
 			this.strength = strength;
 	}
-	
+	Item(Scanner s){
+		this.weight = s.nextInt();
+		this.value = s.nextInt();
+		this.name = s.nextLine();
+		this.strength = s.nextInt();
+	}	
 	public int getWeight() {
 		return weight;
 	}

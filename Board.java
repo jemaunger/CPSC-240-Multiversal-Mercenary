@@ -16,7 +16,7 @@ public class Board {
 	private Random rng = new Random();
 	private char choice; 
 	private static String fileName = "room1.txt";
-	private static Board instance = new Board();
+	private static Board instance;
 	private	Character player;
 	private String[] lines = new String[32];
 	private char[][] grid = new char[32][32];
@@ -28,11 +28,9 @@ public class Board {
 
 	//Instance variables to be saved.
 	private String SAVEFILE_EXTENSION = ".sav";
-	//	private char characterLocation;
-	//	private int characterHealth;
-	//	private Inventory characterItems;
-	//	private String TOP_DELIM = "|.";
-	//	private String BOT_DELIM = ".|";
+	private char characterLocation;
+	private int characterHealth;
+	private Item characterItems;
 
 	public void saveGame(PrintWriter pw){
 		pw.println(player);
@@ -44,16 +42,11 @@ public class Board {
 	}
 
 	//restores the state of the saved game, including the characters location health, items, also all of the placements of enemies and items across the board.
-	/*public Board(Scanner s){
-	  String firstDelim = "";
-	  String lastDelim = "";
-	  if (choice.equals('R')){
-	  newBoard[][] = s.nextChar();
-	  s.nextLine();
-	  newBoard[][] = s.nextChar();
-	  s.nextLine();
+	public Board(Scanner s){
+		instance = new Board(input);
+		player = new Character(input);
+
 	  }
-	  }*/
 
 	Board() {
 		try{
@@ -136,11 +129,11 @@ public class Board {
 					badGuyIDCounter--;
 					System.out.println("You still have to defeat " + badGuyIDCounter + " more enemies.");
 
-					if (badGuyIDCounter == 11) {
-						Room room2 = new Room();
-						room2.printBoard();
+					/*		if (badGuyIDCounter == 11) {
+							Room room2 = new Room();
+							room2.printBoard();
 
-					}
+							}*/
 
 
 					try {
@@ -178,7 +171,7 @@ public class Board {
 				return false;
 			}
 			else if (badGuyIDCounter == 11) {
-				Room room2 = new Room();
+				//	Room room2 = new Room();
 
 
 			}

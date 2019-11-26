@@ -46,7 +46,12 @@ public class Character {
 		}
 		return character;
 	}
-
+	public Character(Scanner s){
+		this.name = s.nextLine();
+		this.health = s.nextInt();
+		this.armor = s.nextInt();
+		this.damage = s.nextInt();
+	}
 	//Character initialization only requires a name and class.
 	public Character(String name) {
 		this.name = name;

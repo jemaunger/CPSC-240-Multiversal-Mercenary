@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.io.FileInputStream;
 
 public class Main {
 
@@ -35,9 +36,15 @@ public class Main {
 			System.out.println("Below is list of symbols and actions that you can make with your character.");
 			System.out.println("To begin, please choose an action from the menu: ");
 			System.out.println("(You must press enter between every action)");
-		}/*if((choice == 'Y') | (choice == 'y')){
-		   board.Board(fileName);
-		   }*/
+		}if((choice == 'Y') | (choice == 'y')){
+			FileInputStream  fileStream = new FileInputStream("Game1.sav");
+     			Scanner in = new Scanner(fileStream);
+			Board loadBoard = new Board(in);
+			Character player = new Character(in);
+			Enemy enemy = new Enemy(in);
+			Item i = new Item(in);
+			Inventory inv = new Inventory(in);			
+		}
 			printMenu();
 		/*
 		   try {
@@ -70,7 +77,6 @@ public class Main {
 		System.out.println("     M = Print menu");
 		System.out.println("     Q = Quit game");
 		System.out.println("     S = Save game");
-		System.out.println("     R = Restore saved game");
 		System.out.println();
 
 		System.out.println("     w = move character up");

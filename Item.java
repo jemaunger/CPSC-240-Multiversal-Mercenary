@@ -71,7 +71,7 @@ public class Item {
 	}
 
 	public String toString() {
-		return name + " " + weight + " " + value + " " + strength;
+		return name + " " + type + " " + weight + " " + value + " " + strength;
 	}
 
 	//This method allows the program to randomize using a custom range.

@@ -141,7 +141,7 @@ public class Board  {
 						Room room2 = new Room("room2.txt");
 						room2.printBoard();
 
-					}
+					
 					}
 					try {
 
@@ -150,6 +150,7 @@ public class Board  {
 					} catch (InterruptedException e) {
 						Thread.currentThread().interrupt();
 					}
+					return true;
 				} else {
 					playerHealth = playerHealth - enemyDamage;
 					player.setHealth(playerHealth);
@@ -198,7 +199,8 @@ public class Board  {
 		else {
 			System.out.printf("%d more enemies remain... %n", badGuyIDCounter);
 			System.out.println();
-			return true;
+
+			return false;
 		}
 		return false;
 	}

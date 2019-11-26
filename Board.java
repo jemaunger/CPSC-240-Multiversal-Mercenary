@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.File;
+import java.util.Arrays;
 
 
 public class Board {
@@ -35,9 +36,9 @@ public class Board {
 
 	public void saveGame(PrintWriter pw){
 		pw.println(player);
-		pw.println(grid);
+		pw.println(Arrays.deepToString(grid));
 		pw.println(inventory);
-		
+
 		pw.close();
 		System.out.println("File saved successfully!");
 	}
@@ -133,9 +134,18 @@ public class Board {
 					System.out.printf("Congrats! You defeated %s! %n", enemyName);
 					System.out.printf("Your health total is at %d %n", playerHealth);
 					badGuyIDCounter--;
+					System.out.println("You still have to defeat " + badGuyIDCounter + " more enemies.");
+
+					if (badGuyIDCounter == 11) {
+						Room room2 = new Room();
+						room2.printBoard();
+
+					}
+
+
 					try {
 
-						Thread.sleep(2000);
+						Thread.sleep(1500);
 						//input.nextLine();
 					} catch (InterruptedException e) {
 						Thread.currentThread().interrupt();
@@ -150,7 +160,7 @@ public class Board {
 					System.out.println();
 				}
 				try {
-					Thread.sleep(2000);
+					Thread.sleep(1500);
 				} catch (InterruptedException e) {
 					Thread.currentThread().interrupt();
 				}
@@ -167,6 +177,12 @@ public class Board {
 				grid[12][31] = 'D';
 				return false;
 			}
+			else if (badGuyIDCounter == 11) {
+				Room room2 = new Room();
+
+
+			}
+
 			else {
 				System.out.printf("%d more enemies remain... %n", badGuyIDCounter);
 				System.out.println();
@@ -229,14 +245,14 @@ public class Board {
 			System.exit(0);
 		}
 		if (play == 'S'){
-		    try{
-			File file = new File("Game1.sav");
-			PrintWriter pw = new PrintWriter(file);
-			saveGame(pw);
-		    }catch(FileNotFoundException e){
-		    	System.out.println("Failed to save!");
-			e.printStackTrace();
-		    }
+			try{
+				File file = new File("Game1.sav");
+				PrintWriter pw = new PrintWriter(file);
+				saveGame(pw);
+			}catch(FileNotFoundException e){
+				System.out.println("Failed to save!");
+				e.printStackTrace();
+			}
 		}
 		//Movements
 		//Move up
@@ -619,5 +635,4 @@ public class Board {
 			}
 		}
 	}
-
 }

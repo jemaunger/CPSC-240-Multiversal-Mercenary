@@ -21,6 +21,7 @@ public class Board  {
 	private ItemGenerator genItem;
 	private FoodGenerator genFood;
 	private static int badGuyIDCounter = 12;
+	private Room room2;
 
 	//Instance variables to be saved.
 //	private char characterLocation;
@@ -152,14 +153,19 @@ public class Board  {
 				System.out.println("Game over!");
 				System.exit(0);
 				return false;
+			//If player has defeated all of the enemies and are in Room 1, create a new room 	
 			} else if ((badGuyIDCounter == 0) & (fileIn.equals("room1.txt"))) {
 				System.out.println("You defeated all of the enemies! But there are still more rooms...");
-				grid[12][31] = 'D';
+				//Create a new room
 				return false;
+
+			//Using this to test generating a new room, will delete later	
+			} else if (badGuyIDCounter == 11) {
+				room2 = new Room("room2.txt");
+				grid[12][31] = 'D';
 			}
-			//Just using this to test 
 
-
+		
 			else {
 				System.out.printf("%d more enemies remain... %n", badGuyIDCounter);
 				System.out.println();
@@ -532,9 +538,9 @@ public class Board  {
 						printBoard();
 					}
 
-				}/* else if (grid[row][column + 1] == 'D') {
-					//Do stuff here to load room2
-				}*/
+				} else if (grid[row][column + 1] == 'D') {
+					room2.printBoard();
+				}
 				else {
 					grid[row][column + 1] = '@';
 					grid[row][column] = '.';

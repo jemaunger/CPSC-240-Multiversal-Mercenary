@@ -43,7 +43,6 @@ public class Board  {
 	public Board(Scanner s){
 		s = new Scanner(System.in);
 		player = new Character(s);
-
 		for(int i = 0; i < 32; i++){
 			char[] holdLine = lines[i].toCharArray();
 			for(int j = 0; j < 32; j++){

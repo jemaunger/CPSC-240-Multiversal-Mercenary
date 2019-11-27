@@ -15,9 +15,9 @@ public class Main {
 		choice = input.next().charAt(0);
 		if((choice == 'N') | (choice == 'n')){
 			System.out.println("All events you see in this game are real. They simply take place a long time ago, in a " + "galaxy far, far away...");
-			
+
 			System.out.println();
-			
+
 			System.out.println("The multidimensional barrier has been torn open, throwing a multitude of beings and items into our world.");
 			System.out.println("Unfortunately, through a sheer statistical anomaly, all but one of these beings are evil!");
 			System.out.println("Our hero, torn from their own world and/or time, now fights to rid our world of evil before ");
@@ -39,15 +39,19 @@ public class Main {
 			System.out.println("To begin, please choose an action from the menu: ");
 			System.out.println("(You must press enter between every action)");
 		} if((choice == 'Y') | (choice == 'y')){
+
 			FileInputStream  fileStream = new FileInputStream("Game.sav");
-     			Scanner in = new Scanner(fileStream);
-			Board loadBoard = new Board(in);
+			Scanner in = new Scanner(fileStream);	
+			System.out.println("Finding file.....");
+			Board loadBoard = new Board(in);	
 			Character player = new Character(in);
 			Enemy enemy = new Enemy(in);
 			Item i = new Item(in);
 			Inventory inv = new Inventory(in);			
-		}
-			printMenu();
+
+			fileStream.close();
+			}
+		printMenu();
 		/*
 		   try {
 		   Thread.sleep(6000);
@@ -65,10 +69,10 @@ public class Main {
 				board.play(choice);
 
 			} while ((choice != 'Q') | (choice != 'q'));
-			
+
 		}
 	}
-	
+
 	public static void printMenu() {
 		System.out.println("Actions: ");
 		System.out.println("     D = Drop an item in inventory");

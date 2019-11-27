@@ -128,7 +128,6 @@ public class Board  {
 		System.out.print("Would you like to battle (Y or N)? ");
 		this.choice = input.next().charAt(0);
 
-
 		if ((this.choice == 'Y') | (this.choice == 'y')) {
 			inventory.equipWeapon();
 			Item weapon = inventory.getEquippedWeapon();
@@ -146,7 +145,6 @@ public class Board  {
 			int playerDamage = player.getDamage();
 			int roundCounter = 0;
 
-
 			do {
 				System.out.printf("Round %d: %n", roundCounter + 1);
 				enemyHealth = enemyHealth - playerDamage;
@@ -159,6 +157,7 @@ public class Board  {
 
 					if (badGuyIDCounter == 11) {
 						Room room2 = new Room("room2.txt");
+						grid[12][31] = 'D';
 					}
 					try {
 
@@ -191,11 +190,10 @@ public class Board  {
 				System.out.println("Game over!");
 				System.exit(0);
 				return false;
-				//If player has defeated all of the enemies and are in Room 1, create a new room 	
-			} else if ((badGuyIDCounter <= 11) & (fileIn.equals("room1.txt"))) {
-				System.out.println("You defeated all of the enemies! But there are still more rooms...");	
-				room2 = new Room("room2.txt");
-				grid[12][31] = 'D';
+			
+				//If player has defeated all of the enemies and is in Room 1, create a new Room object called room2
+			} else if ((badGuyIDCounter == 0) & (fileIn.equals("room1.txt"))) {
+				System.out.println("You defeated all of the enemies! But there are still more rooms...");
 				//Create a new room
 				return false;
 
@@ -210,13 +208,19 @@ public class Board  {
 
 			//Using this to test generating a new room, will delete later	
 
+			
+			   else if (badGuyIDCounter == 11) {
+			   room2 = new Room("room2.txt");
+			   grid[12][32] = 'D';
+			   }
+			  
 			else {
 				System.out.printf("%d more enemies remain... %n", badGuyIDCounter);
 				System.out.println();
 
 				return false;
 			}
-		}
+			}
 
 		return false;
 		}
@@ -604,14 +608,14 @@ public class Board  {
 
 					} else if (grid[row][column + 1] == 'D') {
 						room2.printBoard();
-						//while (input.hasNext()) {
-						//	do {
-						//		choice = input.next().charAt(0);
-						room2.play(choice);
+						while (input.hasNext()) {
+							do {
+								choice = input.next().charAt(0);
+								play(choice);
 
-						//	} while ((choice != 'Q') | (choice != 'q'));
+							} while ((choice != 'Q') | (choice != 'q'));
 
-						//					}
+						}
 
 					}
 					else {

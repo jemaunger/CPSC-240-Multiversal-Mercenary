@@ -8,27 +8,29 @@ import java.util.Arrays;
 
 public class Board  {
 	//Instance variables
-	private FileInputStream fileIn;
-	private Scanner scnr;
-	private Scanner input = new Scanner(System.in);
-	private Random rng = new Random();
-	private char choice; 
-	private static String fileName = "room1.txt";
-	private static Board instance;
-	private	Character player;
-	private String[] lines = new String[32];
-	private char[][] grid = new char[32][32];
-	Inventory inventory;
-	private EnemyGenerator genEnemy;
-	private ItemGenerator genItem;
-	private FoodGenerator genFood;
-	private static int badGuyIDCounter = 12;
-	private Room room2;
+        private FileInputStream fileIn;
+        private Scanner scnr;
+        private static String fileName = "room1.txt";
+        private static Board instance;
+        private String[] lines = new String[32];
+        private char[][] grid = new char[32][32];
+        Inventory inventory;
+        private static int badGuyIDCounter = 12;
 
-	//Instance variables to be saved.
-	private char characterLocation;
-	private int characterHealth;
-	private Item characterItems;
+        //Protected 
+        protected char choice;
+        protected Character player;
+        protected EnemyGenerator genEnemy;
+        protected FoodGenerator genFood;
+        protected ItemGenerator genItem = new ItemGenerator();
+        protected Random rng = new Random();
+        protected Room room2;
+        protected Scanner input = new Scanner(System.in);
+
+        //Instance variables to be saved.
+        private char characterLocation;
+        private int characterHealth;
+        private Item characterItems;
 
 	public void saveGame(PrintWriter pw){
 		pw.println(player);

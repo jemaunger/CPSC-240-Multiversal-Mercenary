@@ -44,16 +44,7 @@ public class Board  {
 	//restores the state of the saved game, including the characters location health, items, also all of the placements of enemies and items across the board.
 	public Board(Scanner s){
 		player = new Character(s);
-		File current = new File("Game.sav");
 
-		try{
-			s = new Scanner(current);
-			while(s.hasNextLine()){
-				System.out.println(s.nextLine());
-			}
-		}catch(FileNotFoundException e){
-			e.printStackTrace();
-		}	
 		for(int i = 0; i < 32; i++){
 			lines[i] = s.nextLine();
 		}
@@ -68,13 +59,6 @@ public class Board  {
 		}
 
 	}
-
-	//	private char characterLocation;
-	//	private int characterHealth;
-	//	private Inventory characterItems;
-	//	private String TOP_DELIM = "|.";
-	//	private String BOT_DELIM = ".|";
-
 
 	Board() {
 		try{
@@ -209,7 +193,7 @@ public class Board  {
 			//Using this to test generating a new room, will delete later	
 
 			
-			   else if (badGuyIDCounter == 11) {
+			   else if (badGuyIDCounter <= 0) {
 			   room2 = new Room("room2.txt");
 			   grid[12][32] = 'D';
 			   }

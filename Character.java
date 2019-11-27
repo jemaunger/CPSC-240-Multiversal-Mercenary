@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 //This class creates the character that the player will be using. It is singleton as there will only ever be one character at a time.
-public class Character {
+public class Character extends Being{
 	
 	//Instance variables
 	static Scanner input = new Scanner(System.in);

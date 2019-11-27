@@ -48,7 +48,9 @@ public class Board  {
 			for(int j = 0; j < 32; j++){
 				grid[i][j] = holdLine[j];
 				System.out.println(grid[i][j]);
+				return;
 			}
+			return;
 		}
 
 	}
@@ -176,8 +178,10 @@ public class Board  {
 				System.exit(0);
 				return false;
 				//If player has defeated all of the enemies and are in Room 1, create a new room 	
-			} else if ((badGuyIDCounter == 0) & (fileIn.equals("room1.txt"))) {
-				System.out.println("You defeated all of the enemies! But there are still more rooms...");
+			} else if ((badGuyIDCounter <= 11) & (fileIn.equals("room1.txt"))) {
+				System.out.println("You defeated all of the enemies! But there are still more rooms...");	
+				room2 = new Room("room2.txt");
+				grid[12][31] = 'D';
 				//Create a new room
 				return false;
 
@@ -191,11 +195,6 @@ public class Board  {
 				}*/
 
 			//Using this to test generating a new room, will delete later	
-
-			else if (badGuyIDCounter == 11) {
-				room2 = new Room("room2.txt");
-				grid[12][31] = 'D';
-			}
 
 			else {
 				System.out.printf("%d more enemies remain... %n", badGuyIDCounter);
@@ -230,6 +229,7 @@ public class Board  {
 		//Drop an item from inventory
 		if (play == 'D') {
 			inventory.drop();
+			inventory.print();
 		}
 
 		//Print inventory

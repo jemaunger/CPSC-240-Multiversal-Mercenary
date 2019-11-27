@@ -50,6 +50,7 @@ public class Main {
 			Inventory inv = new Inventory(in);			
 
 			fileStream.close();
+			return;
 			}
 		printMenu();
 		/*

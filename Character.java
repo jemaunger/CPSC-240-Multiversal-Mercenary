@@ -53,6 +53,8 @@ public class Character {
 		this.health = s.nextInt();
 		this.armor = s.nextInt();
 		this.damage = s.nextInt();
+		s.nextLine();
+		this.charClass = null;
 	}
 	//Character initialization only requires a name and class.
 	public Character(String name) {

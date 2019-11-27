@@ -33,14 +33,14 @@ public class Room extends Board {
 		}
 	}
 	public void printBoard() {
-        for (char[] space : grid) {
-                for (char j : space) {
-                        System.out.print(j + " ");
-                }
-                System.out.println();
-        }
+		for (char[] space : grid) {
+			for (char j : space) {
+				System.out.print(j + " ");
+			}
+			System.out.println();
+		}
 
-}
+	}
 
 
 	public void play(char play) {
@@ -141,6 +141,18 @@ public class Room extends Board {
 						printBoard();
 					}
 				}
+				else if (grid[row-1][column] == 'D') {
+                                        room2.printBoard();
+                                        //while (input.hasNext()) {
+                                        //      do {
+                                        //              choice = input.next().charAt(0);
+                                        room2.play(choice);
+
+                                        //      } while ((choice != 'Q') | (choice != 'q'));
+
+                                        //                                      }
+
+                                }
 
 				else {
 					grid[row - 1][column] = '@';
@@ -220,6 +232,18 @@ public class Room extends Board {
 					Character.player().eatFood(food);
 					printBoard();
 				}
+				else if (grid[row][column - 1] == 'D') {
+                                        room2.printBoard();
+                                        //while (input.hasNext()) {
+                                        //      do {
+                                        //              choice = input.next().charAt(0);
+                                        room2.play(choice);
+
+                                        //      } while ((choice != 'Q') | (choice != 'q'));
+
+                                        //                                      }
+
+                                }
 
 				//If character runs into enemy, choose to battle or not
 				else if ((grid[row][column - 1] == '&')) {
@@ -313,6 +337,18 @@ public class Room extends Board {
 					Character.player().eatFood(food);
 					printBoard();
 				}
+				else if (grid[row+1][column] == 'D') {
+                                        room2.printBoard();
+                                        //while (input.hasNext()) {
+                                        //      do {
+                                        //              choice = input.next().charAt(0);
+                                        room2.play(choice);
+
+                                        //      } while ((choice != 'Q') | (choice != 'q'));
+
+                                        //                                      }
+
+                                }
 
 				//If character runs into enemy, choose to battle
 				else if ((grid[row + 1][column] == '&')) {

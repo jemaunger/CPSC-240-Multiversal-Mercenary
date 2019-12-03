@@ -49,7 +49,10 @@ public class Character {
 		return character;
 	}
 	public Character(Scanner s){
-		this.name = s.nextLine();
+		s = new Scanner("Game.sav");
+		this.name = s.next();
+		this.charClass = null;
+		s.skip("null");
 		this.health = s.nextInt();
 		this.armor = s.nextInt();
 		this.damage = s.nextInt();

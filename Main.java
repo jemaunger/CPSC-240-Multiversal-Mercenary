@@ -1,6 +1,7 @@
 import java.util.Scanner;
 import java.io.FileInputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
 
 public class Main {
 
@@ -40,17 +41,28 @@ public class Main {
 			System.out.println("(You must press enter between every action)");
 		} if((choice == 'Y') | (choice == 'y')){
 
-			FileInputStream  fileStream = new FileInputStream("Game.sav");
-			Scanner in = new Scanner(fileStream);	
-			System.out.println("Finding file.....");
-			Board loadBoard = new Board(in);	
-			Character player = new Character(in);
-			Enemy enemy = new Enemy(in);
-			Item i = new Item(in);
-			Inventory inv = new Inventory(in);			
+			File loadFile = new File("Game.sav");
+			Scanner in;
+			try{
+				in = new Scanner(loadFile);
 
-			fileStream.close();
+				Enemy enemy = new Enemy(in);
+
+				System.out.println("Finding file.....");
+				Item i = new Item(in);
+				Inventory inv = new Inventory(in);			
+
+				while(in.hasNextLine()){
+					System.out.println(in.nextLine());
+				}	
+			}catch(FileNotFoundException e){
+				e.printStackTrace();	
 			}
+			//Board loadBoard = new Board(in);	
+			//Character player = new Character(in);
+
+			return;
+		}
 		printMenu();
 		/*
 		   try {

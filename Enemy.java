@@ -1,7 +1,7 @@
 import java.util.Random;
 import java.util.Scanner;
 //stores the information available for each different enemy.
-public class Enemy {
+public class Enemy extends Being{
 	private String name;
 	private int damage;
 	private int health;

@@ -23,6 +23,8 @@ public class Inventory {
 	}
 	Inventory(Scanner s){
 		this.maxWeight = s.nextInt();
+		s.nextLine();
+		Inventory bag = new Inventory(s);
 	}
 
     //This method keeps track of the current weight of the inventory.

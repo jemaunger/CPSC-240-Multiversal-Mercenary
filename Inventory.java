@@ -168,7 +168,7 @@ public class Inventory {
 
 	//This method allows the player to choose which item's damage (armor or weapon) they would like to boost
 	public void usePotion(Potion potion) {
-		System.out.printf("You've found %s! Choose an item to boost your damage by %d %n", potion.getName(), potion.getHealth());
+		System.out.printf("You've found %s! Choose an item to boost its strength by %d points. %n", potion.getName(), potion.getHealth());
 		int count = 1;
 		for (int i = 0; i < items.size(); i++) {
                         if ((items.get(i).getType() == ItemType.ARMOR) | (items.get(i).getType() == ItemType.WEAPON)) {
@@ -183,7 +183,7 @@ public class Inventory {
 		int currentDamage = items.get(choice).getStrength();
 
 		increaseDamage(choice, currentDamage, potion.getHealth());
-		System.out.printf("%s now has %d damage %n", items.get(choice).getName(), items.get(choice).getStrength());
+		System.out.printf("%s now has %d strength %n", items.get(choice).getName(), items.get(choice).getStrength());
 	}
 
 	public void increaseDamage(int index, int currentDamage, int boost) {

@@ -34,6 +34,9 @@ public class Shop {
 					charIn.takeGold(purchased.getValue());
 					charIn.add(purchased);
 					stock.items.remove(bought);
+					System.out.println("Pleasure doing business with you.");
+					charIn.print();
+					charIn.priceCheck();
 					System.out.println("Would you like to make another purchase or sell an item? Press 'B' to buy, 'S' to sell, or 'E' to exit.");
 					char choice = stdin.next().charAt(0);
 					if(choice == 'B' || choice == 'b') {
@@ -66,6 +69,9 @@ public class Shop {
 				Item sold = charIn.items.get(sale);
 				charIn.addGold(sold.getValue());
 				charIn.items.remove(sale);
+				System.out.println("Pleasure doing business with you.");
+				charIn.print();
+				charIn.priceCheck();
 				System.out.println("Would you like to make another sale or purchase an item? Press 'B' to buy, 'S' to sell, or 'E' to exit.");
 				char choice = stdin.next().charAt(0);
 				if(choice == 'B' || choice == 'b') {
@@ -79,5 +85,9 @@ public class Shop {
 				}
 			}
 		}
+	}
+
+	public void print() {
+		stock.print();
 	}
 }

@@ -174,7 +174,7 @@ public class Board  {
 				System.out.println("Game over!");
 				System.exit(0);
 				return false;
-			
+
 				//If player has defeated all of the enemies and is in Room 1, create a new Room object called room2
 			} else if ((badGuyIDCounter == 0) & (fileIn.equals("room1.txt"))) {
 				System.out.println("You defeated all of the enemies! But there are still more rooms...");
@@ -192,19 +192,19 @@ public class Board  {
 
 			//Using this to test generating a new room, will delete later	
 
-			
-			   else if (badGuyIDCounter <= 0) {
-			   room2 = new Room("room2.txt");
-			   grid[12][32] = 'D';
-			   }
-			  
+
+			else if (badGuyIDCounter <= 0) {
+				room2 = new Room("room2.txt");
+				grid[12][32] = 'D';
+			}
+
 			else {
 				System.out.printf("%d more enemies remain... %n", badGuyIDCounter);
 				System.out.println();
 
 				return false;
 			}
-			}
+		}
 
 		return false;
 		}

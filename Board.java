@@ -17,6 +17,7 @@ public class Board  {
 	Inventory inventory;
 	private static int badGuyIDCounter = 13;
 	private PotionGenerator genPotion;
+	private static Shop market;
 
 	//Protected 
 	protected char choice;
@@ -320,7 +321,35 @@ public class Board  {
 
 						inventory.usePotion(potion);
 						printBoard();
-					}					
+					}
+					else if(grid[row-1][column] == '$') {
+						market = new Shop();
+						System.out.println("Welcome to the shop! Here is what's in stock:");
+						market.print();
+						System.out.println("Here is your inventory:");
+						inventory.print();
+						inventory.priceCheck();
+						System.out.println("Would you like to buy or sell something? Press 'B' to buy, 'S' to sell, and 'E' to exit.");
+						char shopChoice = input.next().charAt(0);
+						if(shopChoice == 'B' || shopChoice == 'b') {
+							market.buy(inventory);
+						}else if(shopChoice == 'S' || shopChoice == 's') {
+							market.sell(inventory);
+						}
+						int randRow = 0;
+						int randCol = 0;
+						while(grid[randRow][randCol] != '$' && grid[randRow][randCol] != grid[row-1][column]) {
+							randRow = rng.nextInt(32);
+							randCol = rng.nextInt(32);
+							if(grid[randRow][randCol] == '.') {
+								grid[randRow][randCol] = '$';
+							}
+						}
+						grid[row-1][column] = '@';
+						grid[row][column] = '.';
+						printBoard();
+					}
+									
 					else {
 						grid[row - 1][column] = '@';
 						grid[row][column] = '.';
@@ -426,11 +455,41 @@ public class Board  {
                                                 printBoard();
                                         }
 
+else if(grid[row][column-1] == '$') {
+						market = new Shop();
+						System.out.println("Welcome to the shop! Here is what's in stock:");
+						market.print();
+						System.out.println("Here is your inventory:");
+						inventory.print();
+						inventory.priceCheck();
+						System.out.println("Would you like to buy or sell something? Press 'B' to buy, 'S' to sell, and 'E' to exit.");
+						char shopChoice = input.next().charAt(0);
+						if(shopChoice == 'B' || shopChoice == 'b') {
+							market.buy(inventory);
+						}else if(shopChoice == 'S' || shopChoice == 's') {
+							market.sell(inventory);
+						}
+						int randRow = 0;
+						int randCol = 0;
+						while(grid[randRow][randCol] != '$' && grid[randRow][randCol] != grid[row][column-1]) {
+							randRow = rng.nextInt(32);
+							randCol = rng.nextInt(32);
+							if(grid[randRow][randCol] == '.') {
+								grid[randRow][randCol] = '$';
+							}
+						}
+						grid[row][column-1] = '@';
+						grid[row][column] = '.';
+						printBoard();
+					}
+
+
 					else {
 						grid[row][column - 1] = '@';
 						grid[row][column] = '.';
 						printBoard();
 					}
+
 				} catch (ArrayIndexOutOfBoundsException exception) {
 					System.out.println("Invalid move, try again");
 				}
@@ -529,6 +588,34 @@ public class Board  {
                                                 inventory.usePotion(potion);
                                                 printBoard();
                                         }
+
+else if(grid[row+1][column] == '$') {
+						market = new Shop();
+						System.out.println("Welcome to the shop! Here is what's in stock:");
+						market.print();
+						System.out.println("Here is your inventory:");
+						inventory.print();
+						inventory.priceCheck();
+						System.out.println("Would you like to buy or sell something? Press 'B' to buy, 'S' to sell, and 'E' to exit.");
+						char shopChoice = input.next().charAt(0);
+						if(shopChoice == 'B' || shopChoice == 'b') {
+							market.buy(inventory);
+						}else if(shopChoice == 'S' || shopChoice == 's') {
+							market.sell(inventory);
+						}
+						int randRow = 0;
+						int randCol = 0;
+						while(grid[randRow][randCol] != '$' && grid[randRow][randCol] != grid[row+1][column]) {
+							randRow = rng.nextInt(32);
+							randCol = rng.nextInt(32);
+							if(grid[randRow][randCol] == '.') {
+								grid[randRow][randCol] = '$';
+							}
+						}
+						grid[row+1][column] = '@';
+						grid[row][column] = '.';
+						printBoard();
+					}
 
 					 else {
 						grid[row + 1][column] = '@';
@@ -633,6 +720,34 @@ public class Board  {
                                                 inventory.usePotion(potion);
                                                 printBoard();
                                         }
+
+else if(grid[row][column+1] == '$') {
+						market = new Shop();
+						System.out.println("Welcome to the shop! Here is what's in stock:");
+						market.print();
+						System.out.println("Here is your inventory:");
+						inventory.print();
+						inventory.priceCheck();
+						System.out.println("Would you like to buy or sell something? Press 'B' to buy, 'S' to sell, and 'E' to exit.");
+						char shopChoice = input.next().charAt(0);
+						if(shopChoice == 'B' || shopChoice == 'b') {
+							market.buy(inventory);
+						}else if(shopChoice == 'S' || shopChoice == 's') {
+							market.sell(inventory);
+						}
+						int randRow = 0;
+						int randCol = 0;
+						while(grid[randRow][randCol] != '$' && grid[randRow][randCol] != grid[row][column+1]) {
+							randRow = rng.nextInt(32);
+							randCol = rng.nextInt(32);
+							if(grid[randRow][randCol] == '.') {
+								grid[randRow][randCol] = '$';
+							}
+						}
+						grid[row][column+1] = '@';
+						grid[row][column] = '.';
+						printBoard();
+					}
 
 					else {
 						grid[row][column + 1] = '@';

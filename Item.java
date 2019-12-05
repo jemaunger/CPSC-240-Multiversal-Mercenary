@@ -70,6 +70,9 @@ public class Item {
 		return type;
 	}
 
+	public void setStrength(int strength) {
+		this.strength = strength;
+	}
 	public String toString() {
 		return name + " " + type + " " + weight + " " + value + " " + strength;
 	}

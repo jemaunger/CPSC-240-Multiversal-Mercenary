@@ -16,6 +16,7 @@ public class Board  {
 	private char[][] grid = new char[32][32];
 	Inventory inventory;
 	private static int badGuyIDCounter = 13;
+	private static Shop market;
 
 	//Protected 
 	protected char choice;
@@ -237,6 +238,7 @@ public class Board  {
 			//Print inventory
 			if (play == 'I') {
 				inventory.print();
+				inventory.priceCheck();
 			}
 
 			//Print menu again
@@ -313,7 +315,36 @@ public class Board  {
 					else if ((grid[row - 1][column] == '!')) {
 						//Do stuff for potion
 					}
-						else {
+
+					else if(grid[row-1][column] == '$') {
+						market = new Shop();
+						System.out.println("Welcome to the shop! Here is what's in stock:");
+						market.print();
+						System.out.println("Here is your inventory:");
+						inventory.print();
+						inventory.priceCheck();
+						System.out.println("Would you like to buy or sell something? Press 'B' to buy, 'S' to sell, and 'E' to exit.");
+						char shopChoice = input.next().charAt(0);
+						if(shopChoice == 'B' || shopChoice == 'b') {
+							market.buy(inventory);
+						}else if(shopChoice == 'S' || shopChoice == 's') {
+							market.sell(inventory);
+						}
+						int randRow = 0;
+						int randCol = 0;
+						while(grid[randRow][randCol] != '$' && grid[randRow][randCol] != grid[row-1][column]) {
+							randRow = rng.nextInt(32);
+							randCol = rng.nextInt(32);
+							if(grid[randRow][randCol] == '.') {
+								grid[randRow][randCol] = '$';
+							}
+						}
+						grid[row-1][column] = '@';
+						grid[row][column] = '.';
+						printBoard();
+					}
+
+					else {
 						grid[row - 1][column] = '@';
 						grid[row][column] = '.';
 						printBoard();
@@ -406,10 +437,39 @@ public class Board  {
 							grid[row][column] = '@';
 							printBoard();
 						}
-					else if ((grid[row][column - 1] == '!')) {
-                                                //Do stuff for potion
-                                        }   
-					} else {
+						else if ((grid[row][column - 1] == '!')) {
+							//Do stuff for potion
+						}   
+					
+					}else if(grid[row][column-1] == '$') {
+						market = new Shop();
+						System.out.println("Welcome to the shop! Here is what's in stock:");
+						market.print();
+						System.out.println("Here is your inventory:");
+						inventory.print();
+						inventory.priceCheck();
+						System.out.println("Would you like to buy or sell something? Press 'B' to buy, 'S' to sell, and 'E' to exit.");
+						char shopChoice = input.next().charAt(0);
+						if(shopChoice == 'B' || shopChoice == 'b') {
+							market.buy(inventory);
+						}else if(shopChoice == 'S' || shopChoice == 's') {
+							market.sell(inventory);
+						}
+						int randRow = 0;
+						int randCol = 0;
+						while(grid[randRow][randCol] != '$' && grid[randRow][randCol] != grid[row][column-1]) {
+							randRow = rng.nextInt(32);
+							randCol = rng.nextInt(32);
+							if(grid[randRow][randCol] == '.') {
+								grid[randRow][randCol] = '$';
+							}
+						}
+						grid[row][column-1] = '@';
+						grid[row][column] = '.';
+						printBoard();
+					}
+				       
+					else {
 						grid[row][column - 1] = '@';
 						grid[row][column] = '.';
 						printBoard();
@@ -501,10 +561,38 @@ public class Board  {
 							grid[row][column] = '@';
 							printBoard();
 						}
-					else if ((grid[row + 1][column] == '!')) {
-                                                //Do stuff for potion
-                                        }   
-					} else {
+						else if ((grid[row + 1][column] == '!')) {
+							//Do stuff for potion
+						}   
+					}else if(grid[row+1][column] == '$') {
+						market = new Shop();
+						System.out.println("Welcome to the shop! Here is what's in stock:");
+						market.print();
+						System.out.println("Here is your inventory:");
+						inventory.print();
+						inventory.priceCheck();
+						System.out.println("Would you like to buy or sell something? Press 'B' to buy, 'S' to sell, and 'E' to exit.");
+						char shopChoice = input.next().charAt(0);
+						if(shopChoice == 'B' || shopChoice == 'b') {
+							market.buy(inventory);
+						}else if(shopChoice == 'S' || shopChoice == 's') {
+							market.sell(inventory);
+						}
+						int randRow = 0;
+						int randCol = 0;
+						while(grid[randRow][randCol] != '$' && grid[randRow][randCol] != grid[row+1][column]) {
+							randRow = rng.nextInt(32);
+							randCol = rng.nextInt(32);
+							if(grid[randRow][randCol] == '.') {
+								grid[randRow][randCol] = '$';
+							}
+						}
+						grid[row+1][column] = '@';
+						grid[row][column] = '.';
+						printBoard();
+					} 
+					
+					else {
 						grid[row + 1][column] = '@';
 						grid[row][column] = '.';
 						printBoard();
@@ -597,22 +685,50 @@ public class Board  {
 						}
 
 					}
-				       /*
-					else if (grid[row][column + 1] == 'D') {
-						room2.printBoard();
-						while (input.hasNext()) {
-							do {
-								choice = input.next().charAt(0);
-								play(choice);
+					/*
+					   else if (grid[row][column + 1] == 'D') {
+					   room2.printBoard();
+					   while (input.hasNext()) {
+					   do {
+					   choice = input.next().charAt(0);
+					   play(choice);
 
-							} while ((choice != 'Q') | (choice != 'q'));
+					   } while ((choice != 'Q') | (choice != 'q'));
 
-						}
+					   }
 
-					}*/
+					   }*/
 					else if ((grid[row][column + 1] == '!')) {
-                                                //Do stuff for potion
-                                        }
+						//Do stuff for potion
+					}
+
+					else if(grid[row][column+1] == '$') {
+						market = new Shop();
+						System.out.println("Welcome to the shop! Here is what's in stock:");
+						market.print();
+						System.out.println("Here is your inventory:");
+						inventory.print();
+						inventory.priceCheck();
+						System.out.println("Would you like to buy or sell something? Press 'B' to buy, 'S' to sell, and 'E' to exit.");
+						char shopChoice = input.next().charAt(0);
+						if(shopChoice == 'B' || shopChoice == 'b') {
+							market.buy(inventory);
+						}else if(shopChoice == 'S' || shopChoice == 's') {
+							market.sell(inventory);
+						}
+						int randRow = 0;
+						int randCol = 0;
+						while(grid[randRow][randCol] != '$' && grid[randRow][randCol] != grid[row][column+1]) {
+							randRow = rng.nextInt(32);
+							randCol = rng.nextInt(32);
+							if(grid[randRow][randCol] == '.') {
+								grid[randRow][randCol] = '$';
+							}
+						}
+						grid[row][column+1] = '@';
+						grid[row][column] = '.';
+						printBoard();
+					}
 					else {
 						grid[row][column + 1] = '@';
 						grid[row][column] = '.';

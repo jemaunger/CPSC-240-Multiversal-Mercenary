@@ -584,7 +584,7 @@ public class Board  {
 							printBoard();
 						}   
 
-					}else if ((grid[row][column + 1] == '!')) {
+					}else if ((grid[row + 1][column] == '!')) {
                                                 genPotion = new PotionGenerator();
                                                 Potion potion = genPotion.generate();
                                                 grid[row][column + 1] = '@';

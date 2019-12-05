@@ -16,6 +16,7 @@ public class Board  {
 	private char[][] grid = new char[32][32];
 	Inventory inventory;
 	private static int badGuyIDCounter = 13;
+	private PotionGenerator genPotion;
 
 	//Protected 
 	protected char choice;
@@ -174,7 +175,7 @@ public class Board  {
 				System.out.println("Game over!");
 				System.exit(0);
 				return false;
-			
+
 				//If player has defeated all of the enemies and is in Room 1, create a new Room object called room2
 			} else if ((badGuyIDCounter == 0) & (fileIn.equals("room1.txt"))) {
 				System.out.println("You defeated all of the enemies! But there are still more rooms...");
@@ -192,12 +193,12 @@ public class Board  {
 
 			//Using this to test generating a new room, will delete later	
 
-			
-			   else if (badGuyIDCounter <= 0) {
-			   room2 = new Room("room2.txt");
-			   grid[12][32] = 'D';
-			   }
-			  
+
+			else if (badGuyIDCounter <= 0) {
+				room2 = new Room("room2.txt");
+				grid[12][32] = 'D';
+			}
+
 			else {
 				System.out.printf("%d more enemies remain... %n", badGuyIDCounter);
 				System.out.println();
@@ -310,10 +311,17 @@ public class Board  {
 							printBoard();
 						}
 					}
+					//If character runs into potion (!), choose a weapon or armor to boost damage
 					else if ((grid[row - 1][column] == '!')) {
-						//Do stuff for potion
-					}
-						else {
+						genPotion = new PotionGenerator();
+						Potion potion = genPotion.generate();
+						grid[row - 1][column] = '@';
+						grid[row][column] = '.';
+
+						inventory.usePotion(potion);
+						printBoard();
+					}					
+					else {
 						grid[row - 1][column] = '@';
 						grid[row][column] = '.';
 						printBoard();
@@ -406,9 +414,9 @@ public class Board  {
 							grid[row][column] = '@';
 							printBoard();
 						}
-					else if ((grid[row][column - 1] == '!')) {
-                                                //Do stuff for potion
-                                        }   
+						else if ((grid[row][column - 1] == '!')) {
+							//Do stuff for potion
+						}   
 					} else {
 						grid[row][column - 1] = '@';
 						grid[row][column] = '.';
@@ -501,9 +509,9 @@ public class Board  {
 							grid[row][column] = '@';
 							printBoard();
 						}
-					else if ((grid[row + 1][column] == '!')) {
-                                                //Do stuff for potion
-                                        }   
+						else if ((grid[row + 1][column] == '!')) {
+							//Do stuff for potion
+						}   
 					} else {
 						grid[row + 1][column] = '@';
 						grid[row][column] = '.';
@@ -597,22 +605,22 @@ public class Board  {
 						}
 
 					}
-				       /*
-					else if (grid[row][column + 1] == 'D') {
-						room2.printBoard();
-						while (input.hasNext()) {
-							do {
-								choice = input.next().charAt(0);
-								play(choice);
+					/*
+					   else if (grid[row][column + 1] == 'D') {
+					   room2.printBoard();
+					   while (input.hasNext()) {
+					   do {
+					   choice = input.next().charAt(0);
+					   play(choice);
 
-							} while ((choice != 'Q') | (choice != 'q'));
+					   } while ((choice != 'Q') | (choice != 'q'));
 
-						}
+					   }
 
-					}*/
+					   }*/
 					else if ((grid[row][column + 1] == '!')) {
-                                                //Do stuff for potion
-                                        }
+						//Do stuff for potion
+					}
 					else {
 						grid[row][column + 1] = '@';
 						grid[row][column] = '.';

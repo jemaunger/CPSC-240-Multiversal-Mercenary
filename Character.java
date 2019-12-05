@@ -69,17 +69,17 @@ public class Character extends Being{
         public void eatFood(Food food) {
                 System.out.printf("You've found %s and it boosts your health by %d %n", food.getName(), food.getHealth());
                 //Increase health
-                Character.player().increaseHealth(Character.player().getHealth(), food.getHealth());
+                int newHealth = Character.player().increaseHealth(Character.player().getHealth(), food.getHealth());
                 //Set player health to new health
-                setHealth(Character.player().getHealth()+food.getHealth());
+                setHealth(health);
 
                 System.out.printf("Your new health is %s. %n", Character.player().getHealth());
         }
 
 	//This method increases the character's health, but not above maximum.
-        public static void increaseHealth(int currentHealth, int restored) {
+        public static int increaseHealth(int currentHealth, int restored) {
                 int newHealth = currentHealth + restored;
-                health = newHealth;
+                return newHealth;
         }
 
 	//This sets the players armor based on their equipped armor within their inventory. Armor acts as a barrier before the players health. 

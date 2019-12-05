@@ -147,8 +147,7 @@ public class Board  {
 					}
 					try {
 
-						Thread.sleep(2000);
-						//input.nextLine();
+					Thread.sleep(2000);
 					} catch (InterruptedException e) {
 						Thread.currentThread().interrupt();
 					}
@@ -180,20 +179,9 @@ public class Board  {
 				//If player has defeated all of the enemies and is in Room 1, create a new Room object called room2
 			} else if ((badGuyIDCounter == 0) & (fileIn.equals("room1.txt"))) {
 				System.out.println("You defeated all of the enemies! But there are still more rooms...");
-				//Create a new room
 				return false;
 
-				//Using this to test generating a new room, will delete later
 			}
-			//	else if (badGuyIDCounter == 11) {
-			//	Room room2 = new Room();
-			/*	else if (badGuyIDCounter == 11) {
-				Room room2 = new Room()
-
-				}*/
-
-			//Using this to test generating a new room, will delete later	
-
 
 			else if (badGuyIDCounter <= 0) {
 				room2 = new Room("room2.txt");
@@ -206,10 +194,11 @@ public class Board  {
 
 				return false;
 			}
+			
 		}
-
 		return false;
 		}
+	
 		//Game actions (move, equip, drop, etc)
 		public void play(char play) {
 			System.out.println();
@@ -349,7 +338,7 @@ public class Board  {
 						grid[row][column] = '.';
 						printBoard();
 					}
-									
+
 					else {
 						grid[row - 1][column] = '@';
 						grid[row][column] = '.';
@@ -444,18 +433,18 @@ public class Board  {
 							printBoard();
 						}
 					}
-				       //If character runs into potion (!), choose a weapon or armor to boost damage
-                                        else if ((grid[row][column - 1] == '!')) {
-                                                genPotion = new PotionGenerator();
-                                                Potion potion = genPotion.generate();
-                                                grid[row][column - 1] = '@';
-                                                grid[row][column] = '.';
+					//If character runs into potion (!), choose a weapon or armor to boost damage
+					else if ((grid[row][column - 1] == '!')) {
+						genPotion = new PotionGenerator();
+						Potion potion = genPotion.generate();
+						grid[row][column - 1] = '@';
+						grid[row][column] = '.';
 
-                                                inventory.usePotion(potion);
-                                                printBoard();
-                                        }
+						inventory.usePotion(potion);
+						printBoard();
+					}
 
-else if(grid[row][column-1] == '$') {
+					else if(grid[row][column-1] == '$') {
 						market = new Shop();
 						System.out.println("Welcome to the shop! Here is what's in stock:");
 						market.print();
@@ -579,17 +568,17 @@ else if(grid[row][column-1] == '$') {
 						}
 					}
 					//If character runs into potion (!), choose a weapon or armor to boost damage
-                                        else if ((grid[row + 1][column] == '!')) {
-                                                genPotion = new PotionGenerator();
-                                                Potion potion = genPotion.generate();
-                                                grid[row + 1][column] = '@';
-                                                grid[row][column] = '.';
+					else if ((grid[row + 1][column] == '!')) {
+						genPotion = new PotionGenerator();
+						Potion potion = genPotion.generate();
+						grid[row + 1][column] = '@';
+						grid[row][column] = '.';
 
-                                                inventory.usePotion(potion);
-                                                printBoard();
-                                        }
+						inventory.usePotion(potion);
+						printBoard();
+					}
 
-else if(grid[row+1][column] == '$') {
+					else if(grid[row+1][column] == '$') {
 						market = new Shop();
 						System.out.println("Welcome to the shop! Here is what's in stock:");
 						market.print();
@@ -617,7 +606,7 @@ else if(grid[row+1][column] == '$') {
 						printBoard();
 					}
 
-					 else {
+					else {
 						grid[row + 1][column] = '@';
 						grid[row][column] = '.';
 						printBoard();
@@ -711,17 +700,17 @@ else if(grid[row+1][column] == '$') {
 
 					}
 					//If character runs into potion (!), choose a weapon or armor to boost damage
-                                        else if ((grid[row][column + 1] == '!')) {
-                                                genPotion = new PotionGenerator();
-                                                Potion potion = genPotion.generate();
-                                                grid[row][column + 1] = '@';
-                                                grid[row][column] = '.';
+					else if ((grid[row][column + 1] == '!')) {
+						genPotion = new PotionGenerator();
+						Potion potion = genPotion.generate();
+						grid[row][column + 1] = '@';
+						grid[row][column] = '.';
 
-                                                inventory.usePotion(potion);
-                                                printBoard();
-                                        }
+						inventory.usePotion(potion);
+						printBoard();
+					}
 
-else if(grid[row][column+1] == '$') {
+					else if(grid[row][column+1] == '$') {
 						market = new Shop();
 						System.out.println("Welcome to the shop! Here is what's in stock:");
 						market.print();

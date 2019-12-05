@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 //This class creates the character that the player will be using. It is singleton as there will only ever be one character at a time.
 public class Character extends Being{
-	
+
 	//Instance variables
 	static Scanner input = new Scanner(System.in);
 	private static String name;
@@ -66,21 +66,21 @@ public class Character extends Being{
 	}
 
 	//This method increases player's health when they eat food and returns their new health stat.
-        public void eatFood(Food food) {
-                System.out.printf("You've found %s and it boosts your health by %d %n", food.getName(), food.getHealth());
-                //Increase health
-                int newHealth = Character.player().increaseHealth(Character.player().getHealth(), food.getHealth());
-                //Set player health to new health
-                setHealth(health);
+	public void eatFood(Food food) {
+		System.out.printf("You've found %s and it boosts your health by %d %n", food.getName(), food.getHealth());
+		//Increase health
+		//Character.player().increaseHealth(Character.player().getHealth(), food.getHealth());
+		//Set player health to new health
+		setHealth(Character.player().getHealth()+food.getHealth());
 
-                System.out.printf("Your new health is %s. %n", Character.player().getHealth());
-        }
+		System.out.printf("Your new health is %s. %n", Character.player().getHealth());
+	}
 
 	//This method increases the character's health, but not above maximum.
-        public static int increaseHealth(int currentHealth, int restored) {
-                int newHealth = currentHealth + restored;
-                return newHealth;
-        }
+	public static void increaseHealth(int currentHealth, int restored) {
+		int newHealth = currentHealth + restored;
+		health = newHealth;
+	}
 
 	//This sets the players armor based on their equipped armor within their inventory. Armor acts as a barrier before the players health. 
 	//During battle, the enemy must reduce this armor stat to 0 before they can decrease the player's health.
@@ -105,7 +105,7 @@ public class Character extends Being{
 	public String getName() {
 		return name;
 	}
-	
+
 	public int getHealth() {
 		return health;
 	}
@@ -126,4 +126,3 @@ public class Character extends Being{
 		return name + " " + charClass + " " + health + " " + armor + " " + damage;
 	}
 }
-

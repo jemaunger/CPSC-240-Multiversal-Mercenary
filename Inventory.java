@@ -11,6 +11,7 @@ public class Inventory {
 	private int maxWeight;
 	private Item equippedWeapon = null;
 	private Item equippedArmor = null;
+	private int gold;
 
 	//This initialization includes a max weight.
 	//This is used to limit the amount of items the player can have.
@@ -20,6 +21,7 @@ public class Inventory {
 		items.add(gen.weaponGenerate());
 		items.add(gen.armorGenerate());
 		items.add(gen.otherGenerate());
+		gold = 150;
 	}
 	Inventory(Scanner s){
 		this.maxWeight = s.nextInt();
@@ -54,6 +56,22 @@ public class Inventory {
 		System.out.println("Name Weight Value Strength");
 		for (int i = 0; i < items.size(); i++)
 			System.out.println(i + 1 + ". " + items.get(i));
+	}
+
+	public int getGold() {
+		return gold;
+	}
+
+	public void priceCheck() {
+		System.out.println("Your gold amount is: " + gold);
+	}
+
+	public void takeGold(int taken) {
+		gold -= taken;
+	}
+
+	public void addGold(int added) {
+		gold += added;
 	}
 
 

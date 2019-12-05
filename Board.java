@@ -584,7 +584,17 @@ public class Board  {
 							printBoard();
 						}   
 
-					}else if(grid[row+1][column] == '$') {
+					}else if ((grid[row][column + 1] == '!')) {
+                                                genPotion = new PotionGenerator();
+                                                Potion potion = genPotion.generate();
+                                                grid[row][column + 1] = '@';
+                                                grid[row][column] = '.';
+
+                                                inventory.usePotion(potion);
+                                                printBoard();
+                                        }
+
+					else if(grid[row+1][column] == '$') {
 						market = new Shop();
 						System.out.println("Welcome to the shop! Here is what's in stock:");
 						market.print();
@@ -705,19 +715,6 @@ public class Board  {
 						}
 
 					}
-					/*
-					   else if (grid[row][column + 1] == 'D') {
-					   room2.printBoard();
-					   while (input.hasNext()) {
-					   do {
-					   choice = input.next().charAt(0);
-					   play(choice);
-
-					   } while ((choice != 'Q') | (choice != 'q'));
-
-					   }
-
-					   }*/
 					else if ((grid[row][column + 1] == '!')) {
 						genPotion = new PotionGenerator();
 						Potion potion = genPotion.generate();

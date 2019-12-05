@@ -310,8 +310,10 @@ public class Board  {
 							printBoard();
 						}
 					}
-
-					else {
+					else if ((grid[row - 1][column] == '!')) {
+						//Do stuff for potion
+					}
+						else {
 						grid[row - 1][column] = '@';
 						grid[row][column] = '.';
 						printBoard();
@@ -404,7 +406,9 @@ public class Board  {
 							grid[row][column] = '@';
 							printBoard();
 						}
-
+					else if ((grid[row][column - 1] == '!')) {
+                                                //Do stuff for potion
+                                        }   
 					} else {
 						grid[row][column - 1] = '@';
 						grid[row][column] = '.';
@@ -497,7 +501,9 @@ public class Board  {
 							grid[row][column] = '@';
 							printBoard();
 						}
-
+					else if ((grid[row + 1][column] == '!')) {
+                                                //Do stuff for potion
+                                        }   
 					} else {
 						grid[row + 1][column] = '@';
 						grid[row][column] = '.';
@@ -590,7 +596,9 @@ public class Board  {
 							printBoard();
 						}
 
-					} else if (grid[row][column + 1] == 'D') {
+					}
+				       /*
+					else if (grid[row][column + 1] == 'D') {
 						room2.printBoard();
 						while (input.hasNext()) {
 							do {
@@ -601,7 +609,10 @@ public class Board  {
 
 						}
 
-					}
+					}*/
+					else if ((grid[row][column + 1] == '!')) {
+                                                //Do stuff for potion
+                                        }
 					else {
 						grid[row][column + 1] = '@';
 						grid[row][column] = '.';

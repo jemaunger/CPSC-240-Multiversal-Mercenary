@@ -17,6 +17,7 @@ public class Board  {
 	Inventory inventory;
 	private static int badGuyIDCounter = 13;
 	private static Shop market;
+	private PotionGenerator genPotion;
 
 	//Protected 
 	protected char choice;
@@ -312,8 +313,15 @@ public class Board  {
 							printBoard();
 						}
 					}
+					//If character runs into potion (!), choose a weapon or armor to boost damage
 					else if ((grid[row - 1][column] == '!')) {
-						//Do stuff for potion
+						genPotion = new PotionGenerator();
+						Potion potion = genPotion.generate();
+						grid[row - 1][column] = '@';
+						grid[row][column] = '.';
+
+						inventory.usePotion(potion);
+						printBoard();
 					}
 
 					else if(grid[row-1][column] == '$') {
@@ -438,8 +446,14 @@ public class Board  {
 							printBoard();
 						}
 						else if ((grid[row][column - 1] == '!')) {
-							//Do stuff for potion
-						}   
+							genPotion = new PotionGenerator();
+							Potion potion = genPotion.generate();
+							grid[row][column - 1] = '@';
+							grid[row][column] = '.';
+
+							inventory.usePotion(potion);
+							printBoard();
+						}  
 					
 					}else if(grid[row][column-1] == '$') {
 						market = new Shop();
@@ -468,7 +482,6 @@ public class Board  {
 						grid[row][column] = '.';
 						printBoard();
 					}
-				       
 					else {
 						grid[row][column - 1] = '@';
 						grid[row][column] = '.';
@@ -562,8 +575,15 @@ public class Board  {
 							printBoard();
 						}
 						else if ((grid[row + 1][column] == '!')) {
-							//Do stuff for potion
+							genPotion = new PotionGenerator();
+							Potion potion = genPotion.generate();
+							grid[row + 1][column] = '@';
+							grid[row][column] = '.';
+
+							inventory.usePotion(potion);
+							printBoard();
 						}   
+
 					}else if(grid[row+1][column] == '$') {
 						market = new Shop();
 						System.out.println("Welcome to the shop! Here is what's in stock:");
@@ -699,7 +719,13 @@ public class Board  {
 
 					   }*/
 					else if ((grid[row][column + 1] == '!')) {
-						//Do stuff for potion
+						genPotion = new PotionGenerator();
+						Potion potion = genPotion.generate();
+						grid[row][column + 1] = '@';
+						grid[row][column] = '.';
+
+						inventory.usePotion(potion);
+						printBoard();
 					}
 
 					else if(grid[row][column+1] == '$') {
@@ -729,6 +755,7 @@ public class Board  {
 						grid[row][column] = '.';
 						printBoard();
 					}
+
 					else {
 						grid[row][column + 1] = '@';
 						grid[row][column] = '.';

@@ -139,10 +139,10 @@ public class Board  {
 					badGuyIDCounter--;
 					System.out.println("You still have to defeat " + badGuyIDCounter + " more enemies.");
 
-					if (badGuyIDCounter == 11) {
+					/*if (badGuyIDCounter == 11) {
 						Room room2 = new Room("room2.txt");
 						grid[12][31] = 'D';
-					}
+					}*/
 					try {
 
 						Thread.sleep(2000);
@@ -176,10 +176,10 @@ public class Board  {
 				return false;
 			
 				//If player has defeated all of the enemies and is in Room 1, create a new Room object called room2
-			} else if ((badGuyIDCounter == 0) & (fileIn.equals("room1.txt"))) {
-				System.out.println("You defeated all of the enemies! But there are still more rooms...");
+		//	} else if ((badGuyIDCounter == 0) & (fileIn.equals("room1.txt"))) {
+		//		System.out.println("You defeated all of the enemies! But there are still more rooms...");
 				//Create a new room
-				return false;
+		//		return false;
 
 				//Using this to test generating a new room, will delete later
 			}
@@ -193,10 +193,10 @@ public class Board  {
 			//Using this to test generating a new room, will delete later	
 
 			
-			   else if (badGuyIDCounter <= 0) {
-			   room2 = new Room("room2.txt");
-			   grid[12][32] = 'D';
-			   }
+//			   else if (badGuyIDCounter <= 0) {
+//			   room2 = new Room("room2.txt");
+//			   grid[12][32] = 'D';
+			  // }
 			  
 			else {
 				System.out.printf("%d more enemies remain... %n", badGuyIDCounter);

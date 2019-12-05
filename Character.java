@@ -1,5 +1,3 @@
-//TODO J: work on increase damage
-
 import java.util.Scanner;
 
 //This class creates the character that the player will be using. It is singleton as there will only ever be one character at a time.
@@ -83,10 +81,6 @@ public class Character extends Being{
                 int newHealth = currentHealth + restored;
                 health = newHealth;
         }
-
-	public void increaseDamage(int currentDamage, int boost) {
-
-	}
 
 	//This sets the players armor based on their equipped armor within their inventory. Armor acts as a barrier before the players health. 
 	//During battle, the enemy must reduce this armor stat to 0 before they can decrease the player's health.

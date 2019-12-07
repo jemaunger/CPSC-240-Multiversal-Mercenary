@@ -105,7 +105,8 @@ public class Main {
 		System.out.println("     O = Item that can be picked up");
 		System.out.println("     & = Enemy");
 		System.out.println("     * = Food");
-		System.out.println("     D = Door");
+		System.out.println("     $ = Shop");
+		System.out.println("     ! = Potion");
 		System.out.println();
 		System.out.println("----------------------------------------------------------------------------");
 	}

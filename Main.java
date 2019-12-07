@@ -30,7 +30,6 @@ public class Main {
 			System.out.println("Your goal: Defeat all of the enemies on the board (denoted by &). There are 3 boards total.");
 			System.out.println("Once you have conquered all enemies, a door will magically appear and you will be able to ");
 			System.out.println("move to the next room. Clear all the rooms and you win!");
-			System.out.println("At the beginning of each battle, you may choose which armor and weapon to use during the fight.");
 			System.out.println();
 
 			//Generate a new board and print it to the screen

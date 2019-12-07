@@ -212,11 +212,13 @@ public class Board  {
 			if (play == 'D') {
 				inventory.drop();
 				inventory.print();
+				printBoard();
 			}
 
 			//Print inventory
 			if (play == 'I') {
 				inventory.print();
+				printBoard();
 			}
 
 			//Print menu again

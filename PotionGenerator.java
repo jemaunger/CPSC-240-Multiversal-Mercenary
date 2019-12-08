@@ -1,10 +1,15 @@
 import java.util.Random;
 import java.util.ArrayList;
-
+/**
+ * Represents potions the player can come in contact with with the "!" character and stores them with teh name and damage increase interger associated with the potion.
+ * @author Jema Unger
+ */
 public class PotionGenerator {
 	Random random = new Random();
 	ArrayList<Potion> potionList = new ArrayList<Potion>();
-
+	/**
+	 * Creates and stores the different potions the player can come in contact with in the array list potionList with their names and damage increase interger.
+	 */
 	PotionGenerator() {
 		potionList.add(new Potion("Greater Healing Tonic", 10));
 		potionList.add(new Potion("Invisibility Potion", 10));
@@ -19,7 +24,10 @@ public class PotionGenerator {
 		potionList.add(new Potion("Vial of Life Resistance", 35));
 
 	}
-	//randomly generates potion and spreads it out.
+	/**
+	 * Generates potions randomly from the potionList array list and fills the "!" characters on the board with the names and damage increase interger associated with the potion.
+	 * @return the potions that will be placed on the board the player can come in contact with.
+	 */
 	public Potion generate(){
 		return potionList.get(random.nextInt(potionList.size()));
 	}

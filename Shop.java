@@ -1,10 +1,16 @@
 import java.util.Scanner;
-
+/**
+ * Represents the shop that is placed on the board with the character "$", it always starts on the farthest right and upmost point on the board.
+ * After the player visits the shop once, the it moves to a random location on the board, to prevent players spamming the shop for specific items.
+ * @author Ethan Pearson
+ */
 public class Shop {
 	Scanner stdin = new Scanner(System.in);
 	Inventory stock;
 	private ItemGenerator gen;
-
+	/**
+	 * Shop costructor that instantiates a new {@link Inventory} and {@link ItemGenerator} and add seven randomly generated items to the stock.
+	 */
 	public Shop() {
 		stock = new Inventory(1000);
 		gen = new ItemGenerator();
@@ -17,7 +23,12 @@ public class Shop {
 		stock.add(gen.generate());
 		stock.add(gen.generate());
 	}
-
+	/**
+	 * When a player comes in contact with the store and they would like to purchase something, the shop prints out its stock for the player.
+	 * The player is then prompted to choose which {@link Item} they would like to buy, when the player chooses one the buy method checks
+	 * that the player has enough gold in their {@link Inventory} and if they do, the item is purchased and added to the players inventory.
+	 * @param charIn an {@link Inventory} object used to store the randomly generated items when a player wants to buy one.
+	 */
 	public void buy(Inventory charIn) {
 		boolean purchaseCompleted = false;
 		while(purchaseCompleted == false) {
@@ -55,7 +66,11 @@ public class Shop {
 			}
 		}
 	}
-
+	/**
+	 * Used when the player comes in contact with the shop with the intention of selling some of the items in their inventory to the shop, this prints out the contents
+	 * of the players inventory using the print method. The player chooses which item they would like to sell and the shop purchases it from them.
+	 * @param charIn an {@link Inventory} object which is used store the items that are available in the players inventory for them to sell to the shop.
+	 */
 	public void sell(Inventory charIn) {
 		charIn.print();
 		boolean saleCompleted = false;
@@ -86,7 +101,10 @@ public class Shop {
 			}
 		}
 	}
-
+	/**
+	 * Allows the randomly generated items in the shops stock to be printed to the screen, is also used when the player first comes in contact with the shop, displaying both 
+	 * the shops stock and the players inventory.
+	 */
 	public void print() {
 		stock.print();
 	}

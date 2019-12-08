@@ -1,6 +1,8 @@
 import java.util.Scanner;
-
-//This class creates the character that the player will be using. It is singleton as there will only ever be one character at a time.
+/**
+ * Represents the character the player assumes the position of when they start the game, type in their players name and choose the {@link CharacterRace}.
+ * @author Ethan Pearson
+ */
 public class Character extends Being{
 
 	//Instance variables
@@ -12,7 +14,11 @@ public class Character extends Being{
 	private static int armor = 0;
 	private static int damage = 1;
 
-	//This initializes the Character as a singleton.
+	/**
+	 * Synchronized constructor that makes Character a singleton, to ensure there can only be one player on the board at a time.
+	 * In addition it prompts the player at the beginning of the game to choose their {@link CharacterRace}
+	 * @return the character instance after instantiating a new character to ensure there will only be one.
+	 */
 	public static synchronized Character player() {
 		if (character == null) {
 			System.out.print("What is your character's name? ");
@@ -48,6 +54,10 @@ public class Character extends Being{
 		}
 		return character;
 	}
+	/**
+	 * A restore constructor which is used to restore the state of the character after the game has been saved from the Game.sav file.
+	 * @param s scanner used to restore the characters attributes from a save file.
+	 */
 	public Character(Scanner s){
 		s = new Scanner("Game.sav");
 		this.name = s.next();
@@ -59,13 +69,18 @@ public class Character extends Being{
 		s.nextLine();
 		this.charClass = null;
 	}
-	//Character initialization only requires a name and class.
+	/**
+	 * Constructs the name given to the character by the player as well as the {@link CharacterRace} chosen by the player.
+	 * @param name to retrieve the players name of their character at the beginning of the game.
+	 */
 	public Character(String name) {
 		this.name = name;
 		this.charClass = charClass;
 	}
-
-	//This method increases player's health when they eat food and returns their new health stat.
+	/**
+	 * Used when the player comes in contact with food represented by "*" on the board and adds the health value of the food to the players health.
+	 * @param food allows the method to access the food available to the player and allows them to interact with it.
+	 */
 	public void eatFood(Food food) {
 		System.out.printf("You've found %s and it boosts your health by %d %n", food.getName(), food.getHealth());
 		//Increase health
@@ -75,15 +90,19 @@ public class Character extends Being{
 
 		System.out.printf("Your new health is %s. %n", Character.player().getHealth());
 	}
-
-	//This method increases the character's health, but not above maximum.
+	/**
+	 * When the player chooses to eat food this method is called to add the amount of health the player currently has to the amount that will be restored by the food.
+	 * @param currentHealth represents the amount of health the player currently has before adding the food.
+	 * @param restored the amount of health that was restored to the player from the food.
+	 */
 	public static void increaseHealth(int currentHealth, int restored) {
 		int newHealth = currentHealth + restored;
 		health = newHealth;
 	}
-
-	//This sets the players armor based on their equipped armor within their inventory. Armor acts as a barrier before the players health. 
-	//During battle, the enemy must reduce this armor stat to 0 before they can decrease the player's health.
+	/**
+	 * Used to set the amount of health that will be added to the players at the beginning of the battle based on their choice of armor.
+	 * @param item allows the method to access the items in the players inventory.
+	 */
 	public static void setFullArmor(Item item) {
 		if(item == null) {
 			armor = 0;
@@ -91,9 +110,10 @@ public class Character extends Being{
 		}
 		armor = item.getStrength();
 	}
-
-	//This sets the player's damage based upon their equipped weapon. During battle, the strength of the player's attack is determined by this stat.
-	//If the player has no weapon equipped, the default damage is 1.
+	/**
+	 * Used to set the amount of damage the players choice of weapon will do when they choose to battle an enemy.
+	 * @param item allows the method to access the items in the players inventory to be equipped as weapons.
+	 */
 	public static void setDamage(Item item) {
 		if(item == null) {
 			damage = 1;
@@ -101,27 +121,46 @@ public class Character extends Being{
 		}
 		damage = item.getStrength();
 	}
-
+	/**
+	 * Used to retrieve the name of the character which is constructed above when the player entered their desired name. 
+	 * @return the name of the player which they entered at the beginning of the game when prompted.
+	 */
 	public String getName() {
 		return name;
 	}
-
+	/**
+	 * Gets the amount of health the player is given, which starts at 100 and can be increased with no limit, it retrieves this information from the constructor.
+	 * @return the amount of health the player has throughout the game such as when the character battles an enemy.
+	 */
 	public int getHealth() {
 		return health;
 	}
-
+	/**
+	 * When the player comes in contact with an enemy and chooses to battle, they are prompted to choose which armor they would like to use. 
+	 * This method retrieves that information from the constructor.
+	 * @return the armor the player has chosen to equip at the start of a battle.
+	 */
 	public int getArmor() {
 		return armor;
 	}
-
+	/**
+	 * When the player comes in contact with an enemy and chooses to battle, this method is used to get the amount of damage the item will do from the constructor.
+	 * @return the amount of damage the player is given when they choose a weapon to battle with.
+	 */
 	public int getDamage() {
 		return damage;
 	}
-
+	/**
+	 * Sets the players health at the beginning of the game, during battle with enemies and when the player chooses to eat a piece of food.
+	 * @param health is used to get the health that the player currently has and set it in the parameters.
+	 */
 	public void setHealth(int health) {
 		this.health = health;
 	}
-
+	/**
+	 * Method used to construct a string to be printed out so the player can know their name, race, health, armor, and damage. 
+	 * @return the players name, race, health, armor, and damage as a string.
+	 */
 	public String toString() {
 		return name + " " + charClass + " " + health + " " + armor + " " + damage;
 	}

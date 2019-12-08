@@ -6,7 +6,7 @@ public class Potion {
 	private String name;
 	private int health;
 	/**
-	 * Constructor that gets the name and damage increase interger from the PotionGenerator.
+	 * Constructor that gets the name and damage increase interger from the {@link PotionGenerator}.
 	 * @param name represents the potions name.
 	 * @param health represents the damage the potion will increase the weapons and armor damage when the player chooses.
 	 */

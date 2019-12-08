@@ -1,7 +1,7 @@
 import java.util.Random;
 import java.util.ArrayList;
 /**
- * Represents potions the player can come in contact with with the "!" character and stores them with teh name and damage increase interger associated with the potion.
+ * Represents potions the player can come in contact with with the "!" character and stores them with teh name and damage increase interger associated with the {@link Potion}.
  * @author Jema Unger
  */
 public class PotionGenerator {

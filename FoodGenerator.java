@@ -1,7 +1,7 @@
 import java.util.Random;
 import java.util.ArrayList;
 /**
- * Represents a random generator for food classified by "*", and fills the place of that character with the name and increase health value of the food.
+ * Represents a random generator for food classified by "*", and fills the place of that character with the name and increase health value of the {@link Food}.
  * @author Ethan Pearson, Jema Unger, Lucas Pokrywka, Lauren Wojcik
  */
 public class FoodGenerator {
@@ -28,7 +28,7 @@ public class FoodGenerator {
 
 	}
 	/**
-	 * Generates random food items that can be applied to each "*" character on the board, allowing the player to come in contact with them.
+	 * Generates random {@link Food} items that can be applied to each "*" character on the board, allowing the player to come in contact with them.
 	 * @return the food that will be generated and placed throughout the board when called in Board.
 	 */
 	public Food generate(){

@@ -2,7 +2,7 @@ import java.util.Scanner;
 import java.util.ArrayList;
 import java.lang.*;
 /**
- * This class creates the actual inventory the user is pulling from, allowing th user the ability to print out their inventory, add, drop, and equipweapons and armor. 
+ * This class creates the inventory the user is pulling from, allowing th user the ability to print out their inventory, add, drop, and equipweapons and armor. 
  * Additionally has the methods to deal with the players gold amount, increasing and decreasing the gold when the player buys or sells from the store.
  * Also includes the method for using the potions the player has in their inventory.
  * @authors Ethan Pearson, Jema Unger, Lucas Pokrywka, Lauren Wojcik
@@ -16,7 +16,7 @@ public class Inventory {
 	private int gold;
 
 	/**
-	 * Constructor that initializes a max weight for the inventory as as well as instatiantes a new item generator named gen, adding three items to the new item generator, one of each type.
+	 * Constructor that initializes a max weight for the inventory as as well as instatiantes a new {@link ItemGenerator} named gen, adding three items to the new {@link ItemGenerator}, one of each type.
 	 * @param maxWeight, This is used to limit the amount of items the player can have.
 	 */
 	Inventory(int maxWeight) {
@@ -57,7 +57,7 @@ public class Inventory {
 			return false;
 	}
 	/**
-	 * This method prints out all the items currently stored in the players inventory, by looping through the length of the items arraylist displaying their name, weight, gold value, and strength.
+	 * Prints out all the items currently stored in the players inventory, by looping through the length of the items arraylist displaying their name, weight, gold value, and strength.
 	 */
 	public void print() {
 		System.out.println("Name Weight Value Strength");
@@ -73,7 +73,7 @@ public class Inventory {
 	}
 
 	/**
-	 * Allows the amount of gold the player has in their inventory to be printed when the player comes in contact with the shop, and is called in the Board class.
+	 * Allows the amount of gold the player has in their inventory to be printed when the player comes in contact with the shop, and is called in the {@link Board}.
 	 */	 
 	public void priceCheck() {
 		System.out.println("Your gold amount is: " + gold);
@@ -96,7 +96,7 @@ public class Inventory {
 	}
 
 	/**
-	 * Removes an item from the inventory, it does this by printing out the items in the inventory. Then, it asks the user to choose based on the numbers displayed next to the items.
+	 * Removes an {@link Item} from the inventory, it does this by printing out the items in the inventory. Then, it asks the user to choose based on the numbers displayed next to the items.
 	 * It ensures that the number used is correctly within the range and removes the item if the number works, if the item is currently equipped, it makes sure to first unequip the item.
 	 */
 
@@ -186,8 +186,8 @@ public class Inventory {
 		return;
 	}
 	/**
-	 * Allows the player to choose which item's damage value, both armor and weapons to increase in value by the amount given by the specific potion.
-	 * @param potion uses the Potion object to give the potions the ability to increase items damage.
+	 * Allows the player to choose which item's damage value, both armor and weapons to increase in value by the amount given by the specific {@link Potion}.
+	 * @param potion uses the {@link Potion} object to give the potions the ability to increase items damage.
 	 */
 	public void usePotion(Potion potion) {
 		System.out.printf("You've found %s! Choose an item to boost its strength by %d points. %n", potion.getName(), potion.getHealth());
@@ -221,7 +221,7 @@ public class Inventory {
 
 	/**
 	 * When the player comes in contact with an enemy and chooses a weapon to equip this method is called to get the weapon that the player chose to equip for that certain battle.
-	 * return the weapon the player chose to equip.
+	 * @return the weapon the player chose to equip.
 	 */
 	public Item getEquippedWeapon() {
 		return equippedWeapon;

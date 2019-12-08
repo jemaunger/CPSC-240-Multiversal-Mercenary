@@ -1,6 +1,6 @@
 import java.util.*;
 /**
- * This class stores and randomy generates all of the ItemType items available in the game spread throughout the board.
+ * This class stores and randomy generates all of the {@link ItemType} items available in the game spread throughout the board.
  * @author Ethan Pearson, Jema Unger, Lucas Pokrywka, Lauren Wojcik
  */
 public class ItemGenerator {
@@ -8,7 +8,7 @@ public class ItemGenerator {
 	ArrayList<Item> itemList = new ArrayList<Item>();
 	
 	/**
-	 * Constructor is used to add 100 items of the ItemType class into the itemList arraylist, it stores 30 weapons, 30 armors, and 40 other items that can be picked up by the player. 
+	 * Constructor is used to add 100 items of {@link ItemType} into the itemList arraylist, it stores 30 weapons, 30 armors, and 40 other items that can be picked up by the player. 
 	 */
 	//While I realized midway through that this could have been much easier if I initialized everything with the arraylist, I was already halfway done at that point.
 	//I also may have gone overboard with the number of items, but they were fun to think up.
@@ -125,7 +125,7 @@ public class ItemGenerator {
 	}
 
 	/**
-	 * While using the randRange method, randomly generates weapons to be places around the board within the first 30 items of the list.
+	 * While using the {@link randRange} method, randomly generates weapons to be places around the board within the first 30 items of the list.
 	 * @return the randomly generated weapons.
 	 */
 	public Item weaponGenerate() {
@@ -133,7 +133,7 @@ public class ItemGenerator {
 	}
 
 	/**
-	 * Uses the randRange method to randomly generate armor to be placed around the board within the 31st to 60th items.
+	 * Uses the {@link randRange} method to randomly generate armor to be placed around the board within the 31st to 60th items.
 	 * @return randomly generated pieces of armor.
 	 */
 	public Item armorGenerate() {
@@ -141,7 +141,7 @@ public class ItemGenerator {
 	}
 
 	/**
-	 * Uses the randRange method to randomly generate other items to be placed throughout the board within the 61st to 100th items.
+	 * Uses the {@link randRange} method to randomly generate other items to be placed throughout the board within the 61st to 100th items.
 	 * @return randomly generated other items.
 	 */
 	public Item otherGenerate() {
@@ -155,6 +155,7 @@ public class ItemGenerator {
 	 * @throws IllegalArgumentException when the max variable comes up less than the min variable.
 	 * @return the random object to be used to randomly generate the above items.
 	 */
+	//Link to where this method was found is at the bottom of the Item class.
 	private static int randRange(int min, int max) {
 		if(min >= max) {
 			throw new IllegalArgumentException("max must be greater than min");

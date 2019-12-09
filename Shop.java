@@ -1,7 +1,7 @@
 import java.util.Scanner;
 /**
  * Represents the shop that is placed on the board with the character "$", it always starts on the farthest right and upmost point on the board.
- * After the player visits the shop once, the it moves to a random location on the board, to prevent players spamming the shop for specific items.
+ * After the player visits the shop once, then it moves to a random location on the board, to prevent players spamming the shop for specific items.
  * @author Ethan Pearson
  */
 public class Shop {
@@ -27,7 +27,7 @@ public class Shop {
 	 * When a player comes in contact with the store and they would like to purchase something, the shop prints out its stock for the player.
 	 * The player is then prompted to choose which {@link Item} they would like to buy, when the player chooses one the buy method checks
 	 * that the player has enough gold in their {@link Inventory} and if they do, the item is purchased and added to the players inventory.
-	 * @param charIn an {@link Inventory} object used to store the randomly generated items when a player wants to buy one.
+	 * @param charIn an {@link Inventory} object used to store the player's inventory to store the purchased (@link Item).
 	 */
 	public void buy(Inventory charIn) {
 		boolean purchaseCompleted = false;

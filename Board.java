@@ -306,8 +306,6 @@ public class Board  {
 						market = new Shop();
 						System.out.println("Welcome to the shop! Here is what's in stock:");
 						market.print();
-						System.out.println("Here is your inventory:");
-						inventory.print();
 						inventory.priceCheck();
 						System.out.println("Would you like to buy or sell something? Press 'B' to buy, 'S' to sell, and 'E' to exit.");
 						char shopChoice = input.next().charAt(0);

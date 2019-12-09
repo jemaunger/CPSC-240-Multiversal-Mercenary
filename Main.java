@@ -2,9 +2,17 @@ import java.util.Scanner;
 import java.io.FileInputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
-
+/**
+ * Used to represent the start of the game allowing the player to go through the initial menus and storyline to be able to play through the game. 
+ * @author Ethan Pearson, Jema Unger, Lucas Pokrywka, Lauren Wojcik
+ */
 public class Main {
-
+	/**
+	 * Contains the initial message of asking the player whether they want to restore from a previous save, then goes through the storyline and context of the game.
+	 * Then is used to print out the menu of the game so the player knows the controls and can reference back to them, after they have gone through the inital menus,
+	 * the board is printed and the player can play the game.
+	 * @param args a string that can be used after compiling the program when trying to run, to add arguments to the end of the java Main command.
+	 */
 	public static void main(String[] args) throws Exception {
 		Scanner input = new Scanner(System.in);
 		Board board = Board.getInstance();
@@ -83,7 +91,10 @@ public class Main {
 
 		}
 	}
-
+	/**
+	 * Generates the menu which is printed after the initial story and prompts the player goes throught, also the player can choose to print out the menu at any point in the game
+	 * with the command M. Menu shows all of the command options available for the player to use as well as a key that tells the player which symbols represent which objects.
+	 */
 	public static void printMenu() {
 		System.out.println("Actions: ");
 		System.out.println("     D = Drop an item in inventory");

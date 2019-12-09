@@ -6,7 +6,6 @@ import java.io.PrintWriter;
 import java.io.FileNotFoundException;
 import java.util.Arrays;
 
-
 public class Board  {
 	//Instance variables
 	private FileInputStream fileIn;

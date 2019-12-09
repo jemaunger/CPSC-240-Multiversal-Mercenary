@@ -12,6 +12,7 @@ public class Main {
 	 * Then is used to print out the menu of the game so the player knows the controls and can reference back to them, after they have gone through the inital menus,
 	 * the board is printed and the player can play the game.
 	 * @param args a string that can be used after compiling the program when trying to run, to add arguments to the end of the java Main command.
+	 * @throws Exception FileNotFoundException when the Game.sav file cannot be found.
 	 */
 	public static void main(String[] args) throws Exception {
 		Scanner input = new Scanner(System.in);

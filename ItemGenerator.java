@@ -150,7 +150,7 @@ public class ItemGenerator {
 
 	/**
 	 * Used to sort through the item generators above based on their range and randomly generate the items to be placed around the board.
-	 * @param min is the smallest variable in the range of items
+	 * @param min is the smallest variable in the range of items.
 	 * @param max is the largest variable in the range of items.
 	 * @throws IllegalArgumentException when the max variable comes up less than the min variable.
 	 * @return the random object to be used to randomly generate the above items.

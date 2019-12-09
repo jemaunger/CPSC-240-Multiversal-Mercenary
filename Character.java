@@ -15,7 +15,7 @@ public class Character extends Being{
 	private static int damage = 1;
 
 	/**
-	 * Synchronized constructor that makes Character a singleton, to ensure there can only be one player on the board at a time.
+	 * Synchronized method that makes Character a singleton, to ensure there can only be one player on the board at a time.
 	 * In addition it prompts the player at the beginning of the game to choose their {@link CharacterRace}
 	 * @return the character instance after instantiating a new character to ensure there will only be one.
 	 */

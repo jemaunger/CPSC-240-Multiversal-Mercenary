@@ -1,7 +1,7 @@
 import java.util.Scanner;
 /**
  * Represents the super class that both {@link Character} and {@link Enemy} inherit their names, health amount, and damage.
- * @author Jema Unger
+ * @author Jema Unger, Lucas Pokrywka
  */
 public class Being {
 	private String name;
@@ -22,7 +22,7 @@ public class Being {
 		return this.health;
 	}
 	/**
-	 * Used to get the name of the player and enemy, retrieves the players name at the beginning of the game, and the enemies name only when the player comes in contact with a "&".
+	 * Used to get the name of the player and enemy, retrieves the players name at the beginning of the game, and the enemies name only when the player comes in contact with an ampersand.
 	 * @return the name of both the player and the enemy the player comes in contact with on the board. 
 	 */
 	public String getName() {

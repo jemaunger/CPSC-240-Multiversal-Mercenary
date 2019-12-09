@@ -1,7 +1,7 @@
 import java.util.Scanner;
 /**
  * Represents the character the player assumes the position of when they start the game, type in their players name and choose the {@link CharacterRace}.
- * @author Ethan Pearson
+ * @author Ethan Pearson, Jema Unger
  */
 public class Character extends Being{
 

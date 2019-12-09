@@ -1,7 +1,7 @@
 import java.util.Random;
 import java.util.Scanner;
 /**
- * Represents the randomly generated enemies on the board associated with the "&" character, uses the {@link EnemyGenerator} to spread the enemies throughout the board,
+ * Represents the randomly generated enemies on the board associated with the ampersand character, uses the {@link EnemyGenerator} to spread the enemies throughout the board,
  * getting their information from {@link EnemyGenerator} to be used when a player wishes to battle an enemy. 
  * @author Lucas Pokrywka, Ethan Pearson
  */

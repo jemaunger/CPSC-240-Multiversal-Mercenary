@@ -1,7 +1,7 @@
 import java.util.*;
 /**
  * This class stores and randomy generates all of the {@link ItemType} items available in the game spread throughout the board.
- * @author Ethan Pearson, Jema Unger, Lucas Pokrywka, Lauren Wojcik
+ * @author Ethan Pearson
  */
 public class ItemGenerator {
 	Random rand = new Random();

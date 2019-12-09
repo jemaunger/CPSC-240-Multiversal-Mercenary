@@ -5,7 +5,7 @@ import java.lang.*;
  * This class creates the inventory the user is pulling from, allowing th user the ability to print out their inventory, add, drop, and equipweapons and armor. 
  * Additionally has the methods to deal with the players gold amount, increasing and decreasing the gold when the player buys or sells from the store.
  * Also includes the method for using the potions the player has in their inventory.
- * @authors Ethan Pearson, Jema Unger, Lucas Pokrywka, Lauren Wojcik
+ * @author Ethan Pearson, Jema Unger, Lucas Pokrywka
  */
 public class Inventory {
 	Scanner stdin = new Scanner(System.in);

@@ -2,7 +2,7 @@ import java.util.Scanner;
 import java.util.Random;
 /**
  * Represents the Item object that is created by the {@link ItemGenerator} and used and stored by the {@link Inventory}, they are represented by "O" on the board.
- * @author Ethan Pearson
+ * @author Ethan Pearson, Jema Unger
  */
 public class Item {
 	Random rand = new Random();
@@ -100,7 +100,7 @@ public class Item {
 	}
 	/**
 	 * Sets the strength of the items available in the players inventory when they decide to do battle with an enemy.
-	 * @param stregth is used to set the strength taken from {@link getStrength} which is constructed above.
+	 * @param strength is used to set the strength taken from {@link getStrength} which is constructed above.
 	 */
 	public void setStrength(int strength) {
 		this.strength = strength;

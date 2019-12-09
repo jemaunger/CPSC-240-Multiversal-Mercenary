@@ -1,7 +1,7 @@
 import java.util.Random;
 import java.util.ArrayList;
 /**
- * Class is used to randomly generate and store enemies to be spread throughout the board, associated with the "&" character.
+ * Class is used to randomly generate and store enemies to be spread throughout the board, associated with the ampersand character.
  * @author Ethan Pearson
  */
 public class EnemyGenerator {

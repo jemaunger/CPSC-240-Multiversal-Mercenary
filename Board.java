@@ -326,7 +326,6 @@ public class Board  {
 					grid[row][column] = '.';
 					printBoard();
 				}
-
 				else {
 					grid[row - 1][column] = '@';
 					grid[row][column] = '.';
@@ -339,7 +338,7 @@ public class Board  {
 			for (int x = 0; x < grid.length; x++) {
 				for (int y = 0; y < grid[0].length; y++) {
 					if(grid[x][y] == '&') {
-						int k = rng.nextInt(3);
+						int k = rng.nextInt(4);
 						if(k == 1) {
 							if(grid[x+1][y] == '.') {
 								grid[x][y] = '.';
@@ -369,12 +368,11 @@ public class Board  {
 								grid[x][y] = '&';
 							}
 						}
-
 					}
+
 				}
 			}
 		}
-
 		//Move left
 		if (play == 'a') {
 			//If character runs into item, choose to pick it up or not

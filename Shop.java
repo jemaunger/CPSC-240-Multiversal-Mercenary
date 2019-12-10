@@ -6,7 +6,7 @@ import java.util.Scanner;
  */
 public class Shop {
 	Scanner stdin = new Scanner(System.in);
-	Inventory stock;
+	private Inventory stock;
 	private ItemGenerator gen;
 	/**
 	 * Shop costructor that instantiates a new {@link Inventory} and {@link ItemGenerator} and add seven randomly generated items to the stock.

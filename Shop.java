@@ -27,7 +27,7 @@ public class Shop {
 	 * When a player comes in contact with the store and they would like to purchase something, the shop prints out its stock for the player.
 	 * The player is then prompted to choose which {@link Item} they would like to buy, when the player chooses one the buy method checks
 	 * that the player has enough gold in their {@link Inventory} and if they do, the item is purchased and added to the players inventory.
-	 * @param charIn an {@link Inventory} object used to store the player's inventory to store the purchased (@link Item).
+	 * @param charIn an {@link Inventory} object used to store the player's inventory to store the purchased {@link Item}.
 	 */
 	public void buy(Inventory charIn) {
 		boolean purchaseCompleted = false;

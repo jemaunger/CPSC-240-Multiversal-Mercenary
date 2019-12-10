@@ -264,7 +264,6 @@ public class Board  {
 				//Don't allow character to move through walls
 				if ((grid[row - 1][column] == '|') | (grid[row - 1][column] == '_')) {
 					grid[row][column] = '@';
-					printBoard();
 				}
 
 				else if (grid[row - 1][column] == '*') {
@@ -272,7 +271,6 @@ public class Board  {
 					grid[row - 1][column] = '@';
 					grid[row][column] = '.';
 					Character.player().eatFood(food);
-					printBoard();
 				}
 
 
@@ -284,11 +282,9 @@ public class Board  {
 					if (battleResult) {
 						grid[row][column] = '.';
 						grid[row - 1][column] = '@';
-						printBoard();
 					}
 					if(!battleResult) {
 						grid[row][column] = '@';
-						printBoard();
 					}
 				}
 				//If character runs into potion (!), choose a weapon or armor to boost damage
@@ -299,7 +295,6 @@ public class Board  {
 					grid[row][column] = '.';
 
 					inventory.usePotion(potion);
-					printBoard();
 				}
 				else if(grid[row-1][column] == '$') {
 					market = new Shop();
@@ -324,12 +319,10 @@ public class Board  {
 					}
 					grid[row-1][column] = '@';
 					grid[row][column] = '.';
-					printBoard();
 				}
 				else {
 					grid[row - 1][column] = '@';
 					grid[row][column] = '.';
-					printBoard();
 				}
 			} catch (ArrayIndexOutOfBoundsException exception) {
 				System.out.println("Invalid move, try again");
@@ -372,6 +365,7 @@ public class Board  {
 
 				}
 			}
+			printBoard();
 		}
 		//Move left
 		if (play == 'a') {
@@ -394,7 +388,6 @@ public class Board  {
 				//Don't allow character to move through walls
 				if ((grid[row][column - 1] == '|') | (grid[row][column - 1] == '_')) {
 					grid[row][column] = '@';
-					printBoard();
 				}
 
 				else if(grid[row][column - 1] == '*') {
@@ -402,7 +395,6 @@ public class Board  {
 					grid[row][column - 1] = '@';
 					grid [row][column] = '.';
 					Character.player().eatFood(food);
-					printBoard();
 				}
 
 				//If character runs into enemy, choose to battle or not
@@ -413,11 +405,9 @@ public class Board  {
 					if (battleResult) {
 						grid[row][column] = '.';
 						grid[row][column - 1] = '@';
-						printBoard();
 					}
 					if (!battleResult) {
 						grid[row][column] = '@';
-						printBoard();
 					}
 				}
 				//If character runs into potion (!), choose a weapon or armor to boost damage
@@ -428,7 +418,6 @@ public class Board  {
 					grid[row][column] = '.';
 
 					inventory.usePotion(potion);
-					printBoard();
 				}
 
 				else if(grid[row][column-1] == '$') {
@@ -454,14 +443,12 @@ public class Board  {
 					}
 					grid[row][column-1] = '@';
 					grid[row][column] = '.';
-					printBoard();
 				}
 
 
 				else {
 					grid[row][column - 1] = '@';
 					grid[row][column] = '.';
-					printBoard();
 				}
 
 			} catch (ArrayIndexOutOfBoundsException exception) {
@@ -471,7 +458,7 @@ public class Board  {
 			for (int x = 0; x < grid.length; x++) {
 				for (int y = 0; y < grid[0].length; y++) {
 					if(grid[x][y] == '&') {
-						int k = rng.nextInt(3);
+						int k = rng.nextInt(4);
 						if(k == 1) {
 							if(grid[x+1][y] == '.') {
 								grid[x][y] = '.';
@@ -504,6 +491,7 @@ public class Board  {
 					}
 				}
 			}
+			printBoard();
 		}
 
 		//Move down
@@ -526,7 +514,6 @@ public class Board  {
 				//Don't allow character to move through walls
 				if ((grid[row + 1][column] == '|') | (grid[row + 1][column] == '_')) {
 					grid[row][column] = '@';
-					printBoard();
 				}
 
 				else if (grid[row + 1][column] == '*') {
@@ -534,7 +521,6 @@ public class Board  {
 					grid[row + 1][column] = '@';
 					grid[row][column] = '.';
 					Character.player().eatFood(food);
-					printBoard();
 				}
 
 				//If character runs into enemy, choose to battle
@@ -545,11 +531,9 @@ public class Board  {
 					if (battleResult) {
 						grid[row][column] = '.';
 						grid[row + 1][column] = '@';
-						printBoard();
 					}
 					if (!battleResult) {
 						grid[row][column] = '@';
-						printBoard();
 					}
 				}
 				//If character runs into potion (!), choose a weapon or armor to boost damage
@@ -560,7 +544,6 @@ public class Board  {
 					grid[row][column] = '.';
 
 					inventory.usePotion(potion);
-					printBoard();
 				}
 
 				else if(grid[row+1][column] == '$') {
@@ -586,13 +569,11 @@ public class Board  {
 					}
 					grid[row+1][column] = '@';
 					grid[row][column] = '.';
-					printBoard();
 				}
 
 				else {
 					grid[row + 1][column] = '@';
 					grid[row][column] = '.';
-					printBoard();
 				}
 			} catch (ArrayIndexOutOfBoundsException exception) {
 				System.out.println("Invalid move, try again");
@@ -601,7 +582,7 @@ public class Board  {
 			for (int x = 0; x < grid.length; x++) {
 				for (int y = 0; y < grid[0].length; y++) {
 					if(grid[x][y] == '&') {
-						int k = rng.nextInt(3);
+						int k = rng.nextInt(4);
 						if(k == 1) {
 							if(grid[x+1][y] == '.') {
 								grid[x][y] = '.';
@@ -635,6 +616,7 @@ public class Board  {
 					}
 				}
 			}
+			printBoard();
 		}
 
 		//Move right
@@ -657,7 +639,6 @@ public class Board  {
 				//Don't allow character to move through walls
 				if ((grid[row][column + 1] == '|') | (grid[row][column + 1] == '_')) {
 					grid[row][column] = '@';
-					printBoard();
 				}
 				//Eat food
 				else if (grid[row][column + 1] == '*') {
@@ -665,7 +646,6 @@ public class Board  {
 					grid[row][column + 1] = '@';
 					grid[row][column] = '.';
 					Character.player().eatFood(food);
-					printBoard();
 				}
 				//If character runs into enemy, call Battle method
 				else if ((grid[row][column + 1] == '&')) {
@@ -675,11 +655,9 @@ public class Board  {
 					if (battleResult) {
 						grid[row][column] = '.';
 						grid[row][column + 1] = '@';
-						printBoard();
 					}
 					if (!battleResult) {
 						grid[row][column] = '@';
-						printBoard();
 					}
 
 				}
@@ -691,7 +669,6 @@ public class Board  {
 					grid[row][column] = '.';
 
 					inventory.usePotion(potion);
-					printBoard();
 				}
 
 				else if(grid[row][column+1] == '$') {
@@ -717,13 +694,11 @@ public class Board  {
 					}
 					grid[row][column+1] = '@';
 					grid[row][column] = '.';
-					printBoard();
 				}
 
 				else {
 					grid[row][column + 1] = '@';
 					grid[row][column] = '.';
-					printBoard();
 				}
 			} catch (ArrayIndexOutOfBoundsException exception) {
 				System.out.println("Invalid move, try again");
@@ -733,7 +708,7 @@ public class Board  {
 			for (int x = 0; x < grid.length; x++) {
 				for (int y = 0; y < grid[0].length; y++) {
 					if(grid[x][y] == '&') {
-						int k = rng.nextInt(3);
+						int k = rng.nextInt(4);
 						if(k == 1) {
 							if(grid[x+1][y] == '.') {
 								grid[x][y] = '.';
@@ -766,6 +741,7 @@ public class Board  {
 					}
 				}
 			}
+			printBoard();
 		}
 	}
 

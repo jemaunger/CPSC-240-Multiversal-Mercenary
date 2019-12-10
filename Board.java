@@ -339,7 +339,7 @@ public class Board  {
 				for (int x = 0; x < grid.length; x++) {
 					for (int y = 0; y < grid[0].length; y++) {
 						if(grid[x][y] == '&') {
-							int k = rng.nextInt(4);
+							int k = rng.nextInt(3);
 							if(k == 1) {
 								if(grid[x+1][y] == '.') {
 									grid[x][y] = '.';
@@ -361,7 +361,9 @@ public class Board  {
 								} else {
 									grid[x][y] = '&';
 								}
-							}else {
+							}
+							/*
+							else {
 								if(grid[x][y-1] == '.') {
 									grid[x][y] = '.';
 									grid[x][y-1] = '&';
@@ -369,6 +371,7 @@ public class Board  {
 									grid[x][y] = '&';
 								}
 							}
+							*/
 						}
 					}
 				}
@@ -474,7 +477,7 @@ public class Board  {
 				for (int x = 0; x < grid.length; x++) {
 					for (int y = 0; y < grid[0].length; y++) {
 						if(grid[x][y] == '&') {
-							int k = rng.nextInt(4);
+							int k = rng.nextInt(3);
 							if(k == 1) {
 								if(grid[x+1][y] == '.') {
 									grid[x][y] = '.';
@@ -606,7 +609,7 @@ public class Board  {
 				for (int x = 0; x < grid.length; x++) {
 					for (int y = 0; y < grid[0].length; y++) {
 						if(grid[x][y] == '&') {
-							int k = rng.nextInt(4);
+							int k = rng.nextInt(3);
 							if(k == 1) {
 								if(grid[x+1][y] == '.') {
 									grid[x][y] = '.';
@@ -628,7 +631,9 @@ public class Board  {
 								} else {
 									grid[x][y] = '&';
 								}
-							}else {
+							}
+							/*
+							else {
 								if(grid[x][y-1] == '.') {
 									grid[x][y] = '.';
 									grid[x][y-1] = '&';
@@ -636,6 +641,7 @@ public class Board  {
 									grid[x][y] = '&';
 								}
 							}
+							*/
 						}
 					}
 				}
@@ -739,7 +745,7 @@ public class Board  {
 				for (int x = 0; x < grid.length; x++) {
 					for (int y = 0; y < grid[0].length; y++) {
 						if(grid[x][y] == '&') {
-							int k = rng.nextInt(4);
+							int k = rng.nextInt(3);
 							if(k == 1) {
 								if(grid[x+1][y] == '.') {
 									grid[x][y] = '.';
@@ -761,7 +767,9 @@ public class Board  {
 								} else {
 									grid[x][y] = '&';
 								}
-							}else {
+							}
+							/*
+							else {
 								if(grid[x][y-1] == '.') {
 									grid[x][y] = '.';
 									grid[x][y-1] = '&';
@@ -769,6 +777,7 @@ public class Board  {
 									grid[x][y] = '&';
 								}
 							}
+							*/
 						}
 					}
 				}

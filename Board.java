@@ -42,7 +42,9 @@ public class Board  {
 	private char characterLocation;
 	private int characterHealth;
 	private Item characterItems;
-
+	/**
+	 * Used when setting up the board after it has been saved, it takes the grid from grid.txt and also takes in the save file so the player can restore their game.
+	 */
 	public void setUp(){
 		try{
 			fileIn2 = new FileInputStream("grid.txt");
@@ -160,10 +162,8 @@ public class Board  {
 
 	}
 	/**
-	 * Used to make it so the player is able to battle against the enemies on the board when they come in contact with them.
-	 * @param player Character object used by the player to battle against enemies. 
-	 * @param enemy Enemy object used to battle against the player.
-	 * @return true if the player runs into an enemy and starts a battle.
+	 * When a player defeats a certain number of enemies doors appear on the board allowing the player to enter seperate rooms, move and save between them
+	 * @param num represents the number of enemies left on the board.
 	 */
 	public void roomChange(int num){
 		if (num == 7){
@@ -222,8 +222,12 @@ public class Board  {
 			out.flush();
 		}
 	}
-		
-
+	/**
+	 * Used to make it so the player is able to battle against the enemies on the board when they come in contact with them.
+	 * @param player Character object used by the player to battle against enemies. 
+	 * @param enemy Enemy object used to battle against the player.
+	 * @return true if the player runs into an enemy and starts a battle.
+	 */
 	public boolean battle(Enemy enemy, Character player) {
 		//When player and enemy battle, player will equip weapon and armor
 		System.out.println("You've encountered an enemy!");
@@ -259,10 +263,6 @@ public class Board  {
 					badGuyIDCounter--;
 					System.out.println("You still have to defeat " + badGuyIDCounter + " more enemies.");
 
-					/*if (badGuyIDCounter == 11) {
-					  Room room2 = new Room("room2.txt");
-					  grid[12][31] = 'D';
-					  }*/
 					try {
 
 						Thread.sleep(2000);

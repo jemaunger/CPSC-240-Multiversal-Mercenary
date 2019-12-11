@@ -5,7 +5,10 @@ import java.io.FileInputStream;
 import java.io.PrintWriter;
 import java.io.FileNotFoundException;
 import java.util.Arrays;
-
+/**
+ * Represents the playable board the player views after passing through the initial plotline and prompts from {@link Main}. 
+ * @author Ethan Pearson, Jema Unger, Lucas Pokrywka, Lauren Wojcik
+ */
 public class Board  {
 	//Instance variables
 	private FileInputStream fileIn;
@@ -26,14 +29,17 @@ public class Board  {
 	protected FoodGenerator genFood;
 	protected ItemGenerator genItem = new ItemGenerator();
 	protected Random rng = new Random();
-	protected Room room2;
+//	protected Room room2;
 	protected Scanner input = new Scanner(System.in);
 
 	//Instance variables to be saved.
 	private char characterLocation;
 	private int characterHealth;
 	private Item characterItems;
-
+	/**
+	 * Used to save the state of the grid, the location and health of the player, and what is in their inventory.
+	 * @param pw PrintWriter to save the state of the game.
+	 */
 	public void saveGame(PrintWriter pw){
 		pw.println(player);
 		pw.println(Arrays.deepToString(grid));
@@ -42,8 +48,10 @@ public class Board  {
 		pw.close();
 		System.out.println("File saved successfully!");
 	}
-
-	//restores the state of the saved game, including the characters location health, items, also all of the placements of enemies and items across the board.
+	/**
+	 * Restores the state of the saved game, including the characters location health, items, also all of the placements of enemies and items across the board.
+	 * @param s Scanner that reads in the state of the game from Game.sav.
+	 */
 	public Board(Scanner s){
 		player = new Character(s);
 
@@ -61,7 +69,10 @@ public class Board  {
 		}
 
 	}
-
+	/**
+	 * Constructor which reads in a file in from a scanner, reading in the room.txt files, also instantiates a new player and {@link Inventory}, as well as a {@link FoodGenerator}.
+	 * @throws FileNotFoundException when it is unable to find the room.txt files. 
+	 */
 	Board() {
 		try{
 			fileIn = new FileInputStream(fileName);
@@ -85,16 +96,19 @@ public class Board  {
 			}
 		}			
 	}
-
-	//Singleton
+	/**
+	 * Used to make the board which it instantiates a singleton, ensuring there will only be one instance of a board at a time.
+	 * @return the singleton board instance.
+	 */
 	public static synchronized Board getInstance() {
 		if (instance == null) {
 			instance = new Board();
 		}
 		return instance;
 	}
-
-	//Display the game board to the screen 
+	/**
+	 * Used to print out the board instance from a file read in from the constructor.
+	 */
 	public void printBoard() {
 		for (char[] space : grid) {
 			for (char j : space) {
@@ -104,8 +118,12 @@ public class Board  {
 		}
 
 	}
-
-	//Battle
+	/**
+	 * Used to make it so the player is able to battle against the enemies on the board when they come in contact with them.
+	 * @param player Character object used by the player to battle against enemies. 
+	 * @param enemy Enemy object used to battle against the player.
+	 * @return true if the player runs into an enemy and starts a battle.
+	 */
 	public boolean battle(Enemy enemy, Character player) {
 		//When player and enemy battle, player will equip weapon and armor
 		System.out.println("You've encountered an enemy!");
@@ -187,7 +205,11 @@ public class Board  {
 			return false;
 		}		
 	}	
-	//Game actions (move, equip, drop, etc)
+	/**
+	 * Adds the ability of the player and enemies on the board to move around the board, enemies move randomly throughout the grid, and players move with w,a,s,d.
+	 * Also contains the actions for the player to input such as equip, view inventory, print health, drop items, save the game, print the menu, and quit.
+	 * @param play character used to move the player and enemies around the board. 
+	 */
 	public void play(char play) {
 		System.out.println();
 

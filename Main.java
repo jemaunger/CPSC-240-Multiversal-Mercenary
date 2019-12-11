@@ -48,8 +48,9 @@ public class Main {
 			System.out.println("To begin, please choose an action from the menu: ");
 			System.out.println("(You must press enter between every action)");
 		} if((choice == 'Y') | (choice == 'y')){
-
-			File loadFile = new File("Game.sav");
+		  	board.setUp();
+		  }
+		/*	File loadFile = new File("Game.sav");
 			Scanner in;
 			try{
 				in = new Scanner(loadFile);
@@ -70,7 +71,7 @@ public class Main {
 			//Character player = new Character(in);
 
 			return;
-		}
+		}*/
 		printMenu();
 		/*
 		   try {
@@ -119,6 +120,7 @@ public class Main {
 		System.out.println("     * = Food");
 		System.out.println("     $ = Shop");
 		System.out.println("     ! = Potion");
+		System.out.println("     D = Door");
 		System.out.println();
 		System.out.println("----------------------------------------------------------------------------");
 	}

@@ -5,6 +5,8 @@ import java.io.FileInputStream;
 import java.io.PrintWriter;
 import java.io.FileNotFoundException;
 import java.util.Arrays;
+import java.io.FileOutputStream;
+import java.io.IOException;
 /**
  * Represents the playable board the player views after passing through the initial plotline and prompts from {@link Main}. 
  * @author Ethan Pearson, Jema Unger, Lucas Pokrywka, Lauren Wojcik
@@ -13,6 +15,10 @@ public class Board  {
 	//Instance variables
 	private FileInputStream fileIn;
 	private Scanner scnr;
+	private FileInputStream fileIn2;
+	private Scanner scnr2;
+	private FileOutputStream fileOut;
+	private PrintWriter out;
 	private static String fileName = "room1.txt";
 	private static Board instance;
 	private String[] lines = new String[32];
@@ -36,13 +42,42 @@ public class Board  {
 	private char characterLocation;
 	private int characterHealth;
 	private Item characterItems;
+
+	public void setUp(){
+		try{
+			fileIn2 = new FileInputStream("grid.txt");
+			scnr2 = new Scanner(fileIn2);
+		}
+		catch(FileNotFoundException e){
+			System.out.println("file not found");
+			System.exit(2);
+		}
+		for(int i = 0; i < 32; i++){
+			lines[i] = scnr2.nextLine();
+		}
+		for(int x = 0; x < 32; x++){
+			char[] cArray = lines[x].toCharArray();
+			for(int y = 0; y < 32; y++){
+				grid[x][y] = cArray[y];
+			}
+		}
+		try{
+			fileIn2 = new FileInputStream("Game.sav");
+			scnr2 = new Scanner(fileIn2);
+		}
+		catch(FileNotFoundException e){
+			System.out.println("file was not found");
+			System.exit(2);
+		}
+	}
 	/**
 	 * Used to save the state of the grid, the location and health of the player, and what is in their inventory.
 	 * @param pw PrintWriter to save the state of the game.
 	 */
 	public void saveGame(PrintWriter pw){
+		roomChange(22);
+		pw.println(badGuyIDCounter);
 		pw.println(player);
-		pw.println(Arrays.deepToString(grid));
 		pw.println(inventory);
 
 		pw.close();
@@ -116,6 +151,12 @@ public class Board  {
 			}
 			System.out.println();
 		}
+		if (badGuyIDCounter == 7){
+			grid[30][31] = 'D';
+		}
+		else if (badGuyIDCounter == 3){
+			grid[0][1] = 'D';
+		}
 
 	}
 	/**
@@ -124,6 +165,65 @@ public class Board  {
 	 * @param enemy Enemy object used to battle against the player.
 	 * @return true if the player runs into an enemy and starts a battle.
 	 */
+	public void roomChange(int num){
+		if (num == 7){
+			try{
+				fileIn2 = new FileInputStream("room2.txt");
+				scnr2 = new Scanner(fileIn2);
+			}
+			catch(FileNotFoundException e){
+				System.out.println("file not found");
+				System.exit(2);
+			}
+			for (int i = 0; i < 32; i++){
+				lines[i] = scnr2.nextLine();
+			}
+			for (int x = 0; x < 32; x++){
+				char[] cArray = lines[x].toCharArray();
+				for (int y = 0; y < 32; y++){
+					grid[x][y] = cArray[y];
+				}
+			}
+		}
+		else if (num == 3){
+			try{
+				fileIn2 = new FileInputStream("room3.txt");
+				scnr2 = new Scanner(fileIn2);
+			}
+			catch(FileNotFoundException e){
+				System.out.println("file not found");
+				System.exit(2);
+			}
+			for (int i = 0; i < 32; i++){
+				lines[i] = scnr2.nextLine();
+			}
+			for (int x = 0; x < 32; x++){
+				char[] cArray = lines[x].toCharArray();
+				for(int y = 0; y < 32; y++){
+					grid[x][y] = cArray[y];
+				}
+			}
+		}
+		else {
+			try{
+				fileOut = new FileOutputStream("grid.txt");
+				out = new PrintWriter(fileOut);
+			}
+			catch(IOException ex){
+				System.out.println("file not found");
+				System.exit(2);
+			}
+			for(char[] space: grid){
+				for(char j: space){
+					out.print(j);
+				}
+				out.println();
+			}
+			out.flush();
+		}
+	}
+		
+
 	public boolean battle(Enemy enemy, Character player) {
 		//When player and enemy battle, player will equip weapon and armor
 		System.out.println("You've encountered an enemy!");
@@ -281,7 +381,13 @@ public class Board  {
 				}
 
 			}
-
+			else if (grid[row -1][column] == 'D'){
+				System.out.println("Would you like the enter the door (Y or N)?");
+				char choice2 = input.next().charAt(0);
+				if ((choice2 == 'y') || (choice2 == 'Y')){
+					roomChange(badGuyIDCounter);
+				}
+			}
 			try {
 				//Don't allow character to move through walls
 				if ((grid[row - 1][column] == '|') | (grid[row - 1][column] == '_')) {
@@ -405,7 +511,13 @@ public class Board  {
 				}
 
 			}
-
+			else if (grid[row][column -1] == 'D'){
+				System.out.println("Would you like to go through the door (Y or N)?");
+				char choice2 = input.next().charAt(0);
+				if ((choice2 == 'y') || (choice2 == 'Y')){
+					roomChange(badGuyIDCounter);
+				}
+			}
 			try {
 				//Don't allow character to move through walls
 				if ((grid[row][column - 1] == '|') | (grid[row][column - 1] == '_')) {
@@ -532,6 +644,13 @@ public class Board  {
 				}
 
 			}
+			else if (grid[row+1][column] == 'D'){
+				System.out.println("Would you like to go through the door (Y or N)?");
+				char choice2 = input.next().charAt(0);
+				if ((choice2 == 'y') || (choice2 == 'Y')){
+					roomChange(badGuyIDCounter);
+				}
+			}
 			try {
 				//Don't allow character to move through walls
 				if ((grid[row + 1][column] == '|') | (grid[row + 1][column] == '_')) {
@@ -656,6 +775,13 @@ public class Board  {
 					inventory.print();
 				}
 
+			}
+			else if (grid[row][column+1] == 'D'){
+				System.out.println("Would you like to go through the door (Y or N)?");
+				char choice2 = input.next().charAt(0);
+				if((choice2 == 'y') || (choice2 == 'Y')){
+					roomChange(badGuyIDCounter);
+				}
 			}
 			try {
 				//Don't allow character to move through walls

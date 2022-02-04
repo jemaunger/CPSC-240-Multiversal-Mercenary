@@ -41,9 +41,9 @@ public class Board  {
 	protected Scanner input = new Scanner(System.in);
 
 	//Instance variables to be saved.
-	private char characterLocation;
-	private int characterHealth;
-	private Item characterItems;
+	// private char characterLocation;
+	// private int characterHealth;
+	// private Item characterItems;
 	/**
 	 * Used when setting up the board after it has been saved, it takes the grid from grid.txt and also takes in the save file so the player can restore their game.
 	 */

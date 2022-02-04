@@ -3,11 +3,11 @@ import java.io.FileInputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 /**
- * Used to represent the start of the game allowing the player to go through the initial menus and storyline to be able to play through the game. 
+ * Used to represent the start of the game, allowing the player to go through the initial menus and storyline. 
  * @author Ethan Pearson, Jema Unger, Lucas Pokrywka, Lauren Wojcik
  */
 public class Main {
-	
+
 	/**
 	 * Contains the initial message of asking the player whether they want to restore from a previous save, then goes through the storyline and context of the game.
 	 * Then is used to print out the menu of the game so the player knows the controls and can reference back to them, after they have gone through the inital menus,
@@ -24,33 +24,19 @@ public class Main {
 
 		System.out.println("Would you like to start from a previous save (Y or N)? ");
 		choice = input.next().charAt(0);
-		if((choice == 'N') | (choice == 'n')){
-			System.out.println("All events you see in this game are real. They simply take place a long time ago, in a " + "galaxy far, far away...");
-
-			System.out.println();
-
-			System.out.println("The multidimensional barrier has been torn open, throwing a multitude of beings and items into our world.");
-			System.out.println("Unfortunately, through a sheer statistical anomaly, all but one of these beings are evil!");
-			System.out.println("Our hero, torn from their own world and/or time, now fights to rid our world of evil before ");
-			System.out.println("returning to their own world (which will happen offscreen).");
-			System.out.println("Can you help guide them toward where they need to be?");
-
-			System.out.println();
-
-			System.out.println("Your goal: Defeat all of the enemies on the board (denoted by &). There are 3 boards total.");
-			System.out.println("Once you have conquered all enemies, a door will magically appear and you will be able to ");
-			System.out.println("move to the next room. Clear all the rooms and you win!");
-			System.out.println();
+		if((choice == 'N') | (choice == 'n')) {
+			printIntro();
 
 			//Generate a new board and print it to the screen
 			System.out.printf("Welcome, %s! %n", Character.player().getName());
 
 			System.out.println("Below is list of symbols and actions that you can make with your character.");
 			System.out.println("To begin, please choose an action from the menu: ");
-			System.out.println("(You must press enter between every action)");
-		} if((choice == 'Y') | (choice == 'y')){
-		  	board.setUp();
-		  }
+			System.out.println("(Hint: You must press enter between every action)");
+		}
+		if((choice == 'Y') | (choice == 'y')) {
+		  	//board.setUp();
+		}
 		/*	File loadFile = new File("Game.sav");
 			Scanner in;
 			try{
@@ -85,18 +71,19 @@ public class Main {
 		board.printBoard();
 		System.out.print(": ");
 
+		// 
 		while (input.hasNext()) {
 			do {
 				choice = input.next().charAt(0);
 				board.play(choice);
 
 			} while ((choice != 'Q') | (choice != 'q'));
-
 		}
 	}
 	/**
-	 * Generates the menu which is printed after the initial story and prompts the player goes throught, also the player can choose to print out the menu at any point in the game
-	 * with the command M. Menu shows all of the command options available for the player to use as well as a key that tells the player which symbols represent which objects.
+	 * Provides the player with a list of valid actions during the game. 
+	 * Also displays a key tells the player which symbols represent which objects.
+	 * This menu can be printed at any point during the game with the command M.
 	 */
 	public static void printMenu() {
 		System.out.println("Actions: ");
@@ -124,6 +111,25 @@ public class Main {
 		System.out.println("     D = Door");
 		System.out.println();
 		System.out.println("----------------------------------------------------------------------------");
+	}
+
+	public static void printIntro() {
+		System.out.println("All events you see in this game are real. They simply take place a long time ago, in a " + "galaxy far, far away...");
+
+		System.out.println();
+
+		System.out.println("The multidimensional barrier has been torn open, throwing a multitude of beings and items into our world.");
+		System.out.println("Unfortunately, through a sheer statistical anomaly, all but one of these beings are evil!");
+		System.out.println("Our hero, torn from their own world and/or time, now fights to rid our world of evil before ");
+		System.out.println("returning to their own world (which will happen offscreen).");
+		System.out.println("Can you help guide them toward where they need to be?");
+
+		System.out.println();
+
+		System.out.println("Your goal: Defeat all of the enemies on the board (denoted by &). There are 3 boards total.");
+		System.out.println("Once you have conquered all enemies, a door will magically appear and you will be able to ");
+		System.out.println("move to the next room. Clear all the rooms and you win!");
+		System.out.println();
 	}
 
 }

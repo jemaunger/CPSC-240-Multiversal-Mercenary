@@ -1,4 +1,4 @@
-import java.util.Scanner;
+
 /**
  * Represents the super class that both {@link Character} and {@link Enemy} inherit their names, health amount, and damage.
  * @author Jema Unger, Lucas Pokrywka

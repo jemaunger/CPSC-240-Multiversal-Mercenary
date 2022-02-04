@@ -7,6 +7,7 @@ import java.io.FileNotFoundException;
  * @author Ethan Pearson, Jema Unger, Lucas Pokrywka, Lauren Wojcik
  */
 public class Main {
+	
 	/**
 	 * Contains the initial message of asking the player whether they want to restore from a previous save, then goes through the storyline and context of the game.
 	 * Then is used to print out the menu of the game so the player knows the controls and can reference back to them, after they have gone through the inital menus,

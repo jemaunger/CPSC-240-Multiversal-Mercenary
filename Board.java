@@ -12,7 +12,8 @@ import java.io.IOException;
  * @author Ethan Pearson, Jema Unger, Lucas Pokrywka, Lauren Wojcik
  */
 public class Board  {
-	//Instance variables
+
+	// Instance variables
 	private FileInputStream fileIn;
 	private Scanner scnr;
 	private FileInputStream fileIn2;
@@ -35,7 +36,8 @@ public class Board  {
 	protected FoodGenerator genFood;
 	protected ItemGenerator genItem = new ItemGenerator();
 	protected Random rng = new Random();
-//	protected Room room2;
+
+	//	Protected Room room2;
 	protected Scanner input = new Scanner(System.in);
 
 	//Instance variables to be saved.
@@ -45,7 +47,7 @@ public class Board  {
 	/**
 	 * Used when setting up the board after it has been saved, it takes the grid from grid.txt and also takes in the save file so the player can restore their game.
 	 */
-	public void setUp(){
+	public void setUp() {
 		try{
 			fileIn2 = new FileInputStream("grid.txt");
 			scnr2 = new Scanner(fileIn2);

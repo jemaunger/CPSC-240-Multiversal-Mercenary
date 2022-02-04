@@ -1,6 +1,6 @@
 import java.util.Scanner;
 import java.util.ArrayList;
-import java.lang.*;
+//import java.lang.*;
 /**
  * This class creates the inventory the user is pulling from, allowing th user the ability to print out their inventory, add, drop, and equipweapons and armor. 
  * Additionally has the methods to deal with the players gold amount, increasing and decreasing the gold when the player buys or sells from the store.
@@ -30,7 +30,7 @@ public class Inventory {
 	Inventory(Scanner s){
 		this.maxWeight = s.nextInt();
 		s.nextLine();
-		Inventory bag = new Inventory(s);
+		/*Inventory bag = */new Inventory(s);
 	}
 
 	/**

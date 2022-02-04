@@ -9,7 +9,7 @@ public class Enemy extends Being{
 	private String name;
 	private int damage;
 	private int health;
-	private Random rng;
+	//private Random rng;
 	private int badGuyID;
 	private static int availableID = 0;
 	/**

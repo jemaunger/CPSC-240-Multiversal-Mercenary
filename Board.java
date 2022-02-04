@@ -1,11 +1,11 @@
-import java.util.Scanner;
-import java.util.Random;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.PrintWriter;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Random;
+import java.util.Scanner;
 /**
  * Represents the playable board the player views after passing through the initial plotline and prompts from {@link Main}. 
  * @author Ethan Pearson, Jema Unger, Lucas Pokrywka, Lauren Wojcik
@@ -14,10 +14,10 @@ public class Board  {
 
 	// Instance variables
 	private FileInputStream fileIn;
-	private Scanner scnr;
 	private FileInputStream fileIn2;
-	private Scanner scnr2;
 	private FileOutputStream fileOut;
+	private Scanner scnr;
+	private Scanner scnr2;
 	private PrintWriter out;
 	private static String fileName = "room1.txt";
 	private static Board instance;

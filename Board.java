@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.PrintWriter;
 import java.io.FileNotFoundException;
-import java.util.Arrays;
 import java.io.FileOutputStream;
 import java.io.IOException;
 /**
@@ -88,11 +87,11 @@ public class Board  {
 		System.out.println("File saved successfully!");
 	}
 	/**
-	 * Restores the state of the saved game, including the characters location health, items, also all of the placements of enemies and items across the board.
+	 * Restores the state of the saved game, including the character's stats and the placements of enemies and items across the board.
 	 * @param s Scanner that reads in the state of the game from Game.sav.
 	 */
-	public Board(Scanner s){
-		player = new Character(s);
+	public Board(Scanner s) {
+		player = new Character(s, s = new Scanner("Game.sav"));
 
 		for(int i = 0; i < 32; i++){
 			lines[i] = s.nextLine();
